@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VS Battle - Character Roster Database</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@600;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f6ff',
+                            100: '#e0edff',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                            700: '#1d4ed8',
+                            900: '#0f172a',
+                            950: '#030712'
+                        },
+                        tier: {
+                            boundless: '#dc2626',
+                            outerversal: '#eab308',
+                            hyperversal: '#f59e0b',
+                            multiversal: '#a855f7',
+                            universal: '#6366f1',
+                            stellar: '#06b6d4',
+                            planetary: '#10b981',
+                            tectonic: '#84cc16',
+                            urban: '#eab308',
+                            building: '#f97316',
+                            human: '#94a3b8'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Orbitron', 'sans-serif'],
+                        tech: ['Rajdhani', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.6);
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(59, 130, 246, 0.4);
+            box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.5), 0 0 15px -3px rgba(59, 130, 246, 0.2);
+        }
+        .text-glow {
+            text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+        }
+        .modal-enter {
+            animation: modalIn 0.25s ease-out forwards;
+        }
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans selection:bg-blue-600 selection:text-white">
+
+    <!-- Top Navigation Header -->
+    <header class="sticky top-0 z-30 glass-panel border-b border-slate-800 px-4 lg:px-8 py-3">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <!-- Brand Logo & Title -->
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center text-white shadow-lg shadow-blue-500/20 font-bold text-xl font-display">
+                    VS
+                </div>
+                <div>
+                    <h1 class="text-xl font-extrabold tracking-wider font-display bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-300 to-purple-400">
+                        VS BATTLE <span class="text-xs font-semibold px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 border border-blue-500/20 ml-1">ROSTER</span>
+                    </h1>
+                    <p class="text-xs text-slate-400">Versus Index & Character Stats Database</p>
+                </div>
+            </div>
+
+            <!-- GitHub Sync & Control Actions -->
+            <div class="flex items-center gap-3 w-full sm:w-auto justify-end">
+                <div id="repoStatus" class="hidden sm:flex items-center gap-2 text-xs px-3 py-1.5 rounded-lg bg-slate-800/80 border border-slate-700/60 text-slate-300">
+                    <span id="syncDot" class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span id="syncText">Database Ready</span>
+                </div>
+                
+                <button id="fetchGithubBtn" class="flex items-center gap-2 px-3.5 py-1.5 text-xs font-medium rounded-lg bg-blue-600 hover:bg-blue-500 text-white transition-all shadow-md shadow-blue-600/20 active:scale-95">
+                    <i class="fa-solid fa-rotate text-xs" id="fetchIcon"></i>
+                    <span>Fetch Live GitHub</span>
+                </button>
+
+                <button id="resetFiltersBtn" title="Reset All Filters" class="px-3 py-1.5 text-xs font-medium rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition">
+                    <i class="fa-solid fa-filter-circle-xmark"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 lg:px-8 py-6 space-y-6">
+
+        <!-- Controls Section: Search, Filters, Sorting & Display Options -->
+        <section class="glass-panel rounded-2xl p-4 lg:p-6 space-y-4 shadow-xl">
+            <!-- Search & Quick Info Bar -->
+            <div class="flex flex-col lg:flex-row gap-4 items-stretch lg:items-center justify-between">
+                <!-- Search Box -->
+                <div class="relative flex-1">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                    <input type="text" id="searchInput" placeholder="Search by character name, alias, series, or abilities..." 
+                        class="w-full pl-11 pr-10 py-3 rounded-xl bg-slate-900/90 border border-slate-700 text-slate-100 placeholder-slate-500 text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all">
+                    <button id="clearSearchBtn" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 p-1">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+
+                <!-- Active Filters Counter Badge -->
+                <div class="flex items-center gap-2 text-xs text-slate-400 bg-slate-900/60 px-3 py-2 rounded-xl border border-slate-800 self-start lg:self-auto">
+                    <i class="fa-solid fa-sliders text-blue-400"></i>
+                    <span>Active Filters: <strong id="activeFilterCount" class="text-blue-400">0</strong></span>
+                </div>
+            </div>
+
+            <!-- Filter Dropdowns Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 pt-2 border-t border-slate-800/80">
+                
+                <!-- Series Filter -->
+                <div>
+                    <label class="block text-xs font-medium text-slate-400 mb-1">
+                        <i class="fa-solid fa-tv mr-1 text-slate-500"></i> Series
+                    </label>
+                    <select id="seriesFilter" class="w-full py-2 px-3 rounded-lg bg-slate-900 border border-slate-700 text-slate-200 text-xs focus:outline-none focus:border-blue-500">
+                        <option value="">All Series</option>
+                    </select>
+                </div>
+
+                <!-- Tier Filter -->
+                <div>
+                    <label class="block text-xs font-medium text-slate-400 mb-1">
+                        <i class="fa-solid fa-trophy mr-1 text-slate-500"></i> Tier Level
+                    </label>
+                    <select id="tierFilter" class="w-full py-2 px-3 rounded-lg bg-slate-900 border border-slate-700 text-slate-200 text-xs focus:outline-none focus:border-blue-500">
+                        <option value="">All Tiers</option>
+                    </select>
+                </div>
+
+                <!-- Gender Filter -->
+                <div>
+                    <label class="block text-xs font-medium text-slate-400 mb-1">
+                        <i class="fa-solid fa-venus-mars mr-1 text-slate-500"></i> Gender
+                    </label>
+                    <select id="genderFilter" class="w-full py-2 px-3 rounded-lg bg-slate-900 border border-slate-700 text-slate-200 text-xs focus:outline-none focus:border-blue-500">
+                        <option value="">All Genders</option>
+                    </select>
+                </div>
+
+                <!-- Sort By -->
+                <div>
+                    <label class="block text-xs font-medium text-slate-400 mb-1">
+                        <i class="fa-solid fa-arrow-down-a-z mr-1 text-slate-500"></i> Sort By
+                    </label>
+                    <select id="sortBySelect" class="w-full py-2 px-3 rounded-lg bg-slate-900 border border-slate-700 text-slate-200 text-xs focus:outline-none focus:border-blue-500">
+                        <option value="name-asc">Name (A-Z)</option>
+                        <option value="name-desc">Name (Z-A)</option>
+                        <option value="tier-asc">Tier (Strongest First)</option>
+                        <option value="tier-desc">Tier (Weakest First)</option>
+                        <option value="series-asc">Series (A-Z)</option>
+                    </select>
+                </div>
+
+                <!-- Items Per Page -->
+                <div>
+                    <label class="block text-xs font-medium text-slate-400 mb-1">
+                        <i class="fa-solid fa-list-ol mr-1 text-slate-500"></i> Per Page
+                    </label>
+                    <select id="perPageSelect" class="w-full py-2 px-3 rounded-lg bg-slate-900 border border-slate-700 text-slate-200 text-xs focus:outline-none focus:border-blue-500">
+                        <option value="25" selected>25 Per Page</option>
+                        <option value="50">50 Per Page</option>
+                        <option value="75">75 Per Page</option>
+                        <option value="100">100 Per Page</option>
+                        <option value="150">150 Per Page</option>
+                        <option value="200">200 Per Page</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <!-- Active Filter Badges Container -->
+            <div id="filterChips" class="flex flex-wrap gap-2 pt-1 min-h-[28px]"></div>
+        </section>
+
+        <!-- Roster Status Header Bar -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-1 text-xs text-slate-400">
+            <div>
+                Showing <strong id="showingStart" class="text-slate-200">0</strong> - <strong id="showingEnd" class="text-slate-200">0</strong> of <strong id="totalCharacters" class="text-blue-400">0</strong> loaded characters
+            </div>
+            
+            <div class="flex items-center gap-3">
+                <div class="flex items-center bg-slate-900 rounded-lg p-1 border border-slate-800">
+                    <button id="viewGridBtn" class="px-2.5 py-1 rounded text-blue-400 bg-slate-800 transition" title="Grid View">
+                        <i class="fa-solid fa-grip"></i>
+                    </button>
+                    <button id="viewCompactBtn" class="px-2.5 py-1 rounded text-slate-400 hover:text-slate-200 transition" title="Compact List View">
+                        <i class="fa-solid fa-list"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Character Grid Display Container -->
+        <div id="characterGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+            <!-- Cards populated dynamically -->
+        </div>
+
+        <!-- Empty State View -->
+        <div id="emptyState" class="hidden text-center py-16 glass-panel rounded-2xl">
+            <i class="fa-solid fa-user-ninja text-5xl text-slate-600 mb-3"></i>
+            <h3 class="text-lg font-semibold text-slate-300">No Characters Found</h3>
+            <p class="text-xs text-slate-500 max-w-sm mx-auto mt-1 mb-4">Try adjusting your search criteria, clearing active filters, or fetching from the GitHub repository.</p>
+            <button id="emptyResetBtn" class="px-4 py-2 text-xs font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-500 transition">
+                Reset All Filters
+            </button>
+        </div>
+
+        <!-- Pagination Controls -->
+        <div id="paginationContainer" class="flex flex-col sm:flex-row items-center justify-between gap-4 glass-panel rounded-xl p-4 border border-slate-800">
+            <button id="prevPageBtn" class="w-full sm:w-auto px-4 py-2 rounded-lg bg-slate-900 border border-slate-700 text-xs font-medium text-slate-300 hover:bg-slate-800 hover:text-white disabled:opacity-40 disabled:cursor-not-allowed transition flex items-center justify-center gap-2">
+                <i class="fa-solid fa-chevron-left"></i> Previous
+            </button>
+
+            <div id="pageNumbers" class="flex items-center gap-1.5 overflow-x-auto max-w-full py-1 custom-scrollbar">
+                <!-- Page buttons populated by JS -->
+            </div>
+
+            <button id="nextPageBtn" class="w-full sm:w-auto px-4 py-2 rounded-lg bg-slate-900 border border-slate-700 text-xs font-medium text-slate-300 hover:bg-slate-800 hover:text-white disabled:opacity-40 disabled:cursor-not-allowed transition flex items-center justify-center gap-2">
+                Next <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Full Character Profile Modal -->
+    <div id="characterModal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+        <div class="relative w-full max-w-4xl bg-slate-900 border border-slate-700/80 rounded-2xl shadow-2xl overflow-hidden my-auto max-h-[92vh] flex flex-col modal-enter">
+            
+            <!-- Close Modal Button -->
+            <button id="closeModalBtn" class="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-slate-950/70 border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 flex items-center justify-center transition shadow-lg">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <!-- Banner Header Area -->
+            <div class="relative h-48 sm:h-56 bg-slate-950 flex-shrink-0 overflow-hidden">
+                <img id="modalBanner" src="" alt="Banner" class="w-full h-full object-cover object-top opacity-60 filter brightness-90">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
+                
+                <!-- Quick Badge overlay -->
+                <div class="absolute bottom-4 left-6 sm:left-8 flex flex-wrap items-center gap-2 z-10">
+                    <span id="modalTierBadge" class="px-3 py-1 rounded-md text-xs font-bold font-tech uppercase tracking-wider text-white shadow-md border border-white/20">
+                        TIER
+                    </span>
+                    <span id="modalSeriesBadge" class="px-3 py-1 rounded-md text-xs font-semibold bg-slate-950/80 text-blue-300 border border-blue-500/30">
+                        SERIES
+                    </span>
+                </div>
+            </div>
+
+            <!-- Modal Content Scrollable Area -->
+            <div class="p-6 sm:p-8 space-y-6 overflow-y-auto custom-scrollbar flex-1 bg-slate-900/95">
+                
+                <!-- Main Header Info (Portrait & Basic Meta) -->
+                <div class="flex flex-col sm:flex-row gap-6 items-start -mt-16 sm:-mt-20 relative z-10">
+                    <!-- Character Portrait Image -->
+                    <div class="relative group flex-shrink-0">
+                        <img id="modalPortrait" src="" alt="Character Portrait" class="w-32 h-32 sm:w-40 sm:h-40 rounded-2xl object-cover object-top border-4 border-slate-800 bg-slate-950 shadow-2xl">
+                    </div>
+
+                    <!-- Name & Sub-details -->
+                    <div class="flex-1 space-y-1 pt-2 sm:pt-14">
+                        <h2 id="modalName" class="text-2xl sm:text-3xl font-extrabold font-display text-white tracking-wide">
+                            Character Name
+                        </h2>
+                        <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-400">
+                            <p id="modalAlias" class="text-slate-300"><i class="fa-solid fa-mask text-blue-400 mr-1.5"></i> Alias: <span>-</span></p>
+                            <p id="modalGender"><i class="fa-solid fa-venus-mars text-blue-400 mr-1.5"></i> Gender: <span>-</span></p>
+                            <p id="modalAge"><i class="fa-solid fa-hourglass-half text-blue-400 mr-1.5"></i> Age: <span>-</span></p>
+                        </div>
+                        <p id="modalClassification" class="text-xs text-indigo-300 mt-2 flex items-center gap-1.5">
+                            <i class="fa-solid fa-tags text-indigo-400"></i> Classification: <span>-</span>
+                        </p>
+                    </div>
+
+                    <!-- Source Link -->
+                    <div class="sm:self-end">
+                        <a id="modalSourceUrl" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium bg-blue-600/20 text-blue-300 border border-blue-500/30 hover:bg-blue-600 hover:text-white transition">
+                            <span>VS Battles Wiki</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Character Summary -->
+                <div class="space-y-2">
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2">
+                        <i class="fa-solid fa-align-left text-blue-400"></i> Character Summary
+                    </h3>
+                    <p id="modalSummary" class="text-sm text-slate-300 leading-relaxed bg-slate-950/60 p-4 rounded-xl border border-slate-800">
+                        Summary content goes here...
+                    </p>
+                </div>
+
+                <!-- Detailed Stats Matrix Grid (All 14 parameters) -->
+                <div class="space-y-3">
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2">
+                        <i class="fa-solid fa-chart-simple text-blue-400"></i> Battle Statistics Matrix
+                    </h3>
+                    
+                    <div id="modalStatsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
+                        <!-- Stat items rendered dynamically -->
+                    </div>
+                </div>
+
+                <!-- Abilities & Powers Section -->
+                <div class="space-y-2">
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2">
+                        <i class="fa-solid fa-wand-magic-sparkles text-blue-400"></i> Powers & Abilities
+                    </h3>
+                    <div id="modalAbilities" class="flex flex-wrap gap-2">
+                        <!-- Ability badges -->
+                    </div>
+                </div>
+
+                <!-- Equipment & Weaknesses Two-Column Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Equipment -->
+                    <div class="space-y-2">
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2">
+                            <i class="fa-solid fa-shield-halved text-blue-400"></i> Standard Equipment
+                        </h3>
+                        <div id="modalEquipment" class="flex flex-wrap gap-2">
+                            <!-- Equipment tags -->
+                        </div>
+                    </div>
+
+                    <!-- Weaknesses -->
+                    <div class="space-y-2">
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2">
+                            <i class="fa-solid fa-triangle-exclamation text-amber-400"></i> Weaknesses
+                        </h3>
+                        <div id="modalWeaknesses" class="space-y-1 text-xs text-slate-300 bg-slate-950/50 p-3 rounded-xl border border-slate-800/80">
+                            <!-- Weaknesses list -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Notes & Metadata -->
+                <div class="space-y-2 pt-2 border-t border-slate-800">
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2">
+                        <i class="fa-solid fa-note-sticky text-blue-400"></i> Additional Notes
+                    </h3>
+                    <p id="modalNotes" class="text-xs text-slate-400 italic bg-slate-950/40 p-3 rounded-lg border border-slate-800">
+                        None.
+                    </p>
+                </div>
+
+                <!-- Raw JSON Accordion -->
+                <div class="pt-2">
+                    <button id="toggleJsonBtn" class="text-xs text-slate-500 hover:text-slate-300 flex items-center gap-2 transition">
+                        <i class="fa-solid fa-code"></i> View Raw Profile JSON Schema
+                        <i class="fa-solid fa-chevron-down text-[10px]" id="jsonChevron"></i>
+                    </button>
+                    <div id="jsonContainer" class="hidden mt-3 relative">
+                        <button id="copyJsonBtn" class="absolute top-2 right-2 px-2.5 py-1 text-[11px] bg-slate-800 hover:bg-slate-700 text-slate-300 rounded border border-slate-700">
+                            <i class="fa-regular fa-copy mr-1"></i> Copy JSON
+                        </button>
+                        <pre id="modalJson" class="text-[11px] font-mono text-emerald-400 bg-slate-950 p-4 rounded-xl overflow-x-auto max-h-60 custom-scrollbar border border-slate-800"></pre>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Built-in seed data with authentic character profiles matching the provided schema format
+        const SEED_CHARACTERS = [
+            {
+                "id": "goku-dragon-ball",
+                "name": "Son Goku",
+                "alias": "Kakarot",
+                "series": "Dragon Ball",
+                "tier": "2-C",
+                "portrait": "https://placehold.co/400x400/1e293b/3b82f6?text=Goku",
+                "banner": "https://placehold.co/1200x400/0f172a/3b82f6?text=Dragon+Ball+Super",
+                "sourceUrl": "https://vsbattles.fandom.com/wiki/Son_Goku_(Dragon_Ball)",
+                "gender": "Male",
+                "age": "40s",
+                "classification": "Saiyan; Martial Artist",
+                "summary": "Son Goku is the main protagonist of the Dragon Ball series. A Saiyan sent to Earth as a child, Goku grew up to become one of the universe's greatest defenders, continuously pushing his martial arts limits through battle.",
+                "stats": {
+                    "tier": "2-C",
+                    "attackPotency": "Low Multiverse level",
+                    "durability": "Low Multiverse level",
+                    "attackSpeed": "Massively FTL+",
+                    "combatSpeed": "Massively FTL+",
+                    "reactionSpeed": "Massively FTL+",
+                    "perceptionSpeed": "Massively FTL+",
+                    "travelSpeed": "Massively FTL+",
+                    "flightSpeed": "Massively FTL+",
+                    "liftingStrength": "Multi-Stellar",
+                    "strikingStrength": "Low Multiversal",
+                    "stamina": "Extremely High",
+                    "range": "Low Multiversal with Ki Attacks",
+                    "intelligence": "Genius in Combat"
+                },
+                "abilities": [
+                    "Superhuman Physical Characteristics",
+                    "Master Martial Artist",
+                    "Ki Manipulation",
+                    "Flight",
+                    "Teleportation (Instant Transmission)",
+                    "Godly Ki",
+                    "Ultra Instinct",
+                    "Transformation"
+                ],
+                "equipment": ["Power Pole", "Senzu Beans"],
+                "weaknesses": ["Gullible", "Can be caught off-guard if relaxed"],
+                "notes": "Stats reflect Ultra Instinct / Dragon Ball Super Super Hero era."
+            },
+            {
+                "id": "gojo-satoru-jujutsu-kaisen",
+                "name": "Satoru Gojo",
+                "alias": "The Strongest Sorcerer",
+                "series": "Jujutsu Kaisen",
+                "tier": "7-A",
+                "portrait": "https://placehold.co/400x400/1e293b/818cf8?text=Gojo",
+                "banner": "https://placehold.co/1200x400/0f172a/818cf8?text=Jujutsu+Kaisen",
+                "sourceUrl": "https://vsbattles.fandom.com/wiki/Satoru_Gojo",
+                "gender": "Male",
+                "age": "28",
+                "classification": "Human; Special Grade Jujutsu Sorcerer",
+                "summary": "Satoru Gojo is one of the main protagonists of Jujutsu Kaisen. He is a special grade jujutsu sorcerer and widely recognized as the strongest in the world due to his Six Eyes and Limitless technique.",
+                "stats": {
+                    "tier": "7-A",
+                    "attackPotency": "Mountain level",
+                    "durability": "Mountain level (with Limitless defense)",
+                    "attackSpeed": "Hypersonic+",
+                    "combatSpeed": "Massively Hypersonic",
+                    "reactionSpeed": "Massively Hypersonic",
+                    "perceptionSpeed": "Massively Hypersonic",
+                    "travelSpeed": "Hypersonic",
+                    "flightSpeed": "Supersonic",
+                    "liftingStrength": "Class G",
+                    "strikingStrength": "Mountain Class",
+                    "stamina": "Virtually Infinite (due to Six Eyes efficiency)",
+                    "range": "Kilometers with Hollow Purple",
+                    "intelligence": "High"
+                },
+                "abilities": [
+                    "Limitless Cursed Technique",
+                    "Infinity Barrier",
+                    "Cursed Technique Reversal: Red",
+                    "Cursed Technique Lapse: Blue",
+                    "Hollow Technique: Purple",
+                    "Domain Expansion: Unlimited Void",
+                    "Six Eyes",
+                    "Reverse Cursed Technique"
+                ],
+                "equipment": ["Blindfold"],
+                "weaknesses": ["Cannot use Unlimited Void near allies without harming them."],
+                "notes": "Domain Expansion overloads brain with infinite information."
+            },
+            {
+                "id": "naruto-uzumaki-shippuden",
+                "name": "Naruto Uzumaki",
+                "alias": "Seventh Hokage",
+                "series": "Naruto",
+                "tier": "5-A",
+                "portrait": "https://placehold.co/400x400/1e293b/f59e0b?text=Naruto",
+                "banner": "https://placehold.co/1200x400/0f172a/f59e0b?text=Naruto+Shippuden",
+                "sourceUrl": "https://vsbattles.fandom.com/wiki/Naruto_Uzumaki",
+                "gender": "Male",
+                "age": "32",
+                "classification": "Human; Shinobi; Hokage",
+                "summary": "Naruto Uzumaki is the titular protagonist of the Naruto series. As a jinchuriki of the Nine-Tails Kurama, he overcame hatred to become a legendary ninja and Hokage.",
+                "stats": {
+                    "tier": "5-A",
+                    "attackPotency": "Large Planet level",
+                    "durability": "Large Planet level",
+                    "attackSpeed": "Relativistic+",
+                    "combatSpeed": "FTL",
+                    "reactionSpeed": "FTL",
+                    "perceptionSpeed": "FTL",
+                    "travelSpeed": "Relativistic",
+                    "flightSpeed": "Relativistic",
+                    "liftingStrength": "Class T",
+                    "strikingStrength": "Large Planet Class",
+                    "stamina": "Superhuman",
+                    "range": "Planetary",
+                    "intelligence": "Combat Genius"
+                },
+                "abilities": [
+                    "Shadow Clone Technique",
+                    "Rasengan Variants",
+                    "Sage Mode",
+                    "Nine-Tails Chakra Mode",
+                    "Six Paths Sage Mode",
+                    "Baryon Mode",
+                    "Sensory Abilities"
+                ],
+                "equipment": ["Kunai", "Shuriken"],
+                "weaknesses": ["Baryon Mode rapidly consumes Kurama's life force."],
+                "notes": "Peak power measured during Six Paths and Baryon Mode."
+            },
+            {
+                "id": "saitama-one-punch-man",
+                "name": "Saitama",
+                "alias": "Caped Baldy",
+                "series": "One-Punch Man",
+                "tier": "4-A",
+                "portrait": "https://placehold.co/400x400/1e293b/eab308?text=Saitama",
+                "banner": "https://placehold.co/1200x400/0f172a/eab308?text=One+Punch+Man",
+                "sourceUrl": "https://vsbattles.fandom.com/wiki/Saitama",
+                "gender": "Male",
+                "age": "25",
+                "classification": "Human; Hero",
+                "summary": "Saitama is the main protagonist of One-Punch Man. He is an unassumingly powerful hero who can defeat virtually any opponent with a single punch due to breaking his physical limiter.",
+                "stats": {
+                    "tier": "4-A",
+                    "attackPotency": "Multi-Solar System level",
+                    "durability": "Multi-Solar System level",
+                    "attackSpeed": "Massively FTL",
+                    "combatSpeed": "Massively FTL",
+                    "reactionSpeed": "Massively FTL",
+                    "perceptionSpeed": "Massively FTL",
+                    "travelSpeed": "Massively FTL",
+                    "flightSpeed": "N/A (Super Jumps)",
+                    "liftingStrength": "Multi-Stellar",
+                    "strikingStrength": "Multi-Solar System Class",
+                    "stamina": "Limitless",
+                    "range": "Interstellar with Serious Punch",
+                    "intelligence": "Average"
+                },
+                "abilities": [
+                    "Broken Limiter",
+                    "Exponential Growth",
+                    "Non-Physical Interaction",
+                    "Superhuman Speed",
+                    "Vacuum Survival",
+                    "Serious Series Moves"
+                ],
+                "equipment": ["Hero Costume"],
+                "weaknesses": ["Boredom", "Lacks martial arts technique"],
+                "notes": "Grows exponentially stronger in response to emotional surges."
+            },
+            {
+                "id": "tanjiro-kamado-demon-slayer",
+                "name": "Tanjiro Kamado",
+                "alias": "Demon Slayer",
+                "series": "Demon Slayer: Kimetsu No Yaiba",
+                "tier": "8-A",
+                "portrait": "https://placehold.co/400x400/1e293b/10b981?text=Tanjiro",
+                "banner": "https://placehold.co/1200x400/0f172a/10b981?text=Demon+Slayer",
+                "sourceUrl": "https://vsbattles.fandom.com/wiki/Tanjiro_Kamado",
+                "gender": "Male",
+                "age": "16",
+                "classification": "Human; Demon Slayer",
+                "summary": "Tanjiro Kamado is the main protagonist of Demon Slayer. After his family was slaughtered by Muzan and his sister transformed into a demon, he joined the Demon Slayer Corps.",
+                "stats": {
+                    "tier": "8-A",
+                    "attackPotency": "Multi-City Block level",
+                    "durability": "Multi-City Block level",
+                    "attackSpeed": "Hypersonic+",
+                    "combatSpeed": "Massively Hypersonic",
+                    "reactionSpeed": "Massively Hypersonic",
+                    "perceptionSpeed": "Massively Hypersonic",
+                    "travelSpeed": "Superhuman",
+                    "flightSpeed": "unknown",
+                    "liftingStrength": "Class 25",
+                    "strikingStrength": "Multi-City Block level",
+                    "stamina": "Extremely High",
+                    "range": "Extended Melee Range",
+                    "intelligence": "Above Average"
+                },
+                "abilities": [
+                    "Water Breathing",
+                    "Sun Breathing (Hinokami Kagura)",
+                    "Demon Slayer Mark",
+                    "Transparent World",
+                    "Selfless State",
+                    "Enhanced Smell"
+                ],
+                "equipment": ["Nichirin Sword", "Wooden Box"],
+                "weaknesses": ["Sun Breathing causes stamina exhaustion if overused."],
+                "notes": "Demon Slayer Mark unlocks peak capabilities."
+            }
+        ];
+
+        // Global Application State
+        let characterDatabase = [...SEED_CHARACTERS];
+        let filteredCharacters = [];
+        let currentPage = 1;
+        let itemsPerPage = 25;
+        let currentView = 'grid'; // 'grid' or 'compact'
+
+        // Filter State
+        const filterState = {
+            search: '',
+            series: '',
+            tier: '',
+            gender: '',
+            sortBy: 'name-asc'
+        };
+
+        // DOM References
+        const characterGrid = document.getElementById('characterGrid');
+        const emptyState = document.getElementById('emptyState');
+        const searchInput = document.getElementById('searchInput');
+        const clearSearchBtn = document.getElementById('clearSearchBtn');
+        const seriesFilter = document.getElementById('seriesFilter');
+        const tierFilter = document.getElementById('tierFilter');
+        const genderFilter = document.getElementById('genderFilter');
+        const sortBySelect = document.getElementById('sortBySelect');
+        const perPageSelect = document.getElementById('perPageSelect');
+        const activeFilterCount = document.getElementById('activeFilterCount');
+        const filterChips = document.getElementById('filterChips');
+        const resetFiltersBtn = document.getElementById('resetFiltersBtn');
+        const emptyResetBtn = document.getElementById('emptyResetBtn');
+
+        // Pagination DOM
+        const showingStart = document.getElementById('showingStart');
+        const showingEnd = document.getElementById('showingEnd');
+        const totalCharacters = document.getElementById('totalCharacters');
+        const prevPageBtn = document.getElementById('prevPageBtn');
+        const nextPageBtn = document.getElementById('nextPageBtn');
+        const pageNumbers = document.getElementById('pageNumbers');
+
+        // View Toggle
+        const viewGridBtn = document.getElementById('viewGridBtn');
+        const viewCompactBtn = document.getElementById('viewCompactBtn');
+
+        // Modal DOM
+        const characterModal = document.getElementById('characterModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const modalBanner = document.getElementById('modalBanner');
+        const modalPortrait = document.getElementById('modalPortrait');
+        const modalName = document.getElementById('modalName');
+        const modalAlias = document.getElementById('modalAlias');
+        const modalGender = document.getElementById('modalGender');
+        const modalAge = document.getElementById('modalAge');
+        const modalClassification = document.getElementById('modalClassification');
+        const modalSourceUrl = document.getElementById('modalSourceUrl');
+        const modalTierBadge = document.getElementById('modalTierBadge');
+        const modalSeriesBadge = document.getElementById('modalSeriesBadge');
+        const modalSummary = document.getElementById('modalSummary');
+        const modalStatsGrid = document.getElementById('modalStatsGrid');
+        const modalAbilities = document.getElementById('modalAbilities');
+        const modalEquipment = document.getElementById('modalEquipment');
+        const modalWeaknesses = document.getElementById('modalWeaknesses');
+        const modalNotes = document.getElementById('modalNotes');
+        const toggleJsonBtn = document.getElementById('toggleJsonBtn');
+        const jsonContainer = document.getElementById('jsonContainer');
+        const modalJson = document.getElementById('modalJson');
+        const copyJsonBtn = document.getElementById('copyJsonBtn');
+
+        // Sync GitHub DOM
+        const fetchGithubBtn = document.getElementById('fetchGithubBtn');
+        const syncText = document.getElementById('syncText');
+        const syncDot = document.getElementById('syncDot');
+
+        // Tier Color Class Mapper
+        function getTierBadgeClass(tier) {
+            if (!tier) return 'bg-slate-700 text-slate-200';
+            const t = tier.toUpperCase();
+            if (t.startsWith('0')) return 'bg-gradient-to-r from-red-600 to-red-950 text-white border-red-500';
+            if (t.startsWith('1')) return 'bg-gradient-to-r from-amber-500 to-yellow-600 text-slate-950 border-yellow-300 font-extrabold';
+            if (t.startsWith('2')) return 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white border-purple-400';
+            if (t.startsWith('3')) return 'bg-gradient-to-r from-indigo-600 to-blue-600 text-white border-blue-400';
+            if (t.startsWith('4')) return 'bg-gradient-to-r from-cyan-600 to-teal-600 text-white border-cyan-400';
+            if (t.startsWith('5')) return 'bg-gradient-to-r from-emerald-600 to-teal-700 text-white border-emerald-400';
+            if (t.startsWith('6')) return 'bg-gradient-to-r from-lime-600 to-emerald-600 text-white border-lime-400';
+            if (t.startsWith('7')) return 'bg-gradient-to-r from-yellow-600 to-amber-600 text-white border-amber-400';
+            if (t.startsWith('8')) return 'bg-gradient-to-r from-orange-600 to-amber-600 text-white border-orange-400';
+            if (t.startsWith('9')) return 'bg-gradient-to-r from-amber-700 to-orange-800 text-white border-amber-500';
+            return 'bg-slate-800 text-slate-300 border-slate-600';
+        }
+
+        // Initialize Application
+        function initApp() {
+            populateFilterOptions();
+            applyFiltersAndRender();
+            setupEventListeners();
+        }
+
+        // Populate Dropdowns Dynamically from Database
+        function populateFilterOptions() {
+            // Series
+            const seriesSet = new Set(characterDatabase.map(c => c.series).filter(Boolean));
+            seriesFilter.innerHTML = '<option value="">All Series</option>' + 
+                Array.from(seriesSet).sort().map(s => `<option value="${escapeHtml(s)}">${escapeHtml(s)}</option>`).join('');
+
+            // Tiers
+            const tierSet = new Set(characterDatabase.map(c => c.tier).filter(Boolean));
+            tierFilter.innerHTML = '<option value="">All Tiers</option>' + 
+                Array.from(tierSet).sort().map(t => `<option value="${escapeHtml(t)}">Tier ${escapeHtml(t)}</option>`).join('');
+
+            // Genders
+            const genderSet = new Set(characterDatabase.map(c => c.gender).filter(Boolean));
+            genderFilter.innerHTML = '<option value="">All Genders</option>' + 
+                Array.from(genderSet).sort().map(g => `<option value="${escapeHtml(g)}">${escapeHtml(g)}</option>`).join('');
+        }
+
+        // Apply Filters, Sort, and Render Roster
+        function applyFiltersAndRender() {
+            let result = [...characterDatabase];
+
+            // Search filter
+            if (filterState.search) {
+                const query = filterState.search.toLowerCase();
+                result = result.filter(c => 
+                    (c.name && c.name.toLowerCase().includes(query)) ||
+                    (c.alias && c.alias.toLowerCase().includes(query)) ||
+                    (c.series && c.series.toLowerCase().includes(query)) ||
+                    (c.classification && c.classification.toLowerCase().includes(query)) ||
+                    (c.abilities && c.abilities.some(a => a.toLowerCase().includes(query)))
+                );
+            }
+
+            // Series filter
+            if (filterState.series) {
+                result = result.filter(c => c.series === filterState.series);
+            }
+
+            // Tier filter
+            if (filterState.tier) {
+                result = result.filter(c => c.tier === filterState.tier);
+            }
+
+            // Gender filter
+            if (filterState.gender) {
+                result = result.filter(c => c.gender === filterState.gender);
+            }
+
+            // Sorting logic
+            result.sort((a, b) => {
+                if (filterState.sortBy === 'name-asc') {
+                    return (a.name || '').localeCompare(b.name || '');
+                } else if (filterState.sortBy === 'name-desc') {
+                    return (b.name || '').localeCompare(a.name || '');
+                } else if (filterState.sortBy === 'tier-asc') {
+                    return (a.tier || '').localeCompare(b.tier || '');
+                } else if (filterState.sortBy === 'tier-desc') {
+                    return (b.tier || '').localeCompare(a.tier || '');
+                } else if (filterState.sortBy === 'series-asc') {
+                    return (a.series || '').localeCompare(b.series || '');
+                }
+                return 0;
+            });
+
+            filteredCharacters = result;
+            currentPage = 1;
+            renderRosterPage();
+            renderFilterChips();
+        }
+
+        // Render Paginated Character Grid
+        function renderRosterPage() {
+            totalCharacters.textContent = filteredCharacters.length;
+
+            if (filteredCharacters.length === 0) {
+                characterGrid.innerHTML = '';
+                characterGrid.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+                updatePaginationControls(0, 0, 0);
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+            characterGrid.classList.remove('hidden');
+
+            // Calculate pagination indices
+            const total = filteredCharacters.length;
+            const totalPages = Math.ceil(total / itemsPerPage) || 1;
+            
+            if (currentPage > totalPages) currentPage = totalPages;
+            
+            const startIdx = (currentPage - 1) * itemsPerPage;
+            const endIdx = Math.min(startIdx + itemsPerPage, total);
+
+            showingStart.textContent = total > 0 ? startIdx + 1 : 0;
+            showingEnd.textContent = endIdx;
+
+            const pageItems = filteredCharacters.slice(startIdx, endIdx);
+
+            if (currentView === 'grid') {
+                characterGrid.className = "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4";
+                characterGrid.innerHTML = pageItems.map(char => createCharacterCardHtml(char)).join('');
+            } else {
+                characterGrid.className = "flex flex-col space-y-2";
+                characterGrid.innerHTML = pageItems.map(char => createCharacterCompactHtml(char)).join('');
+            }
+
+            updatePaginationControls(totalPages, startIdx, endIdx);
+        }
+
+        // Create Grid Card HTML
+        function createCharacterCardHtml(char) {
+            const tierBadgeStyle = getTierBadgeClass(char.tier);
+            const portraitUrl = resolveImageUrl(char.portrait, char.name);
+
+            return `
+                <div onclick="openCharacterModal('${escapeHtml(char.id)}')" 
+                    class="glass-card rounded-2xl p-3.5 flex flex-col justify-between cursor-pointer group relative overflow-hidden">
+                    
+                    <div class="space-y-3">
+                        <!-- Card Image Header -->
+                        <div class="relative w-full aspect-square rounded-xl overflow-hidden bg-slate-950 border border-slate-800">
+                            <img src="${portraitUrl}" alt="${escapeHtml(char.name)}" 
+                                class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
+                                onerror="this.onerror=null; this.src='https://placehold.co/400x400/1e293b/94a3b8?text=${encodeURIComponent(char.name)}';">
+                            
+                            <!-- Tier Badge Overlay -->
+                            <span class="absolute top-2 left-2 px-2.5 py-0.5 rounded-md text-[10px] font-extrabold tracking-wider font-tech border shadow-lg ${tierBadgeStyle}">
+                                TIER ${escapeHtml(char.tier || 'N/A')}
+                            </span>
+                        </div>
+
+                        <!-- Info Header -->
+                        <div>
+                            <h3 class="font-bold text-sm text-slate-100 group-hover:text-blue-400 transition-colors line-clamp-1">
+                                ${escapeHtml(char.name)}
+                            </h3>
+                            <p class="text-[11px] text-slate-400 line-clamp-1">
+                                <i class="fa-solid fa-tv text-[10px] mr-1 text-slate-500"></i>${escapeHtml(char.series || 'Unknown')}
+                            </p>
+                            ${char.alias ? `<p class="text-[10px] text-slate-500 line-clamp-1 italic">"${escapeHtml(char.alias)}"` : ''}
+                        </div>
+                    </div>
+
+                    <!-- Mini Stat Summary -->
+                    <div class="mt-3 pt-2.5 border-t border-slate-800/80 flex flex-col gap-1 text-[11px] text-slate-400">
+                        <div class="flex justify-between items-center">
+                            <span class="text-[10px] text-slate-500 uppercase font-semibold">AP:</span>
+                            <span class="text-slate-200 font-medium line-clamp-1 max-w-[120px] text-right">${escapeHtml(char.stats?.attackPotency || 'N/A')}</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-[10px] text-slate-500 uppercase font-semibold">Speed:</span>
+                            <span class="text-slate-200 font-medium line-clamp-1 max-w-[120px] text-right">${escapeHtml(char.stats?.combatSpeed || 'N/A')}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Create Compact List HTML
+        function createCharacterCompactHtml(char) {
+            const tierBadgeStyle = getTierBadgeClass(char.tier);
+            const portraitUrl = resolveImageUrl(char.portrait, char.name);
+
+            return `
+                <div onclick="openCharacterModal('${escapeHtml(char.id)}')" 
+                    class="glass-card rounded-xl p-3 flex items-center justify-between gap-4 cursor-pointer group">
+                    <div class="flex items-center gap-3 min-w-0">
+                        <img src="${portraitUrl}" alt="${escapeHtml(char.name)}" 
+                            class="w-12 h-12 rounded-lg object-cover object-top bg-slate-950 border border-slate-800 flex-shrink-0"
+                            onerror="this.onerror=null; this.src='https://placehold.co/100x100/1e293b/94a3b8?text=${encodeURIComponent(char.name)}';">
+                        <div class="min-w-0">
+                            <h3 class="font-bold text-sm text-slate-100 group-hover:text-blue-400 transition-colors truncate">
+                                ${escapeHtml(char.name)}
+                            </h3>
+                            <p class="text-xs text-slate-400 truncate">
+                                ${escapeHtml(char.series)} ${char.alias ? `• <span class="italic text-slate-500 font-normal">"${escapeHtml(char.alias)}"</span>` : ''}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4 flex-shrink-0">
+                        <div class="hidden md:block text-right text-xs">
+                            <p class="text-slate-300 font-medium">${escapeHtml(char.stats?.attackPotency || 'Unknown AP')}</p>
+                            <p class="text-[10px] text-slate-500">${escapeHtml(char.classification || 'N/A')}</p>
+                        </div>
+                        <span class="px-2.5 py-1 rounded-md text-xs font-bold font-tech border ${tierBadgeStyle}">
+                            TIER ${escapeHtml(char.tier || 'N/A')}
+                        </span>
+                        <i class="fa-solid fa-chevron-right text-slate-600 group-hover:text-blue-400 text-xs transition"></i>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Update Pagination Controls
+        function updatePaginationControls(totalPages, startIdx, endIdx) {
+            prevPageBtn.disabled = currentPage <= 1;
+            nextPageBtn.disabled = currentPage >= totalPages || totalPages === 0;
+
+            pageNumbers.innerHTML = '';
+            
+            if (totalPages <= 1) return;
+
+            let pagesToDisplay = [];
+            for (let i = 1; i <= totalPages; i++) {
+                if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
+                    pagesToDisplay.push(i);
+                } else if (pagesToDisplay[pagesToDisplay.length - 1] !== '...') {
+                    pagesToDisplay.push('...');
+                }
+            }
+
+            pagesToDisplay.forEach(p => {
+                if (p === '...') {
+                    const dots = document.createElement('span');
+                    dots.className = 'px-2 text-xs text-slate-600';
+                    dots.textContent = '...';
+                    pageNumbers.appendChild(dots);
+                } else {
+                    const btn = document.createElement('button');
+                    btn.className = `px-3 py-1.5 rounded-lg text-xs font-semibold transition ${
+                        p === currentPage 
+                            ? 'bg-blue-600 text-white shadow-md shadow-blue-600/30' 
+                            : 'bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800'
+                    }`;
+                    btn.textContent = p;
+                    btn.onclick = () => {
+                        currentPage = p;
+                        renderRosterPage();
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    };
+                    pageNumbers.appendChild(btn);
+                }
+            });
+        }
+
+        // Render Active Filter Chips
+        function renderFilterChips() {
+            let activeCount = 0;
+            filterChips.innerHTML = '';
+
+            const addChip = (label, value, clearFn) => {
+                activeCount++;
+                const chip = document.createElement('div');
+                chip.className = 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] bg-blue-500/10 border border-blue-500/20 text-blue-300';
+                chip.innerHTML = `<span><strong>${label}:</strong> ${escapeHtml(value)}</span>
+                    <button class="hover:text-white"><i class="fa-solid fa-xmark text-[10px]"></i></button>`;
+                chip.querySelector('button').onclick = clearFn;
+                filterChips.appendChild(chip);
+            };
+
+            if (filterState.search) {
+                addChip('Search', filterState.search, () => {
+                    filterState.search = '';
+                    searchInput.value = '';
+                    clearSearchBtn.classList.add('hidden');
+                    applyFiltersAndRender();
+                });
+            }
+
+            if (filterState.series) {
+                addChip('Series', filterState.series, () => {
+                    filterState.series = '';
+                    seriesFilter.value = '';
+                    applyFiltersAndRender();
+                });
+            }
+
+            if (filterState.tier) {
+                addChip('Tier', filterState.tier, () => {
+                    filterState.tier = '';
+                    tierFilter.value = '';
+                    applyFiltersAndRender();
+                });
+            }
+
+            if (filterState.gender) {
+                addChip('Gender', filterState.gender, () => {
+                    filterState.gender = '';
+                    genderFilter.value = '';
+                    applyFiltersAndRender();
+                });
+            }
+
+            activeFilterCount.textContent = activeCount;
+        }
+
+        // Open Full Character Profile Modal
+        function openCharacterModal(characterId) {
+            const char = characterDatabase.find(c => c.id === characterId);
+            if (!char) return;
+
+            // Header Images
+            modalBanner.src = resolveImageUrl(char.banner, char.series || 'VS Battle');
+            modalPortrait.src = resolveImageUrl(char.portrait, char.name);
+
+            // Basic Metadata
+            modalName.textContent = char.name || 'Unknown Character';
+            modalAlias.querySelector('span').textContent = char.alias || 'None';
+            modalGender.querySelector('span').textContent = char.gender || 'Unknown';
+            modalAge.querySelector('span').textContent = char.age || 'Unknown';
+            modalClassification.querySelector('span').textContent = char.classification || 'Unclassified';
+
+            // Source URL
+            if (char.sourceUrl) {
+                modalSourceUrl.href = char.sourceUrl;
+                modalSourceUrl.classList.remove('hidden');
+            } else {
+                modalSourceUrl.classList.add('hidden');
+            }
+
+            // Badges
+            modalTierBadge.textContent = `TIER ${char.tier || 'N/A'}`;
+            modalTierBadge.className = `px-3 py-1 rounded-md text-xs font-bold font-tech uppercase tracking-wider shadow-md border ${getTierBadgeClass(char.tier)}`;
+            
+            modalSeriesBadge.textContent = char.series || 'Series N/A';
+
+            // Summary
+            modalSummary.textContent = char.summary || 'No overview summary available for this character.';
+
+            // Render 14 Detailed Stats Matrix
+            renderStatsGrid(char.stats);
+
+            // Abilities Tags
+            if (char.abilities && char.abilities.length > 0) {
+                modalAbilities.innerHTML = char.abilities.map(ab => 
+                    `<span class="px-2.5 py-1 rounded-lg text-xs bg-slate-800 text-slate-200 border border-slate-700/80"><i class="fa-solid fa-bolt text-blue-400 mr-1 text-[10px]"></i>${escapeHtml(ab)}</span>`
+                ).join('');
+            } else {
+                modalAbilities.innerHTML = `<span class="text-xs text-slate-500 italic">None specified</span>`;
+            }
+
+            // Equipment
+            if (char.equipment && char.equipment.length > 0) {
+                modalEquipment.innerHTML = char.equipment.map(eq => 
+                    `<span class="px-2.5 py-1 rounded-lg text-xs bg-slate-800 text-slate-300 border border-slate-700/60"><i class="fa-solid fa-wrench text-slate-400 mr-1 text-[10px]"></i>${escapeHtml(eq)}</span>`
+                ).join('');
+            } else {
+                modalEquipment.innerHTML = `<span class="text-xs text-slate-500 italic">None</span>`;
+            }
+
+            // Weaknesses
+            if (char.weaknesses && char.weaknesses.length > 0) {
+                modalWeaknesses.innerHTML = char.weaknesses.map(wk => 
+                    `<p class="flex items-start gap-1.5"><i class="fa-solid fa-angle-right text-amber-500 mt-0.5"></i> <span>${escapeHtml(wk)}</span></p>`
+                ).join('');
+            } else {
+                modalWeaknesses.innerHTML = `<p class="text-slate-500 italic">None notable</p>`;
+            }
+
+            // Notes
+            modalNotes.textContent = char.notes || 'None.';
+
+            // Raw JSON
+            modalJson.textContent = JSON.stringify(char, null, 2);
+            jsonContainer.classList.add('hidden');
+            document.getElementById('jsonChevron').className = 'fa-solid fa-chevron-down text-[10px]';
+
+            // Show Modal
+            characterModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Render Full Battle Statistics Grid (all 14 fields)
+        function renderStatsGrid(stats) {
+            if (!stats) {
+                modalStatsGrid.innerHTML = `<p class="text-slate-500 italic col-span-2">No detailed statistics provided.</p>`;
+                return;
+            }
+
+            const statFields = [
+                { key: 'tier', label: 'Tier', icon: 'fa-trophy', color: 'text-yellow-400' },
+                { key: 'attackPotency', label: 'Attack Potency', icon: 'fa-burst', color: 'text-red-400' },
+                { key: 'durability', label: 'Durability', icon: 'fa-shield', color: 'text-blue-400' },
+                { key: 'attackSpeed', label: 'Attack Speed', icon: 'fa-gauge-high', color: 'text-indigo-400' },
+                { key: 'combatSpeed', label: 'Combat Speed', icon: 'fa-bolt-lightning', color: 'text-amber-400' },
+                { key: 'reactionSpeed', label: 'Reaction Speed', icon: 'fa-eye', color: 'text-cyan-400' },
+                { key: 'perceptionSpeed', label: 'Perception Speed', icon: 'fa-brain', color: 'text-purple-400' },
+                { key: 'travelSpeed', label: 'Travel Speed', icon: 'fa-person-running', color: 'text-emerald-400' },
+                { key: 'flightSpeed', label: 'Flight Speed', icon: 'fa-plane-wings', color: 'text-teal-400' },
+                { key: 'liftingStrength', label: 'Lifting Strength', icon: 'fa-weight-hanging', color: 'text-orange-400' },
+                { key: 'strikingStrength', label: 'Striking Strength', icon: 'fa-hand-fist', color: 'text-rose-400' },
+                { key: 'stamina', label: 'Stamina', icon: 'fa-heart-pulse', color: 'text-green-400' },
+                { key: 'range', label: 'Range', icon: 'fa-ruler-combined', color: 'text-sky-400' },
+                { key: 'intelligence', label: 'Intelligence', icon: 'fa-graduation-cap', color: 'text-violet-400' }
+            ];
+
+            modalStatsGrid.innerHTML = statFields.map(field => {
+                const val = stats[field.key] || 'Unknown';
+                return `
+                    <div class="bg-slate-950/70 p-2.5 rounded-xl border border-slate-800 flex items-start gap-2.5">
+                        <i class="fa-solid ${field.icon} ${field.color} mt-0.5 text-sm"></i>
+                        <div class="min-w-0 flex-1">
+                            <span class="text-[10px] text-slate-500 uppercase font-semibold block">${field.label}</span>
+                            <span class="text-xs text-slate-200 font-medium break-words">${escapeHtml(val)}</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Fetch Live JSON Character Files from GitHub Repository
+        async function fetchGitHubRoster() {
+            try {
+                fetchGithubBtn.disabled = true;
+                document.getElementById('fetchIcon').classList.add('fa-spin');
+                syncText.textContent = "Fetching GitHub Repo...";
+                syncDot.className = "w-2 h-2 rounded-full bg-amber-500 animate-ping";
+
+                // GitHub REST API tree search for crunchycode/VS-Battle repository
+                const repoUrl = 'https://api.github.com/repos/crunchycodes/VS-Battle/git/trees/main?recursive=1';
+                const response = await fetch(repoUrl);
+
+                if (!response.ok) {
+                    throw new Error(`GitHub API Error: ${response.status}`);
+                }
+
+                const data = await response.json();
+                
+                // Filter all .json paths under chars/
+                const jsonFiles = data.tree.filter(item => 
+                    item.path.startsWith('chars/') && item.path.endsWith('.json')
+                );
+
+                if (jsonFiles.length === 0) {
+                    throw new Error("No JSON character profiles found in chars/ directory");
+                }
+
+                syncText.textContent = `Loading ${jsonFiles.length} character profiles...`;
+
+                // Fetch character JSON contents in parallel batches
+                const fetchedProfiles = [];
+                const batchSize = 10;
+                
+                for (let i = 0; i < jsonFiles.length; i += batchSize) {
+                    const batch = jsonFiles.slice(i, i + batchSize);
+                    const promises = batch.map(async file => {
+                        try {
+                            const rawUrl = `https://raw.githubusercontent.com/crunchycodes/VS-Battle/main/${file.path}`;
+                            const res = await fetch(rawUrl);
+                            if (res.ok) {
+                                const profile = await res.json();
+                                // Resolve relative paths to absolute raw GitHub URLs
+                                if (profile.portrait && !profile.portrait.startsWith('http')) {
+                                    profile.portrait = `https://raw.githubusercontent.com/crunchycodes/VS-Battle/main/${profile.portrait}`;
+                                }
+                                if (profile.banner && !profile.banner.startsWith('http')) {
+                                    profile.banner = `https://raw.githubusercontent.com/crunchycodes/VS-Battle/main/${profile.banner}`;
+                                }
+                                return profile;
+                            }
+                        } catch (err) {
+                            console.warn("Failed to fetch profile:", file.path, err);
+                        }
+                        return null;
+                    });
+
+                    const results = await Promise.all(promises);
+                    results.forEach(r => { if (r) fetchedProfiles.push(r); });
+                }
+
+                if (fetchedProfiles.length > 0) {
+                    // Merge with existing or overwrite
+                    characterDatabase = fetchedProfiles;
+                    populateFilterOptions();
+                    applyFiltersAndRender();
+                    
+                    syncText.textContent = `Synced ${fetchedProfiles.length} Profiles`;
+                    syncDot.className = "w-2 h-2 rounded-full bg-emerald-500";
+                } else {
+                    throw new Error("Failed to load profiles");
+                }
+
+            } catch (err) {
+                console.error("GitHub Sync Error:", err);
+                syncText.textContent = "Sync Failed (Using Built-in Database)";
+                syncDot.className = "w-2 h-2 rounded-full bg-red-500";
+            } finally {
+                fetchGithubBtn.disabled = false;
+                document.getElementById('fetchIcon').classList.remove('fa-spin');
+            }
+        }
+
+        // Attach Event Listeners
+        function setupEventListeners() {
+            // Search Input
+            searchInput.addEventListener('input', (e) => {
+                filterState.search = e.target.value.trim();
+                clearSearchBtn.classList.toggle('hidden', !filterState.search);
+                applyFiltersAndRender();
+            });
+
+            clearSearchBtn.addEventListener('click', () => {
+                filterState.search = '';
+                searchInput.value = '';
+                clearSearchBtn.classList.add('hidden');
+                applyFiltersAndRender();
+            });
+
+            // Filter Select Dropdowns
+            seriesFilter.addEventListener('change', (e) => {
+                filterState.series = e.target.value;
+                applyFiltersAndRender();
+            });
+
+            tierFilter.addEventListener('change', (e) => {
+                filterState.tier = e.target.value;
+                applyFiltersAndRender();
+            });
+
+            genderFilter.addEventListener('change', (e) => {
+                filterState.gender = e.target.value;
+                applyFiltersAndRender();
+            });
+
+            sortBySelect.addEventListener('change', (e) => {
+                filterState.sortBy = e.target.value;
+                applyFiltersAndRender();
+            });
+
+            // Items per page (25, 50, 75, 100, 150, 200)
+            perPageSelect.addEventListener('change', (e) => {
+                itemsPerPage = parseInt(e.target.value, 10);
+                currentPage = 1;
+                renderRosterPage();
+            });
+
+            // Reset Buttons
+            const resetAll = () => {
+                filterState.search = '';
+                filterState.series = '';
+                filterState.tier = '';
+                filterState.gender = '';
+                filterState.sortBy = 'name-asc';
+                searchInput.value = '';
+                seriesFilter.value = '';
+                tierFilter.value = '';
+                genderFilter.value = '';
+                sortBySelect.value = 'name-asc';
+                clearSearchBtn.classList.add('hidden');
+                applyFiltersAndRender();
+            };
+
+            resetFiltersBtn.addEventListener('click', resetAll);
+            emptyResetBtn.addEventListener('click', resetAll);
+
+            // Pagination Buttons
+            prevPageBtn.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    renderRosterPage();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            });
+
+            nextPageBtn.addEventListener('click', () => {
+                const totalPages = Math.ceil(filteredCharacters.length / itemsPerPage);
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    renderRosterPage();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            });
+
+            // View Toggles
+            viewGridBtn.addEventListener('click', () => {
+                currentView = 'grid';
+                viewGridBtn.className = "px-2.5 py-1 rounded text-blue-400 bg-slate-800 transition";
+                viewCompactBtn.className = "px-2.5 py-1 rounded text-slate-400 hover:text-slate-200 transition";
+                renderRosterPage();
+            });
+
+            viewCompactBtn.addEventListener('click', () => {
+                currentView = 'compact';
+                viewCompactBtn.className = "px-2.5 py-1 rounded text-blue-400 bg-slate-800 transition";
+                viewGridBtn.className = "px-2.5 py-1 rounded text-slate-400 hover:text-slate-200 transition";
+                renderRosterPage();
+            });
+
+            // GitHub Sync Button
+            fetchGithubBtn.addEventListener('click', fetchGitHubRoster);
+
+            // Modal Close Controls
+            closeModalBtn.addEventListener('click', closeModal);
+            characterModal.addEventListener('click', (e) => {
+                if (e.target === characterModal) closeModal();
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !characterModal.classList.contains('hidden')) {
+                    closeModal();
+                }
+            });
+
+            // Toggle JSON Viewer
+            toggleJsonBtn.addEventListener('click', () => {
+                const isHidden = jsonContainer.classList.contains('hidden');
+                jsonContainer.classList.toggle('hidden');
+                document.getElementById('jsonChevron').className = isHidden 
+                    ? 'fa-solid fa-chevron-up text-[10px]' 
+                    : 'fa-solid fa-chevron-down text-[10px]';
+            });
+
+            // Copy JSON Button
+            copyJsonBtn.addEventListener('click', () => {
+                const text = modalJson.textContent;
+                navigator.clipboard?.writeText(text).then(() => {
+                    copyJsonBtn.innerHTML = '<i class="fa-solid fa-check text-emerald-400 mr-1"></i> Copied!';
+                    setTimeout(() => {
+                        copyJsonBtn.innerHTML = '<i class="fa-regular fa-copy mr-1"></i> Copy JSON';
+                    }, 2000);
+                }).catch(() => {
+                    const textarea = document.createElement('textarea');
+                    textarea.value = text;
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textarea);
+                    copyJsonBtn.innerHTML = '<i class="fa-solid fa-check text-emerald-400 mr-1"></i> Copied!';
+                    setTimeout(() => {
+                        copyJsonBtn.innerHTML = '<i class="fa-regular fa-copy mr-1"></i> Copy JSON';
+                    }, 2000);
+                });
+            });
+        }
+
+        // Close Modal Helper
+        function closeModal() {
+            characterModal.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // HTML Escape Utility
+        function escapeHtml(str) {
+            if (typeof str !== 'string') return str || '';
+            return str.replace(/[&<>"']/g, match => {
+                const mask = {
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#39;'
+                };
+                return mask[match];
+            });
+        }
+
+        // Image URL Resolver
+        function resolveImageUrl(url, fallbackText) {
+            if (!url) {
+                return `https://placehold.co/400x400/1e293b/94a3b8?text=${encodeURIComponent(fallbackText || 'VS Battle')}`;
+            }
+            if (url.startsWith('http://') || url.startsWith('https://')) {
+                return url;
+            }
+            return `https://raw.githubusercontent.com/crunchycodes/VS-Battle/main/${url}`;
+        }
+
+        // Initialize on DOM load
+        window.onload = function() {
+            initApp();
+            // Automatically attempt live sync from crunchycodes/VS-Battle GitHub repository
+            fetchGitHubRoster();
+        };
+    </script>
+</body>
+</html>
