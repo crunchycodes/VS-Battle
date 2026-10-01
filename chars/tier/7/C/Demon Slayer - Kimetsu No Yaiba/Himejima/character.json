@@ -1,0 +1,69 @@
+{
+  "id": "gyomei-base",
+  "name": "Gyomei Himejima",
+  "variant": "Base",
+  "alias": "Stone Hashira",
+  "series": "Demon Slayer: Kimetsu No Yaiba",
+  "tier": "7-C",
+  "portrait": "chars/tier/7/C/Demon Slayer - Kimetsu No Yaiba/Himejima/1.webp",
+  "banner": "chars/tier/7/C/Demon Slayer - Kimetsu No Yaiba/Himejima/2.webp",
+  "sourceUrl": "https://vsbattles.fandom.com/wiki/Gyomei_Himejima",
+  "gender": "Male",
+  "age": "27",
+  "classification": "Human; Demon Slayer; Hashira; Stone Hashira",
+  "summary": "Gyomei Himejima is the Stone Hashira of the Demon Slayer Corps and is regarded as the strongest member of his generation. Despite being blind since childhood, Gyomei possesses extraordinary hearing and sensory perception that allow him to perceive his surroundings and accurately track his opponents. He fights using a chained spiked flail and axe and is the most skilled known user of Stone Breathing. His immense physical strength, combat experience, and exceptional senses make him one of the most formidable Demon Slayers.",
+  "otherVariants": [
+    "gyomei-demon-slayer-mark"
+  ],
+  "stats": {
+    "tier": "7-C",
+    "attackPotency": "At least Large Town level, likely far higher",
+    "durability": "At least Large Town level, likely far higher",
+    "attackSpeed": "Sub-Relativistic",
+    "combatSpeed": "Sub-Relativistic",
+    "reactionSpeed": "Sub-Relativistic",
+    "perceptionSpeed": "Sub-Relativistic",
+    "travelSpeed": "Sub-Relativistic",
+    "flightSpeed": "Not applicable",
+    "liftingStrength": "At least Class 50",
+    "strikingStrength": "At least Large Town level, likely far higher",
+    "stamina": "Superhuman",
+    "range": "Several Meters with his chained spiked flail and axe and Breathing Styles",
+    "intelligence": "Gifted"
+  },
+  "abilities": [
+    "Superhuman Physical Characteristics",
+    "Acrobatics",
+    "Body Control",
+    "Low Regeneration",
+    "Enhanced Hearing",
+    "Extrasensory Perception",
+    "Perception Amplification",
+    "Information Analysis",
+    "Enhanced Sight",
+    "Analytical Prediction",
+    "Precognition",
+    "Supernatural Willpower",
+    "Greater Battle Spirit",
+    "Statistics Amplification",
+    "Instinctive Reaction",
+    "Master Spiked Flail and Axe Wielder",
+    "Sunlight Absorption",
+    "Non-Physical Interaction",
+    "Perception Manipulation",
+    "Shockwave Generation",
+    "Air Manipulation",
+    "Heat Manipulation",
+    "Regeneration Negation",
+    "Reactive Power Level",
+    "Accelerated Development",
+    "Stealth Mastery"
+  ],
+  "equipment": [
+    "nichirin-chained-spiked-flail-and-axe"
+  ],
+  "weaknesses": [
+    "Blind"
+  ],
+  "notes": "Gyomei is blind, but compensates through his exceptionally developed hearing and extrasensory perception. He is the most skilled known user of Stone Breathing and fights with a chained spiked flail and axe rather than a conventional Nichirin sword. His weapon is made from sunlight-absorbing material and can inflict severe damage to demons."
+}

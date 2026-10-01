@@ -1,0 +1,71 @@
+{
+  "id": "gyomei-demon-slayer-mark",
+  "name": "Gyomei Himejima",
+  "variant": "Demon Slayer Mark",
+  "alias": "Stone Hashira",
+  "series": "Demon Slayer: Kimetsu No Yaiba",
+  "tier": "High 7-C",
+  "portrait": "chars/tier/7/C/Demon Slayer - Kimetsu No Yaiba/Himejima/1.webp",
+  "banner": "chars/tier/7/C/Demon Slayer - Kimetsu No Yaiba/Himejima/2.webp",
+  "sourceUrl": "https://vsbattles.fandom.com/wiki/Gyomei_Himejima",
+  "gender": "Male",
+  "age": "27",
+  "classification": "Human; Demon Slayer; Hashira; Stone Hashira",
+  "summary": "Gyomei Himejima is the Stone Hashira of the Demon Slayer Corps and is regarded as the strongest member of his generation. After awakening his Demon Slayer Mark, Gyomei's already extraordinary physical abilities were dramatically enhanced, allowing him to contend with some of the most powerful demons in existence. He continued to demonstrate exceptional combat skill, perception, and adaptability while fighting Kokushibo and Muzan.",
+  "otherVariants": [
+    "gyomei-base"
+  ],
+  "stats": {
+    "tier": "High 7-C",
+    "attackPotency": "Small City level",
+    "durability": "Small City level",
+    "attackSpeed": "Relativistic",
+    "combatSpeed": "Relativistic",
+    "reactionSpeed": "Relativistic",
+    "perceptionSpeed": "Relativistic",
+    "travelSpeed": "Relativistic",
+    "flightSpeed": "Not applicable",
+    "liftingStrength": "Class K",
+    "strikingStrength": "Small City level",
+    "stamina": "Superhuman",
+    "range": "Several Meters with his chained spiked flail and axe and Breathing Styles",
+    "intelligence": "Gifted"
+  },
+  "abilities": [
+    "Superhuman Physical Characteristics",
+    "Acrobatics",
+    "Body Control",
+    "Low Regeneration",
+    "Enhanced Hearing",
+    "Extrasensory Perception",
+    "Perception Amplification",
+    "Information Analysis",
+    "Enhanced Sight",
+    "Analytical Prediction",
+    "Precognition",
+    "Supernatural Willpower",
+    "Greater Battle Spirit",
+    "Statistics Amplification",
+    "Instinctive Reaction",
+    "Master Spiked Flail and Axe Wielder",
+    "Sunlight Absorption",
+    "Non-Physical Interaction",
+    "Perception Manipulation",
+    "Shockwave Generation",
+    "Air Manipulation",
+    "Heat Manipulation",
+    "Regeneration Negation",
+    "Rage Power",
+    "Awakened Power",
+    "Reactive Power Level",
+    "Accelerated Development",
+    "Stealth Mastery"
+  ],
+  "equipment": [
+    "red-nichirin-chained-spiked-flail-and-axe"
+  ],
+  "weaknesses": [
+    "Blind"
+  ],
+  "notes": "After awakening his Demon Slayer Mark, Gyomei's strength and speed increased by an order of magnitude. He was able to contend with a serious Kokushibo and inflict significant damage on him and later contributed to the battle against Muzan. His Marked state also grants access to Rage Power and Awakened Power through his Repetitive Action technique."
+}
