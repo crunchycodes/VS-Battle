@@ -272,32 +272,35 @@
     </main>
 
     <!-- Full Character Profile Modal -->
-    <div id="characterModal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
-        <div class="relative w-full max-w-4xl bg-slate-900 border border-slate-700/80 rounded-2xl shadow-2xl overflow-hidden my-auto max-h-[92vh] flex flex-col modal-enter">
+    <div id="characterModal" class="fixed inset-0 z-50 hidden bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+        <div class="relative w-full max-w-4xl bg-slate-900 border border-slate-700/80 rounded-2xl shadow-2xl overflow-y-auto max-h-[92vh] custom-scrollbar modal-enter">
             
             <!-- Close Modal Button -->
-            <button id="closeModalBtn" class="absolute top-4 right-4 z-20 w-9 h-9 rounded-full bg-slate-950/70 border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 flex items-center justify-center transition shadow-lg">
+            <button id="closeModalBtn" class="absolute top-4 right-4 z-30 w-9 h-9 rounded-full bg-slate-950/80 border border-slate-700/80 text-slate-300 hover:text-white hover:bg-slate-800 flex items-center justify-center transition shadow-xl backdrop-blur-sm">
                 <i class="fa-solid fa-xmark text-lg"></i>
             </button>
 
             <!-- Banner Header Area -->
-            <div class="relative h-48 sm:h-56 bg-slate-950 flex-shrink-0 overflow-hidden">
-                <img id="modalBanner" src="" alt="Banner" class="w-full h-full object-cover object-top opacity-60 filter brightness-90">
-                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent"></div>
+            <div class="relative w-full h-48 sm:h-60 bg-slate-950 overflow-hidden flex items-center justify-center">
+                <!-- Ambient blurred background effect for seamless fit -->
+                <img id="modalBannerBg" src="" alt="" class="absolute inset-0 w-full h-full object-cover filter blur-md opacity-30 scale-110">
+                <!-- Main Banner Photo -->
+                <img id="modalBanner" src="" alt="Banner" class="relative z-10 w-full h-full object-cover object-center filter brightness-95 transition-opacity duration-300">
+                <div class="absolute inset-0 z-20 bg-gradient-to-t from-slate-900 via-slate-900/30 to-transparent"></div>
                 
                 <!-- Quick Badge overlay -->
-                <div class="absolute bottom-4 left-6 sm:left-8 flex flex-wrap items-center gap-2 z-10">
+                <div class="absolute bottom-4 left-6 sm:left-8 flex flex-wrap items-center gap-2 z-20">
                     <span id="modalTierBadge" class="px-3 py-1 rounded-md text-xs font-bold font-tech uppercase tracking-wider text-white shadow-md border border-white/20">
                         TIER
                     </span>
-                    <span id="modalSeriesBadge" class="px-3 py-1 rounded-md text-xs font-semibold bg-slate-950/80 text-blue-300 border border-blue-500/30">
+                    <span id="modalSeriesBadge" class="px-3 py-1 rounded-md text-xs font-semibold bg-slate-950/80 text-blue-300 border border-blue-500/30 backdrop-blur-sm">
                         SERIES
                     </span>
                 </div>
             </div>
 
-            <!-- Modal Content Scrollable Area -->
-            <div class="p-6 sm:p-8 space-y-6 overflow-y-auto custom-scrollbar flex-1 bg-slate-900/95">
+            <!-- Modal Content Area -->
+            <div class="p-6 sm:p-8 space-y-6 bg-slate-900">
                 
                 <!-- Main Header Info (Portrait & Basic Meta) -->
                 <div class="flex flex-col sm:flex-row gap-6 items-start -mt-16 sm:-mt-20 relative z-10">
@@ -1018,7 +1021,10 @@
             if (!char) return;
 
             // Header Images
-            modalBanner.src = resolveImageUrl(char.banner, char.series || 'VS Battle');
+            const bannerUrl = resolveImageUrl(char.banner, char.series || 'VS Battle');
+            modalBanner.src = bannerUrl;
+            const modalBannerBg = document.getElementById('modalBannerBg');
+            if (modalBannerBg) modalBannerBg.src = bannerUrl;
             modalPortrait.src = resolveImageUrl(char.portrait, char.name);
 
             // Basic Metadata
