@@ -1,0 +1,21 @@
+{
+  "id": "nichirin-sword",
+  "name": "Nichirin Sword",
+  "series": "Demon Slayer: Kimetsu No Yaiba",
+  "portrait": "chars/tier/9/A/Demon Slayer - Kimetsu No Yaiba/Sabito/1.webp",
+  "sourceUrl": "https://vsbattles.fandom.com/wiki/Kyogai",
+  "type": "Blade",
+  "summary": "Special blades used by Demon Slayers made specifically for the purpose of slaying demons.",
+  "abilities": [
+    "Sun Absorbtion",
+    "Sun Damage",
+    "Non-Physical Interaction"
+  ],
+  "attributes": [
+    "Nichirin"
+  ],
+  "weaknesses": [
+    "unknown"
+  ],
+  "notes": "unknown"
+}
