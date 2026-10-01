@@ -53,14 +53,14 @@
 <body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col antialiased selection:bg-brand-500 selection:text-white">
 
     <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-30">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-            <div class="flex items-center gap-3">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+            <div class="flex items-center gap-3 flex-shrink-0">
                 <div class="p-2 bg-brand-600/20 text-brand-400 rounded-lg border border-brand-500/30">
                     <i data-lucide="user-cog" class="w-6 h-6"></i>
                 </div>
                 <div>
-                    <h1 class="text-lg font-bold text-white leading-tight">Character Profile Editor</h1>
-                    <p class="text-xs text-slate-400">VS Battles & Stat Sheet Format</p>
+                    <h1 class="text-base sm:text-lg font-bold text-white leading-tight">Character Profile Editor</h1>
+                    <p class="text-xs text-slate-400 hidden sm:block">VS Battles & Stat Sheet GUI</p>
                 </div>
             </div>
 
@@ -70,20 +70,23 @@
                         <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i> Character Roster <span id="roster-count-badge" class="px-1.5 py-0.2 bg-brand-900/80 text-brand-200 rounded-full text-[10px]">0</span>
                     </button>
                     <button id="nav-btn-editor" onclick="switchViewMode('editor')" class="px-3 py-1.5 text-xs font-semibold rounded-lg transition text-slate-400 hover:text-white flex items-center gap-1.5">
-                        <i data-lucide="user-cog" class="w-3.5 h-3.5"></i> Editor
+                        <i data-lucide="edit-3" class="w-3.5 h-3.5"></i> Editor
                     </button>
                 </div>
 
                 <div class="h-4 w-[1px] bg-slate-800 mx-1 hidden sm:block"></div>
 
+                <button onclick="addNewCharacter()" class="px-3 py-1.5 text-xs font-medium text-emerald-300 hover:text-white bg-emerald-950/60 hover:bg-emerald-900/80 rounded-lg border border-emerald-800/60 transition flex items-center gap-1.5">
+                    <i data-lucide="plus-circle" class="w-3.5 h-3.5"></i> New
+                </button>
                 <button onclick="resetToDefault()" class="px-3 py-1.5 text-xs font-medium text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-lg border border-slate-700 transition flex items-center gap-1.5">
                     <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i> Reset
                 </button>
                 <button onclick="openImportModal()" class="px-3 py-1.5 text-xs font-medium text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-lg border border-slate-700 transition flex items-center gap-1.5">
-                    <i data-lucide="upload" class="w-3.5 h-3.5"></i> Import JSON
+                    <i data-lucide="upload" class="w-3.5 h-3.5"></i> Import
                 </button>
                 <button onclick="openExportModal()" class="px-3 py-1.5 text-xs font-medium text-white bg-brand-600 hover:bg-brand-500 rounded-lg shadow-lg shadow-brand-600/20 transition flex items-center gap-1.5">
-                    <i data-lucide="download" class="w-3.5 h-3.5"></i> Export JSON
+                    <i data-lucide="download" class="w-3.5 h-3.5"></i> Export
                 </button>
             </div>
         </div>
@@ -97,7 +100,7 @@
             <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-5 shadow-xl flex flex-col md:flex-row gap-4 justify-between items-stretch md:items-center">
                 <div class="relative flex-1">
                     <i data-lucide="search" class="w-4 h-4 text-slate-500 absolute left-3.5 top-3"></i>
-                    <input type="text" id="roster-search-input" oninput="applyRosterFilters()" placeholder="Search by name, alias, series, classification, ability..." class="w-full bg-slate-950 border border-slate-800 rounded-xl pl-10 pr-4 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500">
+                    <input type="text" id="roster-search-input" oninput="applyRosterFilters()" placeholder="Search character by name, alias, series, classification, ability..." class="w-full bg-slate-950 border border-slate-800 rounded-xl pl-10 pr-4 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500">
                 </div>
 
                 <div class="flex items-center gap-2 flex-wrap sm:flex-nowrap">
@@ -110,7 +113,7 @@
                     </select>
 
                     <button onclick="autoFetchRoster()" class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-medium border border-slate-700 transition flex items-center gap-1.5 flex-shrink-0" title="Reload profiles from repository">
-                        <i data-lucide="refresh-cw" id="roster-refresh-icon" class="w-3.5 h-3.5"></i> Refresh
+                        <i data-lucide="refresh-cw" id="roster-refresh-icon" class="w-3.5 h-3.5"></i> Refresh Roster
                     </button>
                 </div>
             </div>
@@ -121,7 +124,7 @@
             </div>
         </section>
 
-        <!-- VIEW 2: CHARACTER EDITOR FORM & PREVIEW (Hidden by default when in Roster view) -->
+        <!-- VIEW 2: CHARACTER EDITOR FORM & PREVIEW -->
         <section id="view-section-editor" class="grid grid-cols-1 lg:grid-cols-12 gap-6 hidden">
             <!-- Active Edit Banner -->
             <div class="lg:col-span-12 bg-slate-900 border border-slate-800 rounded-xl p-3 px-4 flex items-center justify-between">
@@ -136,213 +139,291 @@
 
             <!-- LEFT COLUMN: EDIT FORM & TABS -->
             <div class="lg:col-span-7 flex flex-col gap-4">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Main Tier Rating</label>
-                        <input type="text" id="field-main-tier" oninput="updateGlobalTier(this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-brand-300 font-semibold focus:outline-none focus:border-brand-500">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Source / Wiki URL</label>
-                        <input type="text" id="field-sourceUrl" oninput="updateData('sourceUrl', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500">
-                    </div>
-                    <div class="sm:col-span-2">
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Portrait Image Path or URL</label>
-                        <input type="text" id="field-portrait" oninput="updateData('portrait', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 font-mono focus:outline-none focus:border-brand-500">
-                    </div>
-                    <div class="sm:col-span-2">
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Summary Description</label>
-                        <textarea id="field-summary" rows="4" oninput="updateData('summary', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-xs text-slate-100 leading-relaxed focus:outline-none focus:border-brand-500"></textarea>
-                    </div>
-                    <div class="sm:col-span-2">
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Notes & Remarks</label>
-                        <input type="text" id="field-notes" oninput="updateData('notes', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500">
-                    </div>
-                </div>
-            </div>
-
-            <!-- TAB 2: COMBAT STATS -->
-            <div id="tab-content-stats" class="tab-content bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-4 shadow-xl hidden">
-                <h2 class="text-sm font-bold text-brand-300 uppercase tracking-wider border-b border-slate-800 pb-2 flex items-center gap-2">
-                    <i data-lucide="shield" class="w-4 h-4"></i> Stat Parameters
-                </h2>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Stats Tier</label>
-                        <input type="text" id="field-stats-tier" oninput="updateNestedStat('tier', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Attack Potency</label>
-                        <input type="text" id="field-stats-attackPotency" oninput="updateNestedStat('attackPotency', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Durability</label>
-                        <input type="text" id="field-stats-durability" oninput="updateNestedStat('durability', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Striking Strength</label>
-                        <input type="text" id="field-stats-strikingStrength" oninput="updateNestedStat('strikingStrength', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Lifting Strength</label>
-                        <input type="text" id="field-stats-liftingStrength" oninput="updateNestedStat('liftingStrength', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Combat Speed</label>
-                        <input type="text" id="field-stats-combatSpeed" oninput="updateNestedStat('combatSpeed', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Attack Speed</label>
-                        <input type="text" id="field-stats-attackSpeed" oninput="updateNestedStat('attackSpeed', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Reaction Speed</label>
-                        <input type="text" id="field-stats-reactionSpeed" oninput="updateNestedStat('reactionSpeed', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Perception Speed</label>
-                        <input type="text" id="field-stats-perceptionSpeed" oninput="updateNestedStat('perceptionSpeed', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Travel Speed</label>
-                        <input type="text" id="field-stats-travelSpeed" oninput="updateNestedStat('travelSpeed', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Flight Speed</label>
-                        <input type="text" id="field-stats-flightSpeed" oninput="updateNestedStat('flightSpeed', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Stamina</label>
-                        <input type="text" id="field-stats-stamina" oninput="updateNestedStat('stamina', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Range</label>
-                        <input type="text" id="field-stats-range" oninput="updateNestedStat('range', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Intelligence</label>
-                        <input type="text" id="field-stats-intelligence" oninput="updateNestedStat('intelligence', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500">
-                    </div>
-                </div>
-            </div>
-
-            <!-- TAB 3: LISTS & ABILITIES -->
-            <div id="tab-content-lists" class="tab-content bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-6 shadow-xl hidden">
-                
-                <!-- Abilities -->
-                <div class="space-y-3">
-                    <div class="flex items-center justify-between border-b border-slate-800 pb-2">
-                        <h3 class="text-xs font-bold text-brand-300 uppercase tracking-wider flex items-center gap-1.5">
-                            <i data-lucide="zap" class="w-4 h-4 text-amber-400"></i> Abilities (<span id="abilities-count">0</span>)
-                        </h3>
-                    </div>
-                    <div id="abilities-container" class="space-y-2"></div>
-                    <div class="flex gap-2">
-                        <input type="text" id="add-ability-input" placeholder="Add new ability..." class="flex-1 bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-xs text-slate-100 focus:outline-none focus:border-brand-500">
-                        <button onclick="addListItem('abilities', document.getElementById('add-ability-input').value); document.getElementById('add-ability-input').value='';" class="px-3 py-1.5 bg-brand-600 hover:bg-brand-500 text-white text-xs font-medium rounded-lg transition flex items-center gap-1">
-                            <i data-lucide="plus" class="w-3.5 h-3.5"></i> Add
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Equipment -->
-                <div class="space-y-3">
-                    <div class="flex items-center justify-between border-b border-slate-800 pb-2">
-                        <h3 class="text-xs font-bold text-brand-300 uppercase tracking-wider flex items-center gap-1.5">
-                            <i data-lucide="shield-alert" class="w-4 h-4 text-blue-400"></i> Equipment (<span id="equipment-count">0</span>)
-                        </h3>
-                    </div>
-                    <div id="equipment-container" class="space-y-2"></div>
-                    <div class="flex gap-2">
-                        <input type="text" id="add-equipment-input" placeholder="Add equipment..." class="flex-1 bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-xs text-slate-100 focus:outline-none focus:border-brand-500">
-                        <button onclick="addListItem('equipment', document.getElementById('add-equipment-input').value); document.getElementById('add-equipment-input').value='';" class="px-3 py-1.5 bg-brand-600 hover:bg-brand-500 text-white text-xs font-medium rounded-lg transition flex items-center gap-1">
-                            <i data-lucide="plus" class="w-3.5 h-3.5"></i> Add
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Weaknesses -->
-                <div class="space-y-3">
-                    <div class="flex items-center justify-between border-b border-slate-800 pb-2">
-                        <h3 class="text-xs font-bold text-brand-300 uppercase tracking-wider flex items-center gap-1.5">
-                            <i data-lucide="alert-triangle" class="w-4 h-4 text-rose-400"></i> Weaknesses (<span id="weaknesses-count">0</span>)
-                        </h3>
-                    </div>
-                    <div id="weaknesses-container" class="space-y-2"></div>
-                    <div class="flex gap-2">
-                        <input type="text" id="add-weakness-input" placeholder="Add weakness..." class="flex-1 bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-xs text-slate-100 focus:outline-none focus:border-brand-500">
-                        <button onclick="addListItem('weaknesses', document.getElementById('add-weakness-input').value); document.getElementById('add-weakness-input').value='';" class="px-3 py-1.5 bg-brand-600 hover:bg-brand-500 text-white text-xs font-medium rounded-lg transition flex items-center gap-1">
-                            <i data-lucide="plus" class="w-3.5 h-3.5"></i> Add
-                        </button>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- TAB 4: DIRECT RAW JSON EDITOR -->
-            <div id="tab-content-json" class="tab-content bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-3 shadow-xl hidden">
-                <div class="flex items-center justify-between border-b border-slate-800 pb-2">
-                    <h2 class="text-sm font-bold text-brand-300 uppercase tracking-wider flex items-center gap-2">
-                        <i data-lucide="file-json" class="w-4 h-4"></i> Two-Way Direct JSON
-                    </h2>
-                    <div id="json-status" class="text-xs text-emerald-400 flex items-center gap-1">
-                        <i data-lucide="check-circle" class="w-3 h-3"></i> Valid JSON
-                    </div>
-                </div>
-
-                <textarea id="json-editor-textarea" rows="18" oninput="handleDirectJSONInput(this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs font-mono text-slate-200 focus:outline-none focus:border-brand-500 leading-relaxed"></textarea>
-            </div>
-
-        </section>
-
-        <!-- RIGHT COLUMN: LIVE PREVIEW & CODE PANEL -->
-        </section>
-    </main>
-
-    <!-- REPOSITORY BROWSER MODAL -->
-    <div id="repo-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-        <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-2xl w-full p-6 space-y-4 shadow-2xl max-h-[85vh] flex flex-col">
-            <div class="flex justify-between items-center border-b border-slate-800 pb-3">
-                <div class="flex items-center gap-2">
-                    <div class="p-2 bg-brand-600/20 text-brand-400 rounded-lg">
-                        <i data-lucide="github" class="w-5 h-5"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-base font-bold text-white">VS-Battle Repository Profiles</h3>
-                        <p class="text-xs text-slate-400 font-mono">crunchycodes/VS-Battle/chars/</p>
-                    </div>
-                </div>
-                <button onclick="closeRepoModal()" class="text-slate-400 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
-            </div>
-
-            <!-- Repo Controls & Search -->
-            <div class="grid grid-cols-1 sm:grid-cols-12 gap-2">
-                <div class="sm:col-span-8 relative">
-                    <i data-lucide="search" class="w-4 h-4 text-slate-500 absolute left-3 top-2.5"></i>
-                    <input type="text" id="repo-search-input" oninput="filterRepoProfiles()" placeholder="Search profiles by path or character name..." class="w-full bg-slate-950 border border-slate-800 rounded-lg pl-9 pr-3 py-1.5 text-xs focus:outline-none focus:border-brand-500 text-slate-200">
-                </div>
-                <div class="sm:col-span-4 flex gap-2">
-                    <button onclick="scanRepoProfiles()" class="w-full px-3 py-1.5 bg-brand-600 hover:bg-brand-500 text-white rounded-lg text-xs font-medium transition flex items-center justify-center gap-1.5">
-                        <i data-lucide="refresh-cw" id="repo-refresh-icon" class="w-3.5 h-3.5"></i> Scan Repo
+                <!-- Editor Tab Buttons -->
+                <div class="flex bg-slate-900 p-1.5 border border-slate-800 rounded-xl gap-1">
+                    <button id="tab-btn-general" onclick="switchTab('general')" class="tab-btn px-3 py-2 text-xs font-semibold rounded-lg transition bg-brand-600 text-white shadow flex items-center gap-1.5 flex-1 justify-center">
+                        <i data-lucide="user" class="w-3.5 h-3.5"></i> General Info
+                    </button>
+                    <button id="tab-btn-stats" onclick="switchTab('stats')" class="tab-btn px-3 py-2 text-xs font-semibold rounded-lg transition text-slate-400 hover:text-white flex items-center gap-1.5 flex-1 justify-center">
+                        <i data-lucide="shield" class="w-3.5 h-3.5"></i> Combat Stats
+                    </button>
+                    <button id="tab-btn-lists" onclick="switchTab('lists')" class="tab-btn px-3 py-2 text-xs font-semibold rounded-lg transition text-slate-400 hover:text-white flex items-center gap-1.5 flex-1 justify-center">
+                        <i data-lucide="list" class="w-3.5 h-3.5"></i> Lists & Powers
+                    </button>
+                    <button id="tab-btn-json" onclick="switchTab('json')" class="tab-btn px-3 py-2 text-xs font-semibold rounded-lg transition text-slate-400 hover:text-white flex items-center gap-1.5 flex-1 justify-center">
+                        <i data-lucide="code" class="w-3.5 h-3.5"></i> Direct JSON
                     </button>
                 </div>
-            </div>
 
-            <!-- Status / Path info -->
-            <div id="repo-status-bar" class="text-xs text-slate-400 flex items-center justify-between px-1">
-                <span id="repo-count-label">Ready to scan...</span>
-                <span class="text-[11px] text-slate-500 font-mono">Branch: main</span>
-            </div>
+                <!-- TAB 1: GENERAL INFO -->
+                <div id="tab-content-general" class="tab-content bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-4 shadow-xl">
+                    <h2 class="text-sm font-bold text-brand-300 uppercase tracking-wider border-b border-slate-800 pb-2 flex items-center gap-2">
+                        <i data-lucide="id-card" class="w-4 h-4"></i> Character Identity
+                    </h2>
 
-            <!-- Profile List Container -->
-            <div id="repo-profiles-list" class="flex-1 overflow-y-auto space-y-2 pr-1 min-h-[250px] max-h-[400px]">
-                <div class="text-center py-12 text-slate-500 text-xs">
-                    <i data-lucide="folder-search" class="w-8 h-8 mx-auto mb-2 opacity-50"></i>
-                    Click "Scan Repo" to fetch character profiles from GitHub.
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-1">Unique Profile ID</label>
+                            <input type="text" id="field-id" oninput="updateData('id', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 font-mono focus:outline-none focus:border-brand-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-1">Character Name</label>
+                            <input type="text" id="field-name" oninput="updateData('name', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 font-semibold focus:outline-none focus:border-brand-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-1">Alias / Title</label>
+                            <input type="text" id="field-alias" oninput="updateData('alias', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-1">Series Origin</label>
+                            <input type="text" id="field-series" oninput="updateData('series', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-1">Gender</label>
+                            <input type="text" id="field-gender" oninput="updateData('gender', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-1">Age</label>
+                            <input type="text" id="field-age" oninput="updateData('age', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500">
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="block text-xs font-medium text-slate-400 mb-1">Classification</label>
+                            <input type="text" id="field-classification" oninput="updateData('classification', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-1">Source / Wiki URL</label>
+                            <input type="text" id="field-sourceUrl" oninput="updateData('sourceUrl', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500">
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="block text-xs font-medium text-slate-400 mb-1">Portrait Image Path or URL</label>
+                            <input type="text" id="field-portrait" oninput="updateData('portrait', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 font-mono focus:outline-none focus:border-brand-500">
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="block text-xs font-medium text-slate-400 mb-1">Cover / Banner Image Path or URL (Optional)</label>
+                            <input type="text" id="field-banner" oninput="updateData('banner', this.value)" placeholder="Leave blank to use portrait as cover background" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 font-mono focus:outline-none focus:border-brand-500">
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="block text-xs font-medium text-slate-400 mb-1">Summary Description</label>
+                            <textarea id="field-summary" rows="4" oninput="updateData('summary', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-3 text-xs text-slate-100 leading-relaxed focus:outline-none focus:border-brand-500"></textarea>
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="block text-xs font-medium text-slate-400 mb-1">Notes & Remarks</label>
+                            <input type="text" id="field-notes" oninput="updateData('notes', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 2: COMBAT STATS -->
+                <div id="tab-content-stats" class="tab-content bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-4 shadow-xl hidden">
+                    <h2 class="text-sm font-bold text-brand-300 uppercase tracking-wider border-b border-slate-800 pb-2 flex items-center gap-2">
+                        <i data-lucide="shield" class="w-4 h-4"></i> Stat Parameters
+                    </h2>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-1">Tier Rating</label>
+                            <select id="field-stats-tier" onchange="updateNestedStat('tier', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-brand-300 font-semibold focus:outline-none focus:border-brand-500"></select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-1">Attack Potency</label>
+                            <select id="field-stats-attackPotency" onchange="updateNestedStat('attackPotency', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500"></select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-1">Durability</label>
+                            <select id="field-stats-durability" onchange="updateNestedStat('durability', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500"></select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-1">Striking Strength</label>
+                            <select id="field-stats-strikingStrength" onchange="updateNestedStat('strikingStrength', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500"></select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-1">Lifting Strength</label>
+                            <select id="field-stats-liftingStrength" onchange="updateNestedStat('liftingStrength', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500"></select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-1">Combat Speed</label>
+                            <select id="field-stats-combatSpeed" onchange="updateNestedStat('combatSpeed', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500"></select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-1">Attack Speed</label>
+                            <select id="field-stats-attackSpeed" onchange="updateNestedStat('attackSpeed', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500"></select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-1">Reaction Speed</label>
+                            <select id="field-stats-reactionSpeed" onchange="updateNestedStat('reactionSpeed', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500"></select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-1">Perception Speed</label>
+                            <select id="field-stats-perceptionSpeed" onchange="updateNestedStat('perceptionSpeed', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500"></select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-1">Travel Speed</label>
+                            <select id="field-stats-travelSpeed" onchange="updateNestedStat('travelSpeed', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500"></select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-1">Flight Speed</label>
+                            <select id="field-stats-flightSpeed" onchange="updateNestedStat('flightSpeed', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500"></select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-1">Stamina</label>
+                            <select id="field-stats-stamina" onchange="updateNestedStat('stamina', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500"></select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-1">Range</label>
+                            <select id="field-stats-range" onchange="updateNestedStat('range', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500"></select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-400 mb-1">Intelligence</label>
+                            <select id="field-stats-intelligence" onchange="updateNestedStat('intelligence', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500"></select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 3: LISTS & ABILITIES -->
+                <div id="tab-content-lists" class="tab-content bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-6 shadow-xl hidden">
+                    <!-- Abilities -->
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                            <h3 class="text-xs font-bold text-brand-300 uppercase tracking-wider flex items-center gap-1.5">
+                                <i data-lucide="zap" class="w-4 h-4 text-amber-400"></i> Abilities (<span id="abilities-count">0</span>)
+                            </h3>
+                        </div>
+                        <div id="abilities-container" class="space-y-2"></div>
+                        <div class="flex gap-2">
+                            <input type="text" id="add-ability-input" placeholder="Add new ability..." class="flex-1 bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-xs text-slate-100 focus:outline-none focus:border-brand-500">
+                            <button onclick="addListItem('abilities', document.getElementById('add-ability-input').value); document.getElementById('add-ability-input').value='';" class="px-3 py-1.5 bg-brand-600 hover:bg-brand-500 text-white text-xs font-medium rounded-lg transition flex items-center gap-1">
+                                <i data-lucide="plus" class="w-3.5 h-3.5"></i> Add
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Equipment -->
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                            <h3 class="text-xs font-bold text-brand-300 uppercase tracking-wider flex items-center gap-1.5">
+                                <i data-lucide="shield-alert" class="w-4 h-4 text-blue-400"></i> Equipment (<span id="equipment-count">0</span>)
+                            </h3>
+                        </div>
+                        <div id="equipment-container" class="space-y-2"></div>
+                        <div class="flex gap-2">
+                            <input type="text" id="add-equipment-input" placeholder="Add equipment..." class="flex-1 bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-xs text-slate-100 focus:outline-none focus:border-brand-500">
+                            <button onclick="addListItem('equipment', document.getElementById('add-equipment-input').value); document.getElementById('add-equipment-input').value='';" class="px-3 py-1.5 bg-brand-600 hover:bg-brand-500 text-white text-xs font-medium rounded-lg transition flex items-center gap-1">
+                                <i data-lucide="plus" class="w-3.5 h-3.5"></i> Add
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Weaknesses -->
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                            <h3 class="text-xs font-bold text-brand-300 uppercase tracking-wider flex items-center gap-1.5">
+                                <i data-lucide="alert-triangle" class="w-4 h-4 text-rose-400"></i> Weaknesses (<span id="weaknesses-count">0</span>)
+                            </h3>
+                        </div>
+                        <div id="weaknesses-container" class="space-y-2"></div>
+                        <div class="flex gap-2">
+                            <input type="text" id="add-weakness-input" placeholder="Add weakness..." class="flex-1 bg-slate-950 border border-slate-800 rounded-lg px-3 py-1.5 text-xs text-slate-100 focus:outline-none focus:border-brand-500">
+                            <button onclick="addListItem('weaknesses', document.getElementById('add-weakness-input').value); document.getElementById('add-weakness-input').value='';" class="px-3 py-1.5 bg-brand-600 hover:bg-brand-500 text-white text-xs font-medium rounded-lg transition flex items-center gap-1">
+                                <i data-lucide="plus" class="w-3.5 h-3.5"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 4: DIRECT RAW JSON EDITOR -->
+                <div id="tab-content-json" class="tab-content bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-3 shadow-xl hidden">
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                        <h2 class="text-sm font-bold text-brand-300 uppercase tracking-wider flex items-center gap-2">
+                            <i data-lucide="file-json" class="w-4 h-4"></i> Two-Way Direct JSON Editor
+                        </h2>
+                        <div id="json-status" class="text-xs text-emerald-400 flex items-center gap-1">
+                            <i data-lucide="check-circle" class="w-3 h-3"></i> Valid JSON
+                        </div>
+                    </div>
+
+                    <textarea id="json-editor-textarea" rows="18" oninput="handleDirectJSONInput(this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs font-mono text-slate-200 focus:outline-none focus:border-brand-500 leading-relaxed"></textarea>
                 </div>
             </div>
-        </div>
-    </div>
+
+            <!-- RIGHT COLUMN: LIVE PREVIEW & CODE PANEL -->
+            <div class="lg:col-span-5 flex flex-col gap-4">
+                <div class="flex items-center justify-between bg-slate-900 p-1.5 border border-slate-800 rounded-xl">
+                    <span class="text-xs font-bold text-slate-300 px-2 flex items-center gap-1.5">
+                        <i data-lucide="eye" class="w-4 h-4 text-brand-400"></i> Preview & Code
+                    </span>
+                    <div class="flex gap-1">
+                        <button id="view-btn-card" onclick="switchRightView('card')" class="right-view-btn px-3 py-1 text-xs font-medium rounded-lg bg-slate-800 text-white">Card</button>
+                        <button id="view-btn-code" onclick="switchRightView('code')" class="right-view-btn px-3 py-1 text-xs font-medium rounded-lg text-slate-400 hover:text-white">Raw JSON</button>
+                    </div>
+                </div>
+
+                <!-- RIGHT VIEW 1: LIVE CARD PREVIEW -->
+                <div id="right-view-card" class="right-view-container bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl flex flex-col">
+                    <div class="relative h-48 bg-slate-950 border-b border-slate-800 overflow-hidden flex items-end p-4">
+                        <div id="preview-portrait-bg" class="absolute inset-0 bg-cover bg-top opacity-20"></div>
+                        <div class="relative z-10 flex items-end gap-3 w-full">
+                            <img id="preview-portrait" src="https://placehold.co/300x300/1e293b/6366f1?text=No+Image" onerror="this.src='https://placehold.co/300x300/1e293b/6366f1?text=No+Image'" class="w-20 h-20 rounded-xl object-cover object-top border-2 border-brand-500 shadow-md bg-slate-950 flex-shrink-0">
+                            <div class="overflow-hidden">
+                                <span id="preview-tier-badge" class="px-2 py-0.5 bg-brand-600 text-white font-mono font-bold text-[10px] rounded uppercase tracking-wide">TIER 9-A</span>
+                                <h3 id="preview-name" class="text-base font-bold text-white leading-snug mt-1 truncate">Sabito</h3>
+                                <p id="preview-alias" class="text-xs text-brand-300 font-medium truncate">"Fox Mask"</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="p-5 space-y-4 text-xs">
+                        <div>
+                            <div id="preview-series" class="font-semibold text-slate-200">Demon Slayer: Kimetsu No Yaiba</div>
+                            <div id="preview-gender-age" class="text-slate-400 mt-0.5">Male • Age: 13</div>
+                        </div>
+
+                        <div>
+                            <h4 class="text-[10px] uppercase tracking-wider font-bold text-slate-500 mb-1">Summary</h4>
+                            <p id="preview-summary" class="text-slate-300 leading-relaxed line-clamp-4">Summary text here...</p>
+                        </div>
+
+                        <div>
+                            <h4 class="text-[10px] uppercase tracking-wider font-bold text-slate-500 mb-2">Combat Parameters</h4>
+                            <div class="grid grid-cols-2 gap-2">
+                                <div class="bg-slate-950 border border-slate-800/80 p-2 rounded-lg">
+                                    <span class="text-[9px] text-slate-500 uppercase block">Attack Potency</span>
+                                    <span id="preview-ap" class="font-medium text-slate-200 truncate block">Small Building level</span>
+                                </div>
+                                <div class="bg-slate-950 border border-slate-800/80 p-2 rounded-lg">
+                                    <span class="text-[9px] text-slate-500 uppercase block">Durability</span>
+                                    <span id="preview-durability" class="font-medium text-slate-200 truncate block">Small Building level</span>
+                                </div>
+                                <div class="bg-slate-950 border border-slate-800/80 p-2 rounded-lg">
+                                    <span class="text-[9px] text-slate-500 uppercase block">Combat Speed</span>
+                                    <span id="preview-speed" class="font-medium text-slate-200 truncate block">Supersonic+</span>
+                                </div>
+                                <div class="bg-slate-950 border border-slate-800/80 p-2 rounded-lg">
+                                    <span class="text-[9px] text-slate-500 uppercase block">Stamina</span>
+                                    <span id="preview-stamina" class="font-medium text-slate-200 truncate block">Superhuman</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="text-[10px] uppercase tracking-wider font-bold text-slate-500 mb-1.5">Abilities</h4>
+                            <div id="preview-abilities-tags" class="flex flex-wrap gap-1.5"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT VIEW 2: CODE DISPLAY -->
+                <div id="right-view-code" class="right-view-container bg-slate-900 border border-slate-800 rounded-2xl p-4 shadow-xl hidden flex flex-col gap-3">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-mono text-slate-400">Formatted JSON Output</span>
+                        <button onclick="copyCurrentJSON()" class="px-2.5 py-1 text-xs bg-slate-800 hover:bg-slate-700 text-slate-200 rounded border border-slate-700 flex items-center gap-1">
+                            <i data-lucide="copy" class="w-3 h-3"></i> Copy
+                        </button>
+                    </div>
+                    <pre class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-[11px] font-mono text-brand-300 overflow-x-auto max-h-[450px] leading-relaxed"><code id="right-json-code"></code></pre>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <!-- IMPORT MODAL -->
     <div id="import-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
@@ -354,7 +435,7 @@
                 <button onclick="closeImportModal()" class="text-slate-400 hover:text-white"><i data-lucide="x" class="w-5 h-5"></i></button>
             </div>
 
-            <p class="text-xs text-slate-400">Paste your JSON string below or choose a local JSON file to import.</p>
+            <p class="text-xs text-slate-400">Paste your character JSON string or upload a .json file.</p>
 
             <div>
                 <textarea id="import-textarea" rows="8" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs font-mono text-slate-200 focus:outline-none focus:border-brand-500" placeholder="Paste JSON here..."></textarea>
@@ -399,10 +480,387 @@
         </div>
     </div>
 
-    <!-- TOAST NOTIFICATION CONTAINER -->
+    <!-- FULLSCREEN CHARACTER INSPECT MODAL -->
+    <div id="inspect-modal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-50 flex items-center justify-center p-2 sm:p-6 hidden overflow-y-auto">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-4xl w-full max-h-[92vh] flex flex-col shadow-2xl overflow-hidden my-auto border-brand-500/20">
+            <!-- Modal Header / Banner Hero -->
+            <div class="relative h-48 sm:h-56 bg-slate-950 border-b border-slate-800 flex items-end p-4 sm:p-6 flex-shrink-0">
+                <div id="inspect-banner-bg" class="absolute inset-0 bg-cover bg-center opacity-30"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/60 to-transparent"></div>
+                
+                <button onclick="closeInspectModal()" class="absolute top-4 right-4 z-20 p-2 bg-slate-950/80 hover:bg-slate-800 text-slate-300 hover:text-white rounded-full border border-slate-700/80 backdrop-blur transition" title="Close Inspect Modal">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+
+                <div class="relative z-10 flex flex-col sm:flex-row items-start sm:items-end gap-4 w-full">
+                    <img id="inspect-portrait" src="https://placehold.co/300x300/1e293b/6366f1?text=No+Image" onerror="this.src='https://placehold.co/300x300/1e293b/6366f1?text=No+Image'" class="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl object-cover object-top border-2 border-brand-500 shadow-2xl bg-slate-950 flex-shrink-0">
+                    <div class="overflow-hidden flex-1 space-y-1">
+                        <div class="flex items-center gap-2 flex-wrap">
+                            <span id="inspect-tier-badge" class="px-2.5 py-0.5 bg-brand-600 text-white font-mono font-bold text-xs rounded uppercase tracking-wider shadow">TIER 9-A</span>
+                            <span id="inspect-series-badge" class="px-2.5 py-0.5 bg-slate-800/80 border border-slate-700 text-slate-300 font-medium text-xs rounded truncate">Series Name</span>
+                        </div>
+                        <h2 id="inspect-name" class="text-xl sm:text-2xl font-bold text-white leading-tight truncate">Character Name</h2>
+                        <p id="inspect-alias" class="text-xs sm:text-sm text-brand-300 font-medium truncate">"Alias Name"</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Content Scrollable Area -->
+            <div class="p-4 sm:p-6 overflow-y-auto space-y-6 flex-1 text-xs">
+                <!-- General Identity Bar -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-slate-950/60 border border-slate-800 p-3 rounded-xl">
+                    <div>
+                        <span class="text-[10px] text-slate-500 uppercase font-semibold block">Classification</span>
+                        <span id="inspect-classification" class="text-slate-200 font-medium truncate block">N/A</span>
+                    </div>
+                    <div>
+                        <span class="text-[10px] text-slate-500 uppercase font-semibold block">Gender / Age</span>
+                        <span id="inspect-gender-age" class="text-slate-200 font-medium truncate block">N/A</span>
+                    </div>
+                    <div>
+                        <span class="text-[10px] text-slate-500 uppercase font-semibold block">Profile ID</span>
+                        <span id="inspect-id" class="text-brand-300 font-mono font-medium truncate block">N/A</span>
+                    </div>
+                    <div>
+                        <span class="text-[10px] text-slate-500 uppercase font-semibold block">Source Link</span>
+                        <a id="inspect-source-link" href="#" target="_blank" class="text-brand-400 hover:underline font-medium truncate block flex items-center gap-1">
+                            <i data-lucide="external-link" class="w-3 h-3"></i> View Wiki Page
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Summary Description -->
+                <div>
+                    <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                        <i data-lucide="align-left" class="w-3.5 h-3.5 text-brand-400"></i> Summary Description
+                    </h3>
+                    <p id="inspect-summary" class="text-slate-300 leading-relaxed bg-slate-950/40 p-3.5 border border-slate-800/80 rounded-xl text-xs sm:text-sm">
+                        Summary content...
+                    </p>
+                </div>
+
+                <!-- Complete Stats Grid -->
+                <div>
+                    <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3 flex items-center gap-1.5">
+                        <i data-lucide="shield" class="w-3.5 h-3.5 text-brand-400"></i> Combat Statistics & Parameters
+                    </h3>
+                    <div id="inspect-stats-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5">
+                        <!-- Stat items rendered dynamically -->
+                    </div>
+                </div>
+
+                <!-- Abilities, Equipment, Weaknesses Columns -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <!-- Abilities -->
+                    <div class="bg-slate-950/60 border border-slate-800 rounded-xl p-3.5 space-y-2">
+                        <h4 class="text-xs font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1.5 border-b border-slate-800 pb-2">
+                            <i data-lucide="zap" class="w-3.5 h-3.5"></i> Abilities
+                        </h4>
+                        <div id="inspect-abilities-list" class="flex flex-wrap gap-1.5 pt-1"></div>
+                    </div>
+
+                    <!-- Equipment -->
+                    <div class="bg-slate-950/60 border border-slate-800 rounded-xl p-3.5 space-y-2">
+                        <h4 class="text-xs font-bold text-blue-400 uppercase tracking-wider flex items-center gap-1.5 border-b border-slate-800 pb-2">
+                            <i data-lucide="shield-alert" class="w-3.5 h-3.5"></i> Equipment & Weapons
+                        </h4>
+                        <div id="inspect-equipment-list" class="flex flex-col gap-1.5 pt-1"></div>
+                    </div>
+
+                    <!-- Weaknesses -->
+                    <div class="bg-slate-950/60 border border-slate-800 rounded-xl p-3.5 space-y-2">
+                        <h4 class="text-xs font-bold text-rose-400 uppercase tracking-wider flex items-center gap-1.5 border-b border-slate-800 pb-2">
+                            <i data-lucide="alert-triangle" class="w-3.5 h-3.5"></i> Weaknesses
+                        </h4>
+                        <div id="inspect-weaknesses-list" class="flex flex-col gap-1.5 pt-1"></div>
+                    </div>
+                </div>
+
+                <!-- Notes Section -->
+                <div id="inspect-notes-container" class="bg-slate-950/40 border border-slate-800 rounded-xl p-3">
+                    <span class="text-[10px] text-slate-500 uppercase font-semibold block mb-0.5">Notes & Remarks</span>
+                    <p id="inspect-notes" class="text-slate-300 italic">None.</p>
+                </div>
+            </div>
+
+            <!-- Modal Footer Actions -->
+            <div class="p-4 border-t border-slate-800 bg-slate-950/80 flex items-center justify-between gap-3 flex-shrink-0">
+                <button onclick="closeInspectModal()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl text-xs font-medium transition">
+                    Close
+                </button>
+                <div class="flex items-center gap-2">
+                    <button id="inspect-copy-btn" onclick="copyInspectedJSON()" class="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-medium border border-slate-700 transition flex items-center gap-1.5">
+                        <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy JSON
+                    </button>
+                    <button id="inspect-edit-btn" class="px-4 py-2 bg-brand-600 hover:bg-brand-500 text-white rounded-xl text-xs font-semibold shadow transition flex items-center gap-1.5">
+                        <i data-lucide="edit-3" class="w-3.5 h-3.5"></i> Edit Profile
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2"></div>
 
     <script>
+        const TIER_OPTIONS = [
+            {
+                group: "Tier 11: Infinitesimal",
+                options: [
+                    { code: "11-C", name: "11-C: Low Hypoverse level" },
+                    { code: "11-B", name: "11-B: Hypoverse level" },
+                    { code: "11-A", name: "11-A: High Hypoverse level" }
+                ]
+            },
+            {
+                group: "Tier 10: Human",
+                options: [
+                    { code: "10-C", name: "10-C: Below Average Human level" },
+                    { code: "10-B", name: "10-B: Human level" },
+                    { code: "10-A", name: "10-A: Athlete level" }
+                ]
+            },
+            {
+                group: "Tier 9: Superhuman",
+                options: [
+                    { code: "9-C", name: "9-C: Street level" },
+                    { code: "9-B", name: "9-B: Wall level" },
+                    { code: "9-A", name: "9-A: Small Building level" }
+                ]
+            },
+            {
+                group: "Tier 8: Urban",
+                options: [
+                    { code: "8-C", name: "8-C: Building level" },
+                    { code: "High 8-C", name: "High 8-C: Large Building level" },
+                    { code: "8-B", name: "8-B: City Block level" },
+                    { code: "8-A", name: "8-A: Multi-City Block level" }
+                ]
+            },
+            {
+                group: "Tier 7: Nuclear",
+                options: [
+                    { code: "Low 7-C", name: "Low 7-C: Small Town level" },
+                    { code: "7-C", name: "7-C: Town level" },
+                    { code: "High 7-C", name: "High 7-C: Large Town level" },
+                    { code: "Low 7-B", name: "Low 7-B: Small City level" },
+                    { code: "7-B", name: "7-B: City level" },
+                    { code: "7-A", name: "7-A: Mountain level" },
+                    { code: "High 7-A", name: "High 7-A: Large Mountain level" }
+                ]
+            },
+            {
+                group: "Tier 6: Tectonic",
+                options: [
+                    { code: "6-C", name: "6-C: Island level" },
+                    { code: "High 6-C", name: "High 6-C: Large Island level" },
+                    { code: "Low 6-B", name: "Low 6-B: Small Country level" },
+                    { code: "6-B", name: "6-B: Country level" },
+                    { code: "High 6-B", name: "High 6-B: Large Country level" },
+                    { code: "6-A", name: "6-A: Continent level" },
+                    { code: "High 6-A", name: "High 6-A: Multi-Continent level" }
+                ]
+            },
+            {
+                group: "Tier 5: Substellar",
+                options: [
+                    { code: "5-C", name: "5-C: Moon level" },
+                    { code: "Low 5-B", name: "Low 5-B: Small Planet level" },
+                    { code: "5-B", name: "5-B: Planet level" },
+                    { code: "5-A", name: "5-A: Large Planet level" },
+                    { code: "High 5-A", name: "High 5-A: Brown Dwarf level" }
+                ]
+            },
+            {
+                group: "Tier 4: Stellar",
+                options: [
+                    { code: "Low 4-C", name: "Low 4-C: Small Star level" },
+                    { code: "4-C", name: "4-C: Star level" },
+                    { code: "High 4-C", name: "High 4-C: Large Star level" },
+                    { code: "4-B", name: "4-B: Solar System level" },
+                    { code: "4-A", name: "4-A: Multi-Solar System level" }
+                ]
+            },
+            {
+                group: "Tier 3: Cosmic",
+                options: [
+                    { code: "3-C", name: "3-C: Galaxy level" },
+                    { code: "3-B", name: "3-B: Multi-Galaxy level" },
+                    { code: "3-A", name: "3-A: Universe level" },
+                    { code: "High 3-A", name: "High 3-A: High Universe level" }
+                ]
+            },
+            {
+                group: "Tier 2: Multiversal",
+                options: [
+                    { code: "Low 2-C", name: "Low 2-C: Universe level+" },
+                    { code: "2-C", name: "2-C: Low Multiverse level" },
+                    { code: "2-B", name: "2-B: Multiverse level" },
+                    { code: "2-A", name: "2-A: Multiverse level+" }
+                ]
+            },
+            {
+                group: "Tier 1: Higher Infinity",
+                options: [
+                    { code: "Low 1-C", name: "Low 1-C: Low Complex Multiverse level" },
+                    { code: "1-C", name: "1-C: Complex Multiverse level" },
+                    { code: "High 1-C", name: "High 1-C: High Complex Multiverse level" },
+                    { code: "1-B", name: "1-B: Hyperverse level" },
+                    { code: "High 1-B", name: "High 1-B: High Hyperverse level" },
+                    { code: "Low 1-A", name: "Low 1-A: Low Outerverse level" },
+                    { code: "1-A", name: "1-A: Outerverse level" },
+                    { code: "High 1-A", name: "High 1-A: High Outerverse level" }
+                ]
+            },
+            {
+                group: "Tier 0: Boundless",
+                options: [
+                    { code: "0", name: "0: Boundless" }
+                ]
+            }
+        ];
+
+        const STAT_OPTIONS = {
+            speed: [
+                "Immobile", "Below Average Human", "Average Human", "Athletic Human", "Peak Human",
+                "Superhuman", "Subsonic", "Subsonic+", "Transonic", "Supersonic", "Supersonic+",
+                "Hypersonic", "Hypersonic+", "High Hypersonic", "High Hypersonic+",
+                "Massively Hypersonic", "Massively Hypersonic+", "Sub-Relativistic", "Sub-Relativistic+",
+                "Relativistic", "Relativistic+", "Speed of Light", "FTL", "FTL+", "Massively FTL", "Massively FTL+"
+            ],
+            apDurability: [
+                { prefix: "10-C", name: "Below Average Human" },
+                { prefix: "10-B", name: "Human" },
+                { prefix: "10-A", name: "Athlete" },
+                { prefix: "9-C", name: "Street" },
+                { prefix: "9-B", name: "Wall" },
+                { prefix: "9-A", name: "Small Building" },
+                { prefix: "8-C", name: "Building" },
+                { prefix: "High 8-C", name: "Large Building" },
+                { prefix: "8-B", name: "City Block" },
+                { prefix: "8-A", name: "Multi-City Block" },
+                { prefix: "Low 7-C", name: "Small Town" },
+                { prefix: "7-C", name: "Town" },
+                { prefix: "High 7-C", name: "Large Town" },
+                { prefix: "Low 7-B", name: "Small City" },
+                { prefix: "7-B", name: "City" },
+                { prefix: "7-A", name: "Mountain" },
+                { prefix: "High 7-A", name: "Large Mountain" },
+                { prefix: "6-C", name: "Island" },
+                { prefix: "High 6-C", name: "Large Island" },
+                { prefix: "Low 6-B", name: "Small Country" },
+                { prefix: "6-B", name: "Country" },
+                { prefix: "High 6-B", name: "Large Country" },
+                { prefix: "6-A", name: "Continent" },
+                { prefix: "High 6-A", name: "Multi-Continent" },
+                { prefix: "5-C", name: "Moon" },
+                { prefix: "Low 5-B", name: "Small Planet" },
+                { prefix: "5-B", name: "Planet" },
+                { prefix: "5-A", name: "Large Planet" },
+                { prefix: "High 5-A", name: "Brown Dwarf" },
+                { prefix: "Low 4-C", name: "Small Star" },
+                { prefix: "4-C", name: "Star" },
+                { prefix: "High 4-C", name: "Large Star" },
+                { prefix: "4-B", name: "Solar System" },
+                { prefix: "4-A", name: "Multi-Solar System" },
+                { prefix: "3-C", name: "Galaxy" },
+                { prefix: "3-B", name: "Multi-Galaxy" },
+                { prefix: "3-A", name: "Universe" }
+            ],
+            lifting: [
+                "Insubstantial", "Below Average Human", "Average Human", "Above Average Human",
+                "Athletic Human", "Peak Human", "Superhuman", "Class 1", "Class 5", "Class 10",
+                "Class 25", "Class 50", "Class 100", "Class K", "Class M", "Class G", "Class T",
+                "Class P", "Class E", "Class Z", "Class Y", "Pre-Stellar", "Stellar", "Multi-Stellar",
+                "Galactic", "Multi-Galactic", "Universal", "Infinite", "Immeasurable", "Inapplicable"
+            ],
+            striking: [
+                "Low Hypoverse", "Hypoverse", "High Hypoverse", "Below Average Human", "Human",
+                "Athlete", "Street", "Wall", "Small Building", "Building", "Large Building",
+                "City Block", "Multi-City Block", "Small Town", "Town", "Large Town", "Small City",
+                "City level", "Mountain level", "Large Mountain", "Island", "Large Island",
+                "Small Country", "Country", "Large Country", "Continent", "Multi-Continent",
+                "Moon", "Small Planet", "Planet", "Large Planet", "Brown Dwarf", "Small Star",
+                "Star", "Large Star", "Solar System", "Multi-Solar System", "Galaxy", "Multi-Galaxy",
+                "Universe", "High Universe", "Universe +", "Low Multiverse", "Multiverse",
+                "Multiverse+", "Low Complex Multiverse", "Complex Multiverse", "High Complex Multiverse",
+                "Hyperverse", "High Hyperverse", "Low Outerverse", "Outerverse", "Outerverse+",
+                "High Outerverse", "Inapplicable"
+            ],
+            intelligence: [
+                "Mindless", "Instinctive", "Animalistic", "High Animalistic", "Below Average",
+                "Average", "Above Average", "Gifted", "Genius", "Extraordinary Genius",
+                "Supergenius", "Nigh-Omniscient", "Omniscient"
+            ],
+            range: [
+                "Below Standard Melee Range", "Standard Melee Range", "Extended Melee Range",
+                "Several Meters", "Tens of Meters", "Hundreds of Meters", "Kilometers",
+                "Tens of Kilometers", "Hundreds of Kilometers", "Thousands of Kilometers",
+                "Planetary", "Stellar", "Interplanetary", "Interstellar", "Galactic",
+                "Intergalactic", "Universal", "High Universal", "Universal+", "Interdimensional",
+                "Low Multiversal", "Multiversal", "Multiversal+", "Extradimensional",
+                "Low Complex Multiversal", "Complex Multiversal", "High Complex Multiversal",
+                "Hyperversal", "High Hyperversal", "Low Outerversal", "Outerversal",
+                "Outerversal+", "High Outerversal", "High Outerversal+", "Boundless"
+            ],
+            stamina: [
+                "Below Average", "Average", "Athletic", "Peak Human", "Superhuman",
+                "Infinite", "Inapplicable"
+            ]
+        };
+
+        function populateStatDropdowns() {
+            const tierSelect = document.getElementById('field-stats-tier');
+            if (tierSelect) {
+                tierSelect.innerHTML = '<option value="unknown">Unknown</option>';
+                TIER_OPTIONS.forEach(grp => {
+                    const optgroup = document.createElement('optgroup');
+                    optgroup.label = grp.group;
+                    grp.options.forEach(opt => {
+                        const option = document.createElement('option');
+                        option.value = opt.code;
+                        option.textContent = opt.name;
+                        optgroup.appendChild(option);
+                    });
+                    tierSelect.appendChild(optgroup);
+                });
+            }
+
+            const populateSimple = (id, list) => {
+                const el = document.getElementById(id);
+                if (!el) return;
+                el.innerHTML = '<option value="unknown">Unknown</option>';
+                list.forEach(opt => {
+                    el.innerHTML += `<option value="${escapeHtml(opt)}">${escapeHtml(opt)}</option>`;
+                });
+            };
+
+            const populateApDur = (id) => {
+                const el = document.getElementById(id);
+                if (!el) return;
+                el.innerHTML = '<option value="unknown">Unknown</option>';
+                STAT_OPTIONS.apDurability.forEach(item => {
+                    const jsonVal = `${item.prefix} ${item.name} level`;
+                    const label = `${item.name} level`;
+                    el.innerHTML += `<option value="${escapeHtml(jsonVal)}">${escapeHtml(label)}</option>`;
+                });
+            };
+
+            populateApDur('field-stats-attackPotency');
+            populateApDur('field-stats-durability');
+
+            populateSimple('field-stats-strikingStrength', STAT_OPTIONS.striking);
+            populateSimple('field-stats-liftingStrength', STAT_OPTIONS.lifting);
+
+            ['combatSpeed', 'attackSpeed', 'reactionSpeed', 'perceptionSpeed', 'travelSpeed', 'flightSpeed'].forEach(s => {
+                populateSimple(`field-stats-${s}`, STAT_OPTIONS.speed);
+            });
+
+            populateSimple('field-stats-stamina', STAT_OPTIONS.stamina);
+            populateSimple('field-stats-range', STAT_OPTIONS.range);
+            populateSimple('field-stats-intelligence', STAT_OPTIONS.intelligence);
+        }
+
         const DEFAULT_CHARACTER = {
             "id": "sabito-demon-slayer",
             "name": "Sabito",
@@ -410,6 +868,7 @@
             "series": "Demon Slayer: Kimetsu No Yaiba",
             "tier": "9-A",
             "portrait": "chars/tier/9/A/Demon Slayer - Kimetsu No Yaiba/Sabito/1.webp",
+            "banner": "",
             "sourceUrl": "https://vsbattles.fandom.com/wiki/Kyogai",
             "gender": "Male",
             "age": "13",
@@ -443,7 +902,7 @@
                 "Warding Mask"
             ],
             "weaknesses": [
-                "unlnown."
+                "unknown."
             ],
             "notes": "None."
         };
@@ -458,7 +917,7 @@
             folder: 'chars/'
         };
 
-        let rosterCharacters = []; // Array of { path, data, status }
+        let rosterCharacters = []; // Array of { path, data, error, rawText }
 
         function resolvePortraitUrl(portraitPath) {
             if (!portraitPath) return 'https://placehold.co/300x300/1e293b/6366f1?text=No+Image';
@@ -479,23 +938,13 @@
             if (mode === 'roster') {
                 if (rosterSec) rosterSec.classList.remove('hidden');
                 if (editorSec) editorSec.classList.add('hidden');
-                
-                if (btnRoster) {
-                    btnRoster.className = "px-3 py-1.5 text-xs font-semibold rounded-lg transition bg-brand-600 text-white shadow flex items-center gap-1.5";
-                }
-                if (btnEditor) {
-                    btnEditor.className = "px-3 py-1.5 text-xs font-semibold rounded-lg transition text-slate-400 hover:text-white flex items-center gap-1.5";
-                }
+                if (btnRoster) btnRoster.className = "px-3 py-1.5 text-xs font-semibold rounded-lg transition bg-brand-600 text-white shadow flex items-center gap-1.5";
+                if (btnEditor) btnEditor.className = "px-3 py-1.5 text-xs font-semibold rounded-lg transition text-slate-400 hover:text-white flex items-center gap-1.5";
             } else {
                 if (rosterSec) rosterSec.classList.add('hidden');
                 if (editorSec) editorSec.classList.remove('hidden');
-
-                if (btnRoster) {
-                    btnRoster.className = "px-3 py-1.5 text-xs font-semibold rounded-lg transition text-slate-400 hover:text-white flex items-center gap-1.5";
-                }
-                if (btnEditor) {
-                    btnEditor.className = "px-3 py-1.5 text-xs font-semibold rounded-lg transition bg-brand-600 text-white shadow flex items-center gap-1.5";
-                }
+                if (btnRoster) btnRoster.className = "px-3 py-1.5 text-xs font-semibold rounded-lg transition text-slate-400 hover:text-white flex items-center gap-1.5";
+                if (btnEditor) btnEditor.className = "px-3 py-1.5 text-xs font-semibold rounded-lg transition bg-brand-600 text-white shadow flex items-center gap-1.5";
                 
                 const activeName = document.getElementById('active-editing-name');
                 if (activeName) activeName.textContent = characterData.name || 'Unnamed Character';
@@ -522,42 +971,72 @@
             try {
                 const url = `https://api.github.com/repos/${repoConfig.owner}/${repoConfig.repo}/git/trees/${repoConfig.branch}?recursive=1`;
                 const response = await fetch(url);
-                if (!response.ok) throw new Error(`GitHub API error status ${response.status}`);
+                if (!response.ok) throw new Error(`GitHub API HTTP ${response.status}`);
                 
                 const data = await response.json();
                 const jsonFiles = (data.tree || []).filter(item => 
                     item.path.startsWith(repoConfig.folder) && item.path.toLowerCase().endsWith('.json')
                 );
 
-                if (badgeEl) badgeEl.textContent = `${jsonFiles.length}`;
-
-                // Parallel fetch all character JSONs
+                // Fetch all character JSON files in parallel with robust error capturing
                 rosterCharacters = await Promise.all(
                     jsonFiles.map(async (file) => {
+                        const rawUrl = `https://raw.githubusercontent.com/${repoConfig.owner}/${repoConfig.repo}/${repoConfig.branch}/${file.path}`;
                         try {
-                            const rawUrl = `https://raw.githubusercontent.com/${repoConfig.owner}/${repoConfig.repo}/${repoConfig.branch}/${file.path}`;
                             const res = await fetch(rawUrl);
-                            if (!res.ok) return { path: file.path, data: null, error: true };
-                            const charJson = await res.json();
-                            return { path: file.path, data: charJson, error: false };
+                            if (!res.ok) throw new Error(`Fetch HTTP ${res.status}`);
+                            const text = await res.text();
+                            
+                            // Try parsing JSON safely
+                            try {
+                                const charJson = JSON.parse(text);
+                                return { path: file.path, data: charJson, error: null, rawText: text };
+                            } catch (parseErr) {
+                                return { 
+                                    path: file.path, 
+                                    data: null, 
+                                    error: `JSON syntax error: ${parseErr.message}`,
+                                    rawText: text 
+                                };
+                            }
                         } catch (e) {
-                            return { path: file.path, data: null, error: true };
+                            return { path: file.path, data: null, error: e.message, rawText: '' };
                         }
                     })
                 );
 
+                // Check if Sabito was in repo; if not, prepend default Sabito template so he is always accessible
+                const hasSabito = rosterCharacters.some(c => c.data && (c.data.id === 'sabito-demon-slayer' || (c.data.name && c.data.name.toLowerCase() === 'sabito')));
+                if (!hasSabito) {
+                    rosterCharacters.unshift({
+                        path: 'chars/tier/9/A/Demon Slayer - Kimetsu No Yaiba/Sabito/sabito.json',
+                        data: JSON.parse(JSON.stringify(DEFAULT_CHARACTER)),
+                        error: null,
+                        rawText: JSON.stringify(DEFAULT_CHARACTER, null, 2)
+                    });
+                }
+
+                const validCharacters = rosterCharacters.filter(c => !c.error && c.data);
+                if (badgeEl) badgeEl.textContent = `${validCharacters.length}`;
+
                 populateFilterDropdowns();
                 applyRosterFilters();
             } catch (err) {
-                console.error("Roster fetch failed:", err);
-                if (gridEl) {
-                    gridEl.innerHTML = `
-                        <div class="col-span-full py-16 text-center text-rose-400 text-xs bg-slate-900 border border-slate-800 rounded-2xl p-6">
-                            <i data-lucide="alert-triangle" class="w-8 h-8 mx-auto mb-2 text-rose-400 opacity-80"></i>
-                            Failed to auto-load repository roster: ${escapeHtml(err.message)}
-                        </div>
-                    `;
-                }
+                console.warn("Roster fetch fallback:", err);
+                // Fallback to local default Sabito template if repo rate-limited or offline
+                rosterCharacters = [{
+                    path: 'chars/tier/9/A/Demon Slayer - Kimetsu No Yaiba/Sabito/sabito.json',
+                    data: JSON.parse(JSON.stringify(DEFAULT_CHARACTER)),
+                    error: null,
+                    rawText: JSON.stringify(DEFAULT_CHARACTER, null, 2)
+                }];
+
+                const validCharacters = rosterCharacters.filter(c => !c.error && c.data);
+                if (badgeEl) badgeEl.textContent = `${validCharacters.length}`;
+                populateFilterDropdowns();
+                applyRosterFilters();
+
+                showToast(`GitHub API notice: ${err.message}. Showing local Sabito template.`, 'info');
             } finally {
                 if (refreshIcon) refreshIcon.classList.remove('animate-spin');
                 if (window.lucide) lucide.createIcons();
@@ -573,7 +1052,7 @@
             const seriesList = new Set();
 
             rosterCharacters.forEach(item => {
-                if (item.data) {
+                if (item.data && !item.error) {
                     if (item.data.tier) tiers.add(item.data.tier);
                     if (item.data.series) seriesList.add(item.data.series);
                 }
@@ -599,7 +1078,8 @@
             if (!gridEl) return;
 
             const filtered = rosterCharacters.filter(item => {
-                if (!item.data) return false;
+                // Ignore files with fetch/JSON syntax errors so no error cards appear
+                if (item.error || !item.data) return false;
                 const c = item.data;
 
                 if (selectedTier !== 'ALL' && c.tier !== selectedTier) return false;
@@ -610,13 +1090,16 @@
                     const matchAlias = (c.alias || '').toLowerCase().includes(searchVal);
                     const matchSeries = (c.series || '').toLowerCase().includes(searchVal);
                     const matchClass = (c.classification || '').toLowerCase().includes(searchVal);
-                    const matchAbilities = (c.abilities || []).some(a => a.toLowerCase().includes(searchVal));
+                    const matchAbilities = (c.abilities || []).some(a => (a || '').toLowerCase().includes(searchVal));
 
                     return matchName || matchAlias || matchSeries || matchClass || matchAbilities;
                 }
 
                 return true;
             });
+
+            const badgeEl = document.getElementById('roster-count-badge');
+            if (badgeEl) badgeEl.textContent = `${filtered.length}`;
 
             renderRosterGrid(filtered);
         }
@@ -629,7 +1112,7 @@
                 gridEl.innerHTML = `
                     <div class="col-span-full py-16 text-center text-slate-500 text-xs bg-slate-900 border border-slate-800 rounded-2xl">
                         <i data-lucide="users" class="w-8 h-8 mx-auto mb-2 opacity-40"></i>
-                        No characters matched your criteria.
+                        No characters matched your search filters.
                     </div>
                 `;
                 if (window.lucide) lucide.createIcons();
@@ -639,19 +1122,24 @@
             gridEl.innerHTML = '';
 
             items.forEach((item) => {
-                const c = item.data;
                 const indexInMain = rosterCharacters.indexOf(item);
-                const portraitUrl = resolvePortraitUrl(c.portrait);
-
                 const card = document.createElement('div');
+
+                // Skip rendering if character data is missing or errored
+                if (item.error || !item.data) return;
+
+                const c = item.data;
+                const portraitUrl = resolvePortraitUrl(c.portrait);
+                const bannerUrl = c.banner ? resolvePortraitUrl(c.banner) : portraitUrl;
+
                 card.className = "bg-slate-900 border border-slate-800 hover:border-brand-500/50 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-brand-500/10 transition-all flex flex-col justify-between group";
 
                 card.innerHTML = `
                     <div>
                         <div class="relative h-40 bg-slate-950 border-b border-slate-800 overflow-hidden flex items-end p-3">
-                            <div class="absolute inset-0 bg-cover bg-center opacity-25 group-hover:scale-105 transition duration-500" style="background-image: url('${portraitUrl}');"></div>
+                            <div class="absolute inset-0 bg-cover bg-top opacity-25 group-hover:scale-105 transition duration-500" style="background-image: url('${bannerUrl}');"></div>
                             <div class="relative z-10 flex items-end gap-3 w-full">
-                                <img src="${portraitUrl}" onerror="this.src='https://placehold.co/300x300/1e293b/6366f1?text=No+Image'" class="w-16 h-16 rounded-xl object-cover border-2 border-brand-500/50 shadow-md bg-slate-950 flex-shrink-0">
+                                <img src="${portraitUrl}" onerror="this.src='https://placehold.co/300x300/1e293b/6366f1?text=No+Image'" class="w-16 h-16 rounded-xl object-cover object-top border-2 border-brand-500/50 shadow-md bg-slate-950 flex-shrink-0">
                                 <div class="overflow-hidden">
                                     <span class="px-2 py-0.5 bg-brand-600 text-white font-mono font-bold text-[9px] rounded uppercase tracking-wide">TIER ${escapeHtml(c.tier || 'N/A')}</span>
                                     <h3 class="text-sm font-bold text-white leading-snug mt-1 truncate group-hover:text-brand-300 transition">${escapeHtml(c.name || 'Unnamed')}</h3>
@@ -667,7 +1155,7 @@
                             </div>
 
                             <p class="text-[11px] text-slate-300 line-clamp-3 leading-relaxed">
-                                ${escapeHtml(c.summary || 'No summary available.')}
+                                ${escapeHtml(c.summary || 'No summary description available.')}
                             </p>
 
                             <div class="grid grid-cols-2 gap-1.5 pt-2 border-t border-slate-800/80">
@@ -683,9 +1171,12 @@
                         </div>
                     </div>
 
-                    <div class="p-4 pt-0">
-                        <button onclick="editCharacterFromRoster(${indexInMain})" class="w-full py-2 bg-brand-600/20 hover:bg-brand-600 text-brand-300 hover:text-white rounded-xl text-xs font-semibold transition border border-brand-500/30 hover:border-transparent flex items-center justify-center gap-1.5">
-                            <i data-lucide="edit-3" class="w-3.5 h-3.5"></i> Edit Profile
+                    <div class="p-4 pt-0 grid grid-cols-2 gap-2">
+                        <button onclick="inspectFullCharacter(${indexInMain})" class="py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white rounded-xl text-xs font-semibold transition border border-slate-700 flex items-center justify-center gap-1.5" title="Inspect character in full detail">
+                            <i data-lucide="maximize-2" class="w-3.5 h-3.5 text-brand-400"></i> Inspect
+                        </button>
+                        <button onclick="editCharacterFromRoster(${indexInMain})" class="py-2 bg-brand-600/20 hover:bg-brand-600 text-brand-300 hover:text-white rounded-xl text-xs font-semibold transition border border-brand-500/30 hover:border-transparent flex items-center justify-center gap-1.5" title="Edit character profile">
+                            <i data-lucide="edit-3" class="w-3.5 h-3.5"></i> Edit
                         </button>
                     </div>
                 `;
@@ -696,6 +1187,130 @@
             if (window.lucide) lucide.createIcons();
         }
 
+        let inspectedCharacterIndex = -1;
+
+        function inspectFullCharacter(index) {
+            const item = rosterCharacters[index];
+            if (!item || !item.data) return;
+
+            inspectedCharacterIndex = index;
+            const c = item.data;
+            const portraitUrl = resolvePortraitUrl(c.portrait);
+            const bannerUrl = c.banner ? resolvePortraitUrl(c.banner) : portraitUrl;
+
+            // Set Header elements
+            document.getElementById('inspect-portrait').src = portraitUrl;
+            document.getElementById('inspect-banner-bg').style.backgroundImage = `url('${bannerUrl}')`;
+            document.getElementById('inspect-tier-badge').textContent = `TIER ${c.tier || 'N/A'}`;
+            document.getElementById('inspect-series-badge').textContent = c.series || 'Unknown Series';
+            document.getElementById('inspect-name').textContent = c.name || 'Unnamed Character';
+            document.getElementById('inspect-alias').textContent = c.alias ? `"${c.alias}"` : '';
+
+            // Identity Fields
+            document.getElementById('inspect-classification').textContent = c.classification || 'N/A';
+            document.getElementById('inspect-gender-age').textContent = [c.gender, c.age ? `Age: ${c.age}` : null].filter(Boolean).join(' • ') || 'N/A';
+            document.getElementById('inspect-id').textContent = c.id || 'N/A';
+
+            const srcLink = document.getElementById('inspect-source-link');
+            if (c.sourceUrl) {
+                srcLink.href = c.sourceUrl;
+                srcLink.classList.remove('pointer-events-none', 'opacity-50');
+            } else {
+                srcLink.href = '#';
+                srcLink.classList.add('pointer-events-none', 'opacity-50');
+            }
+
+            // Summary & Notes
+            document.getElementById('inspect-summary').textContent = c.summary || 'No summary description available for this character.';
+            document.getElementById('inspect-notes').textContent = c.notes || 'None.';
+
+            // Render Full Stats Grid
+            const stats = c.stats || {};
+            const statsMap = [
+                { label: 'Attack Potency', val: stats.attackPotency },
+                { label: 'Durability', val: stats.durability },
+                { label: 'Striking Strength', val: stats.strikingStrength },
+                { label: 'Lifting Strength', val: stats.liftingStrength },
+                { label: 'Combat Speed', val: stats.combatSpeed },
+                { label: 'Attack Speed', val: stats.attackSpeed },
+                { label: 'Reaction Speed', val: stats.reactionSpeed },
+                { label: 'Perception Speed', val: stats.perceptionSpeed },
+                { label: 'Travel Speed', val: stats.travelSpeed },
+                { label: 'Flight Speed', val: stats.flightSpeed },
+                { label: 'Stamina', val: stats.stamina },
+                { label: 'Range', val: stats.range },
+                { label: 'Intelligence', val: stats.intelligence },
+                { label: 'Tier Code', val: stats.tier || c.tier }
+            ];
+
+            const statsGridEl = document.getElementById('inspect-stats-grid');
+            statsGridEl.innerHTML = '';
+            statsMap.forEach(s => {
+                const itemEl = document.createElement('div');
+                itemEl.className = 'bg-slate-950/80 border border-slate-800 p-2.5 rounded-lg';
+                itemEl.innerHTML = `
+                    <span class="text-[9px] text-slate-500 uppercase font-semibold block">${escapeHtml(s.label)}</span>
+                    <span class="text-xs font-semibold text-slate-200 truncate block mt-0.5">${escapeHtml(s.val || 'N/A')}</span>
+                `;
+                statsGridEl.appendChild(itemEl);
+            });
+
+            // Abilities
+            const abilitiesEl = document.getElementById('inspect-abilities-list');
+            abilitiesEl.innerHTML = '';
+            if (c.abilities && c.abilities.length > 0) {
+                c.abilities.forEach(ab => {
+                    abilitiesEl.innerHTML += `<span class="px-2.5 py-1 bg-amber-950/40 border border-amber-500/30 text-amber-200 rounded-lg text-xs font-medium">${escapeHtml(ab)}</span>`;
+                });
+            } else {
+                abilitiesEl.innerHTML = `<span class="text-xs text-slate-500 italic">None listed</span>`;
+            }
+
+            // Equipment
+            const equipEl = document.getElementById('inspect-equipment-list');
+            equipEl.innerHTML = '';
+            if (c.equipment && c.equipment.length > 0) {
+                c.equipment.forEach(eq => {
+                    equipEl.innerHTML += `<div class="text-xs text-slate-300 bg-slate-900 border border-slate-800 px-2.5 py-1.5 rounded-lg flex items-center gap-1.5"><i data-lucide="check" class="w-3 h-3 text-blue-400"></i> ${escapeHtml(eq)}</div>`;
+                });
+            } else {
+                equipEl.innerHTML = `<span class="text-xs text-slate-500 italic">None listed</span>`;
+            }
+
+            // Weaknesses
+            const weakEl = document.getElementById('inspect-weaknesses-list');
+            weakEl.innerHTML = '';
+            if (c.weaknesses && c.weaknesses.length > 0) {
+                c.weaknesses.forEach(wk => {
+                    weakEl.innerHTML += `<div class="text-xs text-slate-300 bg-slate-900 border border-slate-800 px-2.5 py-1.5 rounded-lg flex items-center gap-1.5"><i data-lucide="alert-circle" class="w-3 h-3 text-rose-400"></i> ${escapeHtml(wk)}</div>`;
+                });
+            } else {
+                weakEl.innerHTML = `<span class="text-xs text-slate-500 italic">None listed</span>`;
+            }
+
+            // Hook up Edit button from inspect modal
+            const editBtn = document.getElementById('inspect-edit-btn');
+            editBtn.onclick = () => {
+                closeInspectModal();
+                editCharacterFromRoster(index);
+            };
+
+            const modal = document.getElementById('inspect-modal');
+            if (modal) modal.classList.remove('hidden');
+            if (window.lucide) lucide.createIcons();
+        }
+
+        function closeInspectModal() {
+            const modal = document.getElementById('inspect-modal');
+            if (modal) modal.classList.add('hidden');
+        }
+
+        function copyInspectedJSON() {
+            if (inspectedCharacterIndex >= 0 && rosterCharacters[inspectedCharacterIndex]?.data) {
+                copyToClipboard(JSON.stringify(rosterCharacters[inspectedCharacterIndex].data, null, 2));
+            }
+        }
+
         function editCharacterFromRoster(index) {
             const item = rosterCharacters[index];
             if (item && item.data) {
@@ -704,12 +1319,50 @@
                 renderPreviewCard();
                 updateJSONEditorView();
                 switchViewMode('editor');
-                showToast(`Loaded "${characterData.name || 'Character'}" into editor`, 'info');
+                showToast(`Editing "${characterData.name || 'Character'}"`, 'info');
             }
+        }
+
+        function inspectRawProfile(index) {
+            const item = rosterCharacters[index];
+            if (item) {
+                const textarea = document.getElementById('import-textarea');
+                if (textarea) textarea.value = item.rawText || '';
+                openImportModal();
+                showToast(`Loaded raw file: ${item.path}`, 'info');
+            }
+        }
+
+        function addNewCharacter() {
+            characterData = {
+                "id": `new-character-${Date.now()}`,
+                "name": "New Character",
+                "alias": "",
+                "series": "",
+                "tier": "10-B",
+                "portrait": "",
+                "banner": "",
+                "sourceUrl": "",
+                "gender": "",
+                "age": "",
+                "classification": "",
+                "summary": "",
+                "stats": { "tier": "10-B" },
+                "abilities": [],
+                "equipment": [],
+                "weaknesses": [],
+                "notes": ""
+            };
+            populateFormFromData();
+            renderPreviewCard();
+            updateJSONEditorView();
+            switchViewMode('editor');
+            showToast('Created new character template', 'success');
         }
 
         window.onload = function() {
             if (window.lucide) lucide.createIcons();
+            populateStatDropdowns();
             populateFormFromData();
             renderPreviewCard();
             updateJSONEditorView();
@@ -718,7 +1371,35 @@
 
         function setSafeValue(id, value) {
             const el = document.getElementById(id);
-            if (el) el.value = value || '';
+            if (!el) return;
+            const val = (value !== undefined && value !== null) ? String(value).trim() : '';
+            
+            if (el.tagName === 'SELECT') {
+                if (!val) {
+                    el.selectedIndex = 0;
+                    return;
+                }
+                let matched = false;
+                const lowerVal = val.toLowerCase();
+                for (let i = 0; i < el.options.length; i++) {
+                    const optVal = el.options[i].value.toLowerCase();
+                    const optTxt = el.options[i].text.toLowerCase();
+                    if (optVal === lowerVal || optTxt === lowerVal || (optVal && optVal.includes(lowerVal)) || (lowerVal && optVal.includes(lowerVal))) {
+                        el.selectedIndex = i;
+                        matched = true;
+                        break;
+                    }
+                }
+                if (!matched) {
+                    const tempOpt = document.createElement('option');
+                    tempOpt.value = val;
+                    tempOpt.textContent = val;
+                    el.appendChild(tempOpt);
+                    el.value = val;
+                }
+            } else {
+                el.value = val;
+            }
         }
 
         function populateFormFromData() {
@@ -730,13 +1411,13 @@
             setSafeValue('field-age', characterData.age);
             setSafeValue('field-classification', characterData.classification);
             setSafeValue('field-portrait', characterData.portrait);
+            setSafeValue('field-banner', characterData.banner);
             setSafeValue('field-sourceUrl', characterData.sourceUrl);
             setSafeValue('field-summary', characterData.summary);
             setSafeValue('field-notes', characterData.notes);
-            setSafeValue('field-main-tier', characterData.tier);
 
             const stats = characterData.stats || {};
-            setSafeValue('field-stats-tier', stats.tier);
+            setSafeValue('field-stats-tier', stats.tier || characterData.tier);
             setSafeValue('field-stats-attackPotency', stats.attackPotency);
             setSafeValue('field-stats-durability', stats.durability);
             setSafeValue('field-stats-strikingStrength', stats.strikingStrength);
@@ -762,21 +1443,11 @@
             updateJSONEditorView();
         }
 
-        function updateGlobalTier(value) {
-            characterData.tier = value;
-            if(!characterData.stats) characterData.stats = {};
-            characterData.stats.tier = value;
-            setSafeValue('field-stats-tier', value);
-            renderPreviewCard();
-            updateJSONEditorView();
-        }
-
         function updateNestedStat(key, value) {
             if(!characterData.stats) characterData.stats = {};
             characterData.stats[key] = value;
             if(key === 'tier') {
                 characterData.tier = value;
-                setSafeValue('field-main-tier', value);
             }
             renderPreviewCard();
             updateJSONEditorView();
@@ -861,13 +1532,12 @@
             if (summary) summary.textContent = characterData.summary || 'No summary description provided.';
 
             const portraitImg = document.getElementById('preview-portrait');
-            if (portraitImg) {
-                if (characterData.portrait) {
-                    portraitImg.src = characterData.portrait;
-                } else {
-                    portraitImg.src = 'https://placehold.co/300x300/1e293b/6366f1?text=No+Image';
-                }
-            }
+            const portraitBg = document.getElementById('preview-portrait-bg');
+            const portraitUrl = resolvePortraitUrl(characterData.portrait);
+            const bannerUrl = characterData.banner ? resolvePortraitUrl(characterData.banner) : portraitUrl;
+
+            if (portraitImg) portraitImg.src = portraitUrl;
+            if (portraitBg) portraitBg.style.backgroundImage = `url('${bannerUrl}')`;
 
             const stats = characterData.stats || {};
             const ap = document.getElementById('preview-ap');
@@ -990,6 +1660,7 @@
                 renderPreviewCard();
                 updateJSONEditorView();
                 closeImportModal();
+                switchViewMode('editor');
                 showToast('Character profile imported successfully!', 'success');
             } catch (err) {
                 showToast('Invalid JSON format. Check syntax.', 'error');
@@ -1057,7 +1728,7 @@
             populateFormFromData();
             renderPreviewCard();
             updateJSONEditorView();
-            showToast('Form reset to default character.', 'info');
+            showToast('Form reset to Sabito profile.', 'info');
         }
 
         function showToast(message, type = 'info') {
@@ -1075,7 +1746,7 @@
             container.appendChild(toast);
             setTimeout(() => {
                 toast.remove();
-            }, 3000);
+            }, 3500);
         }
 
         function escapeHtml(text) {
