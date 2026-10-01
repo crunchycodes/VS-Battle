@@ -1,5 +1,331 @@
 {
   "statTiers": {
+  "tier": [
+    {
+      "tier": "11-C",
+      "name": "Low Hypoverse",
+      "display": "Low Hypoverse - 11-C",
+      "order": 1
+    },
+    {
+      "tier": "11-B",
+      "name": "Hypoverse",
+      "display": "Hypoverse - 11-B",
+      "order": 2
+    },
+    {
+      "tier": "11-A",
+      "name": "High Hypoverse",
+      "display": "High Hypoverse - 11-A",
+      "order": 3
+    },
+    {
+      "tier": "10-C",
+      "name": "Below Average Human",
+      "display": "Below Average Human - 10-C",
+      "order": 4
+    },
+    {
+      "tier": "10-B",
+      "name": "Human",
+      "display": "Human - 10-B",
+      "order": 5
+    },
+    {
+      "tier": "10-A",
+      "name": "Athlete",
+      "display": "Athlete - 10-A",
+      "order": 6
+    },
+    {
+      "tier": "9-C",
+      "name": "Street",
+      "display": "Street - 9-C",
+      "order": 7
+    },
+    {
+      "tier": "9-B",
+      "name": "Wall",
+      "display": "Wall - 9-B",
+      "order": 8
+    },
+    {
+      "tier": "9-A",
+      "name": "Small Building",
+      "display": "Small Building - 9-A",
+      "order": 9
+    },
+    {
+      "tier": "8-C",
+      "name": "Building",
+      "display": "Building - 8-C",
+      "order": 10
+    },
+    {
+      "tier": "High 8-C",
+      "name": "Large Building",
+      "display": "Large Building - High 8-C",
+      "order": 11
+    },
+    {
+      "tier": "8-B",
+      "name": "City Block",
+      "display": "City Block - 8-B",
+      "order": 12
+    },
+    {
+      "tier": "8-A",
+      "name": "Multi-City Block",
+      "display": "Multi-City Block - 8-A",
+      "order": 13
+    },
+    {
+      "tier": "Low 7-C",
+      "name": "Small Town",
+      "display": "Small Town - Low 7-C",
+      "order": 14
+    },
+    {
+      "tier": "7-C",
+      "name": "Town",
+      "display": "Town - 7-C",
+      "order": 15
+    },
+    {
+      "tier": "High 7-C",
+      "name": "Large Town",
+      "display": "Large Town - High 7-C",
+      "order": 16
+    },
+    {
+      "tier": "Low 7-B",
+      "name": "Small City",
+      "display": "Small City - Low 7-B",
+      "order": 17
+    },
+    {
+      "tier": "7-B",
+      "name": "City",
+      "display": "City - 7-B",
+      "order": 18
+    },
+    {
+      "tier": "7-A",
+      "name": "Mountain",
+      "display": "Mountain - 7-A",
+      "order": 19
+    },
+    {
+      "tier": "High 7-A",
+      "name": "Large Mountain",
+      "display": "Large Mountain - High 7-A",
+      "order": 20
+    },
+    {
+      "tier": "6-C",
+      "name": "Island",
+      "display": "Island - 6-C",
+      "order": 21
+    },
+    {
+      "tier": "High 6-C",
+      "name": "Large Island",
+      "display": "Large Island - High 6-C",
+      "order": 22
+    },
+    {
+      "tier": "Low 6-B",
+      "name": "Small Country",
+      "display": "Small Country - Low 6-B",
+      "order": 23
+    },
+    {
+      "tier": "6-B",
+      "name": "Country",
+      "display": "Country - 6-B",
+      "order": 24
+    },
+    {
+      "tier": "High 6-B",
+      "name": "Large Country",
+      "display": "Large Country - High 6-B",
+      "order": 25
+    },
+    {
+      "tier": "6-A",
+      "name": "Continent",
+      "display": "Continent - 6-A",
+      "order": 26
+    },
+    {
+      "tier": "High 6-A",
+      "name": "Multi-Continent",
+      "display": "Multi-Continent - High 6-A",
+      "order": 27
+    },
+    {
+      "tier": "5-C",
+      "name": "Moon",
+      "display": "Moon - 5-C",
+      "order": 28
+    },
+    {
+      "tier": "Low 5-B",
+      "name": "Small Planet",
+      "display": "Small Planet - Low 5-B",
+      "order": 29
+    },
+    {
+      "tier": "5-B",
+      "name": "Planet",
+      "display": "Planet - 5-B",
+      "order": 30
+    },
+    {
+      "tier": "5-A",
+      "name": "Large Planet",
+      "display": "Large Planet - 5-A",
+      "order": 31
+    },
+    {
+      "tier": "High 5-A",
+      "name": "Brown Dwarf",
+      "display": "Brown Dwarf - High 5-A",
+      "order": 32
+    },
+    {
+      "tier": "Low 4-C",
+      "name": "Small Star",
+      "display": "Small Star - Low 4-C",
+      "order": 33
+    },
+    {
+      "tier": "4-C",
+      "name": "Star",
+      "display": "Star - 4-C",
+      "order": 34
+    },
+    {
+      "tier": "High 4-C",
+      "name": "Large Star",
+      "display": "Large Star - High 4-C",
+      "order": 35
+    },
+    {
+      "tier": "4-B",
+      "name": "Solar System",
+      "display": "Solar System - 4-B",
+      "order": 36
+    },
+    {
+      "tier": "4-A",
+      "name": "Multi-Solar System",
+      "display": "Multi-Solar System - 4-A",
+      "order": 37
+    },
+    {
+      "tier": "3-C",
+      "name": "Galaxy",
+      "display": "Galaxy - 3-C",
+      "order": 38
+    },
+    {
+      "tier": "3-B",
+      "name": "Multi-Galaxy",
+      "display": "Multi-Galaxy - 3-B",
+      "order": 39
+    },
+    {
+      "tier": "3-A",
+      "name": "Universe",
+      "display": "Universe - 3-A",
+      "order": 40
+    },
+    {
+      "tier": "High 3-A",
+      "name": "High Universe",
+      "display": "High Universe - High 3-A",
+      "order": 41
+    },
+    {
+      "tier": "Low 2-C",
+      "name": "Universe level+",
+      "display": "Universe level+ - Low 2-C",
+      "order": 42
+    },
+    {
+      "tier": "2-C",
+      "name": "Low Multiverse",
+      "display": "Low Multiverse - 2-C",
+      "order": 43
+    },
+    {
+      "tier": "2-B",
+      "name": "Multiverse",
+      "display": "Multiverse - 2-B",
+      "order": 44
+    },
+    {
+      "tier": "2-A",
+      "name": "Multiverse+",
+      "display": "Multiverse+ - 2-A",
+      "order": 45
+    },
+    {
+      "tier": "Low 1-C",
+      "name": "Low Complex Multiverse",
+      "display": "Low Complex Multiverse - Low 1-C",
+      "order": 46
+    },
+    {
+      "tier": "1-C",
+      "name": "Complex Multiverse",
+      "display": "Complex Multiverse - 1-C",
+      "order": 47
+    },
+    {
+      "tier": "High 1-C",
+      "name": "High Complex Multiverse",
+      "display": "High Complex Multiverse - High 1-C",
+      "order": 48
+    },
+    {
+      "tier": "1-B",
+      "name": "Hyperverse",
+      "display": "Hyperverse - 1-B",
+      "order": 49
+    },
+    {
+      "tier": "High 1-B",
+      "name": "High Hyperverse",
+      "display": "High Hyperverse - High 1-B",
+      "order": 50
+    },
+    {
+      "tier": "Low 1-A",
+      "name": "Low Outerverse",
+      "display": "Low Outerverse - Low 1-A",
+      "order": 51
+    },
+    {
+      "tier": "1-A",
+      "name": "Outerverse",
+      "display": "Outerverse - 1-A",
+      "order": 52
+    },
+    {
+      "tier": "High 1-A",
+      "name": "High Outerverse",
+      "display": "High Outerverse - High 1-A",
+      "order": 53
+    },
+    {
+      "tier": "0",
+      "name": "Boundless",
+      "display": "Boundless - 0",
+      "order": 54
+    }
+  ],
     "speed": [
       "Immobile",
       "Below Average Human",
