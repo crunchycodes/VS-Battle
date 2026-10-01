@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VS Battle - Character & Item Roster Database</title>
     
-    <!-- External CSS Libraries -->
+    <!-- External CSS & Font Libraries -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -182,6 +182,8 @@
                         <option value="50">50 Per Page</option>
                         <option value="75">75 Per Page</option>
                         <option value="100">100 Per Page</option>
+                        <option value="150">150 Per Page</option>
+                        <option value="200">200 Per Page</option>
                     </select>
                 </div>
             </div>
@@ -240,6 +242,7 @@
 
     </main>
 
+    <!-- Character Profile Full Modal -->
     <div id="characterModal" class="fixed inset-0 z-50 hidden bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
         <div class="relative w-full max-w-4xl bg-slate-900 border border-slate-700/80 rounded-2xl shadow-2xl overflow-y-auto max-h-[92vh] custom-scrollbar modal-enter">
             
@@ -248,8 +251,8 @@
             </button>
 
             <div class="relative w-full h-48 sm:h-60 bg-slate-950 overflow-hidden flex items-center justify-center">
-                <img id="modalBannerBg" src="" alt="" class="absolute inset-0 w-full h-full object-cover filter blur-md opacity-30 scale-110">
-                <img id="modalBanner" src="" alt="Banner" class="relative z-10 w-full h-full object-cover object-center filter brightness-95 transition-opacity duration-300">
+                <img id="modalBannerBg" src="" alt="" class="absolute inset-0 w-full h-full object-cover object-top filter blur-md opacity-30 scale-110">
+                <img id="modalBanner" src="" alt="Banner" class="relative z-10 w-full h-full object-cover object-top filter brightness-95 transition-opacity duration-300">
                 <div class="absolute inset-0 z-20 bg-gradient-to-t from-slate-900 via-slate-900/30 to-transparent"></div>
                 
                 <div class="absolute bottom-4 left-6 sm:left-8 flex flex-wrap items-center gap-2 z-20">
@@ -358,6 +361,7 @@
         </div>
     </div>
 
+    <!-- Item Inspector Modal -->
     <div id="itemModal" class="fixed inset-0 z-50 hidden bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
         <div class="relative w-full max-w-2xl bg-slate-900 border border-amber-500/30 rounded-2xl shadow-2xl overflow-hidden modal-enter">
             <button id="closeItemModalBtn" class="absolute top-4 right-4 z-30 w-8 h-8 rounded-full bg-slate-950/80 border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 flex items-center justify-center transition">
@@ -422,7 +426,55 @@
     </div>
 
     <script>
-        // Seed Database for items matching items/*.json schema
+        // Default Seed Data for local fallback
+        const SEED_CHARACTERS = [
+            {
+                "id": "sabito-demon-slayer",
+                "name": "Sabito",
+                "alias": "Fox Mask",
+                "series": "Demon Slayer: Kimetsu No Yaiba",
+                "tier": "9-A",
+                "portrait": "https://placehold.co/400x400/1e293b/38bdf8?text=Sabito",
+                "banner": "https://placehold.co/1200x400/0f172a/38bdf8?text=Sabito+Demon+Slayer",
+                "sourceUrl": "https://vsbattles.fandom.com/wiki/Kyogai",
+                "gender": "Male",
+                "age": "13",
+                "classification": "Human; Demon Slayer",
+                "summary": "He was a former Student of Sakonji Urokodaki and was slain by the Hand Demon. He appeared in the beginning of the series as a trainer alongside Makomo to Tanjiro Kamado to help assist him in the upcoming Final Selection.",
+                "stats": {
+                    "tier": "9-A",
+                    "attackPotency": "Small Building level",
+                    "durability": "Small Building level",
+                    "attackSpeed": "unknown",
+                    "combatSpeed": "Supersonic+",
+                    "reactionSpeed": "unknown",
+                    "perceptionSpeed": "unknown",
+                    "travelSpeed": "unknown",
+                    "flightSpeed": "unknown",
+                    "liftingStrength": "Class 5",
+                    "strikingStrength": "Small Building level",
+                    "stamina": "Superhuman",
+                    "range": "Extended Melee Range, Several Meters",
+                    "intelligence": "Above Average"
+                },
+                "abilities": [
+                    "Total Concentration Breathing",
+                    "Water Breathing",
+                    "Acrobatics",
+                    "Extrasensory Perception",
+                    "Supernatural Willpower"
+                ],
+                "equipment": [
+                    "red-nichirin-chained-spiked-flail-and-axe",
+                    "nichirin-sword"
+                ],
+                "weaknesses": [
+                    "unknown."
+                ],
+                "notes": "None."
+            }
+        ];
+
         const SEED_ITEMS = [
             {
                 "id": "red-nichirin-chained-spiked-flail-and-axe",
@@ -448,306 +500,40 @@
                 "notes": "unknown"
             },
             {
-                "id": "power-pole",
-                "name": "Power Pole (Nyoi-bo)",
-                "alias": "Mind Staff / Nyoi-bo",
-                "category": "Weapon / Artifact",
-                "portrait": "https://placehold.co/300x300/1e293b/f59e0b?text=Power+Pole",
-                "summary": "A magical, indestructible red staff originally given to Goku by Grandpa Gohan. It can extend its length to astronomical distances upon command.",
-                "sourceUrl": "https://vsbattles.fandom.com/wiki/Power_Pole",
-                "abilities": [
-                    "Size & Length Alteration",
-                    "Indestructibility",
-                    "Extended Range Attack",
-                    "Magical Weapon Properties"
-                ],
-                "attributes": [
-                    "Magical",
-                    "Indestructible",
-                    "range+"
-                ],
-                "weaknesses": [
-                    "Requires verbal or mental command to extend",
-                    "Can be disarmed if caught off guard"
-                ]
-            },
-            {
-                "id": "senzu-beans",
-                "name": "Senzu Beans",
-                "alias": "Mystic Recovery Beans",
-                "category": "Consumable / Healing Item",
-                "portrait": "https://placehold.co/300x300/1e293b/10b981?text=Senzu+Beans",
-                "summary": "Magical beans grown by Korin that instantly restore a creature's physical energy and heal all non-fatal injuries or illness.",
-                "sourceUrl": "https://dragonball.fandom.com/wiki/Senzu_Bean",
-                "abilities": [
-                    "Instant Complete Cellular Regeneration",
-                    "Full Stamina & Ki Restoration",
-                    "Fatigue Elimination"
-                ],
-                "attributes": [
-                    "Consumable",
-                    "stamina+",
-                    "durability+"
-                ],
-                "weaknesses": [
-                    "Finite quantity in battle",
-                    "Cannot cure pre-existing organic diseases"
-                ]
-            },
-            {
-                "id": "blindfold",
-                "name": "Gojo's Blindfold",
-                "alias": "Six Eyes Visor",
-                "category": "Accessory / Restraint",
-                "portrait": "https://placehold.co/300x300/1e293b/818cf8?text=Blindfold",
-                "summary": "A dark blindfold used by Satoru Gojo to reduce the overwhelming influx of visual sensory information processed by his Six Eyes.",
-                "sourceUrl": "https://jujutsu-kaisen.fandom.com/wiki/Satoru_Gojo",
-                "abilities": [
-                    "Sensory Inflow Dampening",
-                    "Stamina Preservation",
-                    "Enhanced High-Frequency Cursed Energy Sensing"
-                ],
-                "attributes": [
-                    "Sensory Restraint",
-                    "perceptionSpeed+"
-                ],
-                "weaknesses": [
-                    "Blocks normal physical optical spectrum"
-                ]
-            },
-            {
                 "id": "nichirin-sword",
-                "name": "Nichirin Sword (Sun Breathing Pattern)",
-                "alias": "Black Nichirin Katana",
-                "category": "Weapon",
-                "portrait": "https://placehold.co/300x300/1e293b/10b981?text=Nichirin+Sword",
-                "summary": "A specialized blade forged from Scarlet Crimson Iron and Ore, absorbing sunlight to permanently neutralize demon cellular regeneration.",
-                "sourceUrl": "https://kimetsu-no-yaiba.fandom.com/wiki/Nichirin_Blade",
-                "abilities": [
-                    "Demon Regeneration Negation",
-                    "Sunlight Energy Absorption",
-                    "Thermal Blade Heating"
-                ],
-                "attributes": [
-                    "Nichirin",
-                    "attackPotency+"
-                ],
-                "weaknesses": [
-                    "Can chip or snap under extreme force without proper technique"
-                ]
-            },
-            {
-                "id": "hero-costume",
-                "name": "Saitama's Hero Suit",
-                "alias": "Yellow Hero Jumpsuit",
-                "category": "Armor / Apparel",
-                "portrait": "https://placehold.co/300x300/1e293b/eab308?text=Hero+Suit",
-                "summary": "A custom-made yellow jumpsuit crafted by a tailor. Surprisingly durable against atmospheric re-entry heat and supersonic friction.",
-                "sourceUrl": "https://onepunchman.fandom.com/wiki/Saitama",
-                "abilities": [
-                    "High Thermal Resistance",
-                    "Atmospheric Friction Survival"
-                ],
-                "attributes": [
-                    "Thermal Protection",
-                    "durability+"
-                ],
-                "weaknesses": [
-                    "Can suffer cosmetic tears under hyper-velocity combat"
-                ]
-            }
-        ];
-
-        // Seed Characters database
-        const SEED_CHARACTERS = [
-            {
-                "id": "goku-dragon-ball",
-                "name": "Son Goku",
-                "alias": "Kakarot",
-                "series": "Dragon Ball",
-                "tier": "2-C",
-                "portrait": "https://placehold.co/400x400/1e293b/3b82f6?text=Goku",
-                "banner": "https://placehold.co/1200x400/0f172a/3b82f6?text=Dragon+Ball+Super",
-                "sourceUrl": "https://vsbattles.fandom.com/wiki/Son_Goku_(Dragon_Ball)",
-                "gender": "Male",
-                "age": "40s",
-                "classification": "Saiyan; Martial Artist",
-                "summary": "Son Goku is the main protagonist of the Dragon Ball series. A Saiyan sent to Earth as a child, Goku grew up to become one of the universe's greatest defenders, continuously pushing his martial arts limits through battle.",
-                "stats": {
-                    "tier": "2-C",
-                    "attackPotency": "Low Multiverse level",
-                    "durability": "Low Multiverse level",
-                    "attackSpeed": "Massively FTL+",
-                    "combatSpeed": "Massively FTL+",
-                    "reactionSpeed": "Massively FTL+",
-                    "perceptionSpeed": "Massively FTL+",
-                    "travelSpeed": "Massively FTL+",
-                    "flightSpeed": "Massively FTL+",
-                    "liftingStrength": "Multi-Stellar",
-                    "strikingStrength": "Low Multiversal",
-                    "stamina": "Extremely High",
-                    "range": "Low Multiversal with Ki Attacks",
-                    "intelligence": "Genius in Combat"
-                },
-                "abilities": [
-                    "Superhuman Physical Characteristics",
-                    "Master Martial Artist",
-                    "Ki Manipulation",
-                    "Flight",
-                    "Teleportation (Instant Transmission)",
-                    "Godly Ki",
-                    "Ultra Instinct",
-                    "Transformation"
-                ],
-                "equipment": ["Power Pole", "Senzu Beans"],
-                "weaknesses": ["Gullible", "Can be caught off-guard if relaxed"],
-                "notes": "Stats reflect Ultra Instinct / Dragon Ball Super Super Hero era."
-            },
-            {
-                "id": "gojo-satoru-jujutsu-kaisen",
-                "name": "Satoru Gojo",
-                "alias": "The Strongest Sorcerer",
-                "series": "Jujutsu Kaisen",
-                "tier": "7-A",
-                "portrait": "https://placehold.co/400x400/1e293b/818cf8?text=Gojo",
-                "banner": "https://placehold.co/1200x400/0f172a/818cf8?text=Jujutsu+Kaisen",
-                "sourceUrl": "https://vsbattles.fandom.com/wiki/Satoru_Gojo",
-                "gender": "Male",
-                "age": "28",
-                "classification": "Human; Special Grade Jujutsu Sorcerer",
-                "summary": "Satoru Gojo is one of the main protagonists of Jujutsu Kaisen. He is a special grade jujutsu sorcerer and widely recognized as the strongest in the world due to his Six Eyes and Limitless technique.",
-                "stats": {
-                    "tier": "7-A",
-                    "attackPotency": "Mountain level",
-                    "durability": "Mountain level (with Limitless defense)",
-                    "attackSpeed": "Hypersonic+",
-                    "combatSpeed": "Massively Hypersonic",
-                    "reactionSpeed": "Massively Hypersonic",
-                    "perceptionSpeed": "Massively Hypersonic",
-                    "travelSpeed": "Hypersonic",
-                    "flightSpeed": "Supersonic",
-                    "liftingStrength": "Class G",
-                    "strikingStrength": "Mountain Class",
-                    "stamina": "Virtually Infinite (due to Six Eyes efficiency)",
-                    "range": "Kilometers with Hollow Purple",
-                    "intelligence": "High"
-                },
-                "abilities": [
-                    "Limitless Cursed Technique",
-                    "Infinity Barrier",
-                    "Cursed Technique Reversal: Red",
-                    "Cursed Technique Lapse: Blue",
-                    "Hollow Technique: Purple",
-                    "Domain Expansion: Unlimited Void",
-                    "Six Eyes",
-                    "Reverse Cursed Technique"
-                ],
-                "equipment": ["Blindfold"],
-                "weaknesses": ["Cannot use Unlimited Void near allies without harming them."],
-                "notes": "Domain Expansion overloads brain with infinite information."
-            },
-            {
-                "id": "tanjiro-kamado-demon-slayer",
-                "name": "Tanjiro Kamado",
-                "alias": "Demon Slayer",
+                "name": "Nichirin Katana",
                 "series": "Demon Slayer: Kimetsu No Yaiba",
-                "tier": "8-A",
-                "portrait": "https://placehold.co/400x400/1e293b/10b981?text=Tanjiro",
-                "banner": "https://placehold.co/1200x400/0f172a/10b981?text=Demon+Slayer",
-                "sourceUrl": "https://vsbattles.fandom.com/wiki/Tanjiro_Kamado",
-                "gender": "Male",
-                "age": "16",
-                "classification": "Human; Demon Slayer",
-                "summary": "Tanjiro Kamado is the main protagonist of Demon Slayer. After his family was slaughtered by Muzan and his sister transformed into a demon, he joined the Demon Slayer Corps.",
-                "stats": {
-                    "tier": "8-A",
-                    "attackPotency": "Multi-City Block level",
-                    "durability": "Multi-City Block level",
-                    "attackSpeed": "Hypersonic+",
-                    "combatSpeed": "Massively Hypersonic",
-                    "reactionSpeed": "Massively Hypersonic",
-                    "perceptionSpeed": "Massively Hypersonic",
-                    "travelSpeed": "Superhuman",
-                    "flightSpeed": "N/A",
-                    "liftingStrength": "Class 25",
-                    "strikingStrength": "Multi-City Block level",
-                    "stamina": "Extremely High",
-                    "range": "Extended Melee Range",
-                    "intelligence": "Above Average"
-                },
-                "abilities": [
-                    "Water Breathing",
-                    "Sun Breathing (Hinokami Kagura)",
-                    "Demon Slayer Mark",
-                    "Transparent World",
-                    "Selfless State",
-                    "Enhanced Smell"
-                ],
-                "equipment": ["Red Nichirin Chained Spiked Flail and Axe", "Nichirin Sword"],
-                "weaknesses": ["Sun Breathing causes stamina exhaustion if overused."],
-                "notes": "Demon Slayer Mark unlocks peak capabilities."
-            },
-            {
-                "id": "saitama-one-punch-man",
-                "name": "Saitama",
-                "alias": "Caped Baldy",
-                "series": "One-Punch Man",
-                "tier": "4-A",
-                "portrait": "https://placehold.co/400x400/1e293b/eab308?text=Saitama",
-                "banner": "https://placehold.co/1200x400/0f172a/eab308?text=One+Punch+Man",
-                "sourceUrl": "https://vsbattles.fandom.com/wiki/Saitama",
-                "gender": "Male",
-                "age": "25",
-                "classification": "Human; Hero",
-                "summary": "Saitama is the main protagonist of One-Punch Man. He is an unassumingly powerful hero who can defeat virtually any opponent with a single punch due to breaking his physical limiter.",
-                "stats": {
-                    "tier": "4-A",
-                    "attackPotency": "Multi-Solar System level",
-                    "durability": "Multi-Solar System level",
-                    "attackSpeed": "Massively FTL",
-                    "combatSpeed": "Massively FTL",
-                    "reactionSpeed": "Massively FTL",
-                    "perceptionSpeed": "Massively FTL",
-                    "travelSpeed": "Massively FTL",
-                    "flightSpeed": "N/A (Super Jumps)",
-                    "liftingStrength": "Multi-Stellar",
-                    "strikingStrength": "Multi-Solar System Class",
-                    "stamina": "Limitless",
-                    "range": "Interstellar with Serious Punch",
-                    "intelligence": "Average"
-                },
-                "abilities": [
-                    "Broken Limiter",
-                    "Exponential Growth",
-                    "Non-Physical Interaction",
-                    "Superhuman Speed",
-                    "Vacuum Survival",
-                    "Serious Series Moves"
-                ],
-                "equipment": ["Hero Costume"],
-                "weaknesses": ["Boredom", "Lacks martial arts technique"],
-                "notes": "Grows exponentially stronger in response to emotional surges."
+                "portrait": "https://placehold.co/300x300/1e293b/10b981?text=Nichirin+Katana",
+                "summary": "Specialized blade crafted from Scarlet Crimson Iron Ore that absorbs sunlight.",
+                "abilities": ["Sun Light Damage", "Demon Decapitation"],
+                "attributes": ["Nichirin"],
+                "weaknesses": ["Can break under hyper-impact without technique"]
             }
         ];
 
+        // Complete VS Battles Stat Tier Scale Fallback Hierarchy
         const STAT_TIER_FALLBACKS = {
             "tier": [
                 "11-C", "11-B", "11-A", "10-C", "10-B", "10-A", "9-C", "9-B", "9-A", 
-                "8-C", "8-B", "8-A", "7-C", "7-B", "7-A", "6-C", "6-B", "6-A", 
-                "5-C", "5-B", "5-A", "4-C", "4-B", "4-A", "3-C", "3-B", "3-A", 
-                "2-C", "2-B", "2-A", "1-C", "1-B", "1-A", "High 1-A", "0"
+                "8-C", "High 8-C", "8-B", "8-A", "7-C", "High 7-C", "Low 7-B", "7-B", "High 7-B", "7-A", "High 7-A", 
+                "6-C", "High 6-C", "Low 6-B", "6-B", "High 6-B", "6-A", "High 6-A", 
+                "5-C", "Low 5-B", "5-B", "5-A", "High 5-A", "4-C", "4-B", "4-A", 
+                "3-C", "3-B", "3-A", "High 3-A", "Low 2-C", "2-C", "2-B", "2-A", 
+                "Low 1-C", "1-C", "High 1-C", "Low 1-B", "1-B", "High 1-B", "Low 1-A", "1-A", "High 1-A", "0"
             ],
             "stats": [
-                "Below Human level", "Human level", "Street level", "Wall level", "Small Building level", 
-                "Building level", "Large Building level", "City Block level", "Multi-City Block level", 
-                "Small Town level", "Town level", "Large Town level", "Small City level", "City level", 
-                "Mountain level", "Large Mountain level", "Island level", "Large Island level", 
-                "Small Country level", "Country level", "Large Country level", "Continent level", 
-                "Multi-Continent level", "Moon level", "Small Planet level", "Planet level", 
-                "Large Planet level", "Dwarf Star level", "Star level", "Large Star level", 
+                "Below Human level", "Human level", "Athlete level", "Street level", "Wall level", 
+                "Small Building level", "Building level", "Large Building level", "City Block level", 
+                "Multi-City Block level", "Small Town level", "Town level", "Large Town level", 
+                "Small City level", "City level", "Large City level", "Mountain level", 
+                "Large Mountain level", "Island level", "Large Island level", "Small Country level", 
+                "Country level", "Large Country level", "Continent level", "Multi-Continent level", 
+                "Moon level", "Small Planet level", "Planet level", "Large Planet level", 
+                "Dwarf Star level", "Small Star level", "Star level", "Large Star level", 
                 "Solar System level", "Multi-Solar System level", "Galaxy level", "Multi-Galaxy level", 
                 "Universal level", "Universal+", "Low Multiversal", "Multiversal", "Multiversal+", 
-                "Complex Multiversal", "High Complex Multiversal", "Hyperversal", "High Hyperversal", 
+                "Low Complex Multiversal", "Complex Multiversal", "High Complex Multiversal", 
+                "Low Hyperversal", "Hyperversal", "High Hyperversal", "Low Outerversal", 
                 "Outerversal", "High Outerversal", "Boundless"
             ]
         };
@@ -769,929 +555,771 @@
             sortBy: 'name-asc'
         };
 
+        /**
+         * Resolves the next tier level in the scale (+1 step)
+         */
         function getUpgradedTier(cleanVal, key) {
             if (!cleanVal || cleanVal === 'Unknown' || cleanVal === 'N/A') return 'Next Tier Boosted';
             
             const isTierKey = key.toLowerCase() === 'tier';
             const ladder = isTierKey ? (statTiersData.tier || STAT_TIER_FALLBACKS.tier) : (statTiersData.stats || STAT_TIER_FALLBACKS.stats);
 
-            const normalizedBase = String(cleanVal).trim().toLowerCase();
-            let index = ladder.findIndex(t => t.toLowerCase() === normalizedBase);
+            const hasLevel = / level$/i.test(String(cleanVal).trim());
 
+            // Normalize strings by removing trailing "level", punctuation, and extra whitespace
+            const sanitize = str => String(str).trim().toLowerCase().replace(/\s+level$/i, '').replace(/[^\w\s-]/g, '').replace(/\s+/g, ' ');
+            const target = sanitize(cleanVal);
+
+            // 1. Exact match on sanitized string
+            let index = ladder.findIndex(t => sanitize(t) === target);
+
+            // 2. Partial fallback search
             if (index === -1) {
-                index = ladder.findIndex(t => normalizedBase.includes(t.toLowerCase()) || t.toLowerCase().includes(normalizedBase));
+                index = ladder.findIndex(t => {
+                    const s = sanitize(t);
+                    return target.includes(s) || s.includes(target);
+                });
             }
 
             if (index !== -1 && index + 1 < ladder.length) {
-                return ladder[index + 1];
+                let nextItem = ladder[index + 1];
+                if (!isTierKey) {
+                    if (hasLevel && !/ level$/i.test(nextItem)) {
+                        nextItem = `${nextItem} level`;
+                    } else if (!hasLevel && / level$/i.test(nextItem)) {
+                        nextItem = nextItem.replace(/\s+level$/i, '');
+                    }
+                }
+                return nextItem;
             }
 
             return `${cleanVal} (+1 Tier Boost)`;
         }
 
         function slugify(text) {
-            if (!text) return '';
-            return text.toString().toLowerCase()
-                .replace(/\s+/g, '-')
-                .replace(/[^\w\-]+/g, '')
-                .replace(/\-\-+/g, '-')
-                .replace(/^-+/, '')
-                .replace(/-+$/, '');
+            return String(text || '').toLowerCase().replace(/[^\w\s-]/g, '').trim().replace(/[\s_-]+/g, '-');
         }
 
-        function findItemByEquipmentName(equipName) {
-            if (!equipName) return null;
-            const targetSlug = slugify(equipName);
-            const lowerName = equipName.toLowerCase().trim();
+        async function fetchGitHubRoster() {
+            const fetchBtn = document.getElementById('fetchGithubBtn');
+            const fetchIcon = document.getElementById('fetchIcon');
+            const syncDot = document.getElementById('syncDot');
+            const syncText = document.getElementById('syncText');
 
-            return itemDatabase.find(item => {
-                const itemIdSlug = slugify(item.id || '');
-                const itemNameSlug = slugify(item.name || '');
-                const itemLowerName = (item.name || '').toLowerCase();
-                const itemLowerAlias = (item.alias || '').toLowerCase();
+            try {
+                if (fetchIcon) fetchIcon.classList.add('fa-spin');
+                if (syncText) syncText.textContent = 'Syncing Repository...';
 
-                return itemIdSlug === targetSlug || 
-                       itemNameSlug === targetSlug || 
-                       itemLowerName === lowerName ||
-                       itemLowerName.includes(lowerName) || 
-                       lowerName.includes(itemLowerName) ||
-                       (itemLowerAlias && itemLowerAlias.includes(lowerName));
-            }) || null;
+                // Fetch Tier Scales JSON
+                try {
+                    const tierRes = await fetch('https://raw.githubusercontent.com/crunchycodes/VS-Battle/main/abilities/stat-tiers.json');
+                    if (tierRes.ok) {
+                        const tierJson = await tierRes.json();
+                        if (tierJson) statTiersData = tierJson;
+                    }
+                } catch (e) {
+                    console.warn('Using local stat-tiers fallback scale:', e);
+                }
+
+                // Fetch GitHub Tree
+                const treeRes = await fetch('https://api.github.com/repos/crunchycodes/VS-Battle/git/trees/main?recursive=1');
+                if (!treeRes.ok) throw new Error('GitHub API rate limit or network issue');
+                const treeData = await treeRes.json();
+
+                const jsonFiles = treeData.tree.filter(item => item.path.endsWith('.json'));
+                const charFiles = jsonFiles.filter(item => item.path.startsWith('chars/'));
+                const itemFiles = jsonFiles.filter(item => item.path.startsWith('items/'));
+
+                // Fetch Items
+                const fetchedItems = [];
+                for (const file of itemFiles) {
+                    try {
+                        const rawUrl = `https://raw.githubusercontent.com/crunchycodes/VS-Battle/main/${file.path}`;
+                        const res = await fetch(rawUrl);
+                        if (res.ok) {
+                            const itemObj = await res.json();
+                            if (itemObj.id || itemObj.name) {
+                                fetchedItems.push(itemObj);
+                            }
+                        }
+                    } catch (err) {
+                        console.error('Error loading item file:', file.path, err);
+                    }
+                }
+
+                if (fetchedItems.length > 0) {
+                    itemDatabase = fetchedItems;
+                }
+
+                // Fetch Characters
+                const fetchedChars = [];
+                for (const file of charFiles) {
+                    try {
+                        const rawUrl = `https://raw.githubusercontent.com/crunchycodes/VS-Battle/main/${file.path}`;
+                        const res = await fetch(rawUrl);
+                        if (res.ok) {
+                            const charObj = await res.json();
+                            if (charObj.id && charObj.name) {
+                                // Resolve GitHub relative image paths
+                                const resolveImg = (url) => {
+                                    if (!url) return 'https://placehold.co/400x400/1e293b/3b82f6?text=VS+Battle';
+                                    if (url.startsWith('http://') || url.startsWith('https://')) return url;
+                                    return `https://raw.githubusercontent.com/crunchycodes/VS-Battle/main/${url.replace(/^\//, '')}`;
+                                };
+
+                                charObj.portrait = resolveImg(charObj.portrait);
+                                charObj.banner = resolveImg(charObj.banner);
+                                fetchedChars.push(charObj);
+                            }
+                        }
+                    } catch (err) {
+                        console.error('Error loading character file:', file.path, err);
+                    }
+                }
+
+                if (fetchedChars.length > 0) {
+                    characterDatabase = fetchedChars;
+                }
+
+                if (syncDot) syncDot.className = 'w-2 h-2 rounded-full bg-emerald-500 animate-pulse';
+                if (syncText) syncText.textContent = `Live Repository (${characterDatabase.length} Chars)`;
+
+                populateFilterDropdowns();
+                applyFilters();
+
+            } catch (err) {
+                console.error('GitHub Sync Failed, utilizing seed data:', err);
+                if (syncDot) syncDot.className = 'w-2 h-2 rounded-full bg-amber-500';
+                if (syncText) syncText.textContent = 'Seed Mode Active';
+            } finally {
+                if (fetchIcon) fetchIcon.classList.remove('fa-spin');
+            }
         }
 
-        function getTierBadgeClass(tier) {
-            if (!tier) return 'bg-slate-800 text-slate-300 border-slate-600';
-            const t = String(tier).toUpperCase();
-            if (t.startsWith('0')) return 'bg-gradient-to-r from-red-600 to-red-950 text-white border-red-500';
-            if (t.startsWith('1')) return 'bg-gradient-to-r from-amber-500 to-yellow-600 text-slate-950 border-yellow-300 font-extrabold';
-            if (t.startsWith('2')) return 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white border-purple-400';
-            if (t.startsWith('3')) return 'bg-gradient-to-r from-indigo-600 to-blue-600 text-white border-blue-400';
-            if (t.startsWith('4')) return 'bg-gradient-to-r from-cyan-600 to-teal-600 text-white border-cyan-400';
-            if (t.startsWith('5')) return 'bg-gradient-to-r from-emerald-600 to-teal-700 text-white border-emerald-400';
-            if (t.startsWith('6')) return 'bg-gradient-to-r from-lime-600 to-emerald-600 text-white border-lime-400';
-            if (t.startsWith('7')) return 'bg-gradient-to-r from-yellow-600 to-amber-600 text-white border-amber-400';
-            if (t.startsWith('8')) return 'bg-gradient-to-r from-orange-600 to-amber-600 text-white border-orange-400';
-            if (t.startsWith('9')) return 'bg-gradient-to-r from-amber-700 to-orange-800 text-white border-amber-500';
-            return 'bg-slate-800 text-slate-300 border-slate-600';
-        }
+        function populateFilterDropdowns() {
+            const seriesSelect = document.getElementById('seriesFilter');
+            const tierSelect = document.getElementById('tierFilter');
+            const genderSelect = document.getElementById('genderFilter');
 
-        function resolveImageUrl(url, fallbackText) {
-            if (!url) return `https://placehold.co/400x400/1e293b/94a3b8?text=${encodeURIComponent(fallbackText || 'VS Battle')}`;
-            if (url.startsWith('http://') || url.startsWith('https://')) return url;
-            return `https://raw.githubusercontent.com/crunchycodes/VS-Battle/main/${url}`;
-        }
+            const seriesSet = new Set();
+            const tierSet = new Set();
+            const genderSet = new Set();
 
-        function escapeHtml(str) {
-            if (typeof str !== 'string') return str || '';
-            return str.replace(/[&<>"']/g, match => {
-                const mask = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
-                return mask[match];
+            characterDatabase.forEach(c => {
+                if (c.series) seriesSet.add(c.series);
+                if (c.tier) tierSet.add(c.tier);
+                if (c.gender) genderSet.add(c.gender);
             });
+
+            seriesSelect.innerHTML = '<option value="">All Series</option>' + 
+                Array.from(seriesSet).sort().map(s => `<option value="${s}">${s}</option>`).join('');
+
+            tierSelect.innerHTML = '<option value="">All Tiers</option>' + 
+                Array.from(tierSet).sort().map(t => `<option value="${t}">${t}</option>`).join('');
+
+            genderSelect.innerHTML = '<option value="">All Genders</option>' + 
+                Array.from(genderSet).sort().map(g => `<option value="${g}">${g}</option>`).join('');
         }
 
-        let characterGrid, emptyState, searchInput, clearSearchBtn, seriesFilter, tierFilter, genderFilter, 
-            sortBySelect, perPageSelect, activeFilterCount, filterChips, resetFiltersBtn, emptyResetBtn, 
-            totalItemsCount, showingStart, showingEnd, totalCharacters, prevPageBtn, nextPageBtn, 
-            pageNumbers, viewGridBtn, viewCompactBtn, characterModal, closeModalBtn, modalBanner, 
-            modalPortrait, modalName, modalAlias, modalGender, modalAge, modalClassification, 
-            modalSourceUrl, modalTierBadge, modalSeriesBadge, modalSummary, modalStatsGrid, modalAbilities, 
-            modalEquipment, modalWeaknesses, modalNotes, toggleJsonBtn, jsonContainer, modalJson, copyJsonBtn, 
-            itemModal, closeItemModalBtn, itemModalImage, modalItemName, modalItemAlias, itemModalCategory, 
-            modalItemDescription, modalItemAbilities, modalItemWeaknesses, modalItemStats, modalItemSource, 
-            fetchGithubBtn, syncText, syncDot;
-
-        function initDOMElements() {
-            characterGrid = document.getElementById('characterGrid');
-            emptyState = document.getElementById('emptyState');
-            searchInput = document.getElementById('searchInput');
-            clearSearchBtn = document.getElementById('clearSearchBtn');
-            seriesFilter = document.getElementById('seriesFilter');
-            tierFilter = document.getElementById('tierFilter');
-            genderFilter = document.getElementById('genderFilter');
-            sortBySelect = document.getElementById('sortBySelect');
-            perPageSelect = document.getElementById('perPageSelect');
-            activeFilterCount = document.getElementById('activeFilterCount');
-            filterChips = document.getElementById('filterChips');
-            resetFiltersBtn = document.getElementById('resetFiltersBtn');
-            emptyResetBtn = document.getElementById('emptyResetBtn');
-            totalItemsCount = document.getElementById('totalItemsCount');
-
-            showingStart = document.getElementById('showingStart');
-            showingEnd = document.getElementById('showingEnd');
-            totalCharacters = document.getElementById('totalCharacters');
-            prevPageBtn = document.getElementById('prevPageBtn');
-            nextPageBtn = document.getElementById('nextPageBtn');
-            pageNumbers = document.getElementById('pageNumbers');
-
-            viewGridBtn = document.getElementById('viewGridBtn');
-            viewCompactBtn = document.getElementById('viewCompactBtn');
-
-            characterModal = document.getElementById('characterModal');
-            closeModalBtn = document.getElementById('closeModalBtn');
-            modalBanner = document.getElementById('modalBanner');
-            modalPortrait = document.getElementById('modalPortrait');
-            modalName = document.getElementById('modalName');
-            modalAlias = document.getElementById('modalAlias');
-            modalGender = document.getElementById('modalGender');
-            modalAge = document.getElementById('modalAge');
-            modalClassification = document.getElementById('modalClassification');
-            modalSourceUrl = document.getElementById('modalSourceUrl');
-            modalTierBadge = document.getElementById('modalTierBadge');
-            modalSeriesBadge = document.getElementById('modalSeriesBadge');
-            modalSummary = document.getElementById('modalSummary');
-            modalStatsGrid = document.getElementById('modalStatsGrid');
-            modalAbilities = document.getElementById('modalAbilities');
-            modalEquipment = document.getElementById('modalEquipment');
-            modalWeaknesses = document.getElementById('modalWeaknesses');
-            modalNotes = document.getElementById('modalNotes');
-            toggleJsonBtn = document.getElementById('toggleJsonBtn');
-            jsonContainer = document.getElementById('jsonContainer');
-            modalJson = document.getElementById('modalJson');
-            copyJsonBtn = document.getElementById('copyJsonBtn');
-
-            itemModal = document.getElementById('itemModal');
-            closeItemModalBtn = document.getElementById('closeItemModalBtn');
-            itemModalImage = document.getElementById('itemModalImage');
-            modalItemName = document.getElementById('modalItemName');
-            modalItemAlias = document.getElementById('modalItemAlias');
-            itemModalCategory = document.getElementById('itemModalCategory');
-            modalItemDescription = document.getElementById('modalItemDescription');
-            modalItemAbilities = document.getElementById('modalItemAbilities');
-            modalItemWeaknesses = document.getElementById('modalItemWeaknesses');
-            modalItemStats = document.getElementById('modalItemStats');
-            modalItemSource = document.getElementById('modalItemSource');
-
-            fetchGithubBtn = document.getElementById('fetchGithubBtn');
-            syncText = document.getElementById('syncText');
-            syncDot = document.getElementById('syncDot');
-        }
-
-        function populateFilterOptions() {
-            const seriesSet = new Set(characterDatabase.map(c => c.series).filter(Boolean));
-            seriesFilter.innerHTML = '<option value="">All Series</option>' + 
-                Array.from(seriesSet).sort().map(s => `<option value="${escapeHtml(s)}">${escapeHtml(s)}</option>`).join('');
-
-            const tierSet = new Set(characterDatabase.map(c => c.tier).filter(Boolean));
-            tierFilter.innerHTML = '<option value="">All Tiers</option>' + 
-                Array.from(tierSet).sort().map(t => `<option value="${escapeHtml(t)}">Tier ${escapeHtml(t)}</option>`).join('');
-
-            const genderSet = new Set(characterDatabase.map(c => c.gender).filter(Boolean));
-            genderFilter.innerHTML = '<option value="">All Genders</option>' + 
-                Array.from(genderSet).sort().map(g => `<option value="${escapeHtml(g)}">${escapeHtml(g)}</option>`).join('');
-        }
-
-        function applyFiltersAndRender() {
+        function applyFilters() {
             let result = [...characterDatabase];
 
-            if (filterState.search) {
-                const query = filterState.search.toLowerCase();
-                result = result.filter(c => 
-                    (c.name && c.name.toLowerCase().includes(query)) ||
-                    (c.alias && c.alias.toLowerCase().includes(query)) ||
-                    (c.series && c.series.toLowerCase().includes(query)) ||
-                    (c.classification && c.classification.toLowerCase().includes(query)) ||
-                    (c.abilities && c.abilities.some(a => a.toLowerCase().includes(query))) ||
-                    (c.equipment && c.equipment.some(e => e.toLowerCase().includes(query)))
-                );
+            const searchVal = filterState.search.toLowerCase().trim();
+            if (searchVal) {
+                result = result.filter(c => {
+                    const nameMatch = c.name && c.name.toLowerCase().includes(searchVal);
+                    const aliasMatch = c.alias && c.alias.toLowerCase().includes(searchVal);
+                    const seriesMatch = c.series && c.series.toLowerCase().includes(searchVal);
+                    const equipMatch = Array.isArray(c.equipment) && c.equipment.some(e => String(e).toLowerCase().includes(searchVal));
+                    const abMatch = Array.isArray(c.abilities) && c.abilities.some(a => String(a).toLowerCase().includes(searchVal));
+                    return nameMatch || aliasMatch || seriesMatch || equipMatch || abMatch;
+                });
             }
 
-            if (filterState.series) result = result.filter(c => c.series === filterState.series);
-            if (filterState.tier) result = result.filter(c => c.tier === filterState.tier);
-            if (filterState.gender) result = result.filter(c => c.gender === filterState.gender);
+            if (filterState.series) {
+                result = result.filter(c => c.series === filterState.series);
+            }
+            if (filterState.tier) {
+                result = result.filter(c => c.tier === filterState.tier);
+            }
+            if (filterState.gender) {
+                result = result.filter(c => c.gender === filterState.gender);
+            }
 
+            // Sorting
             result.sort((a, b) => {
-                if (filterState.sortBy === 'name-asc') return (a.name || '').localeCompare(b.name || '');
-                if (filterState.sortBy === 'name-desc') return (b.name || '').localeCompare(a.name || '');
-                if (filterState.sortBy === 'tier-asc') return (a.tier || '').localeCompare(b.tier || '');
-                if (filterState.sortBy === 'tier-desc') return (b.tier || '').localeCompare(a.tier || '');
-                if (filterState.sortBy === 'series-asc') return (a.series || '').localeCompare(b.series || '');
-                return 0;
+                switch (filterState.sortBy) {
+                    case 'name-asc':
+                        return (a.name || '').localeCompare(b.name || '');
+                    case 'name-desc':
+                        return (b.name || '').localeCompare(a.name || '');
+                    case 'series-asc':
+                        return (a.series || '').localeCompare(b.series || '');
+                    case 'tier-asc':
+                    case 'tier-desc':
+                        const ladder = statTiersData.tier || STAT_TIER_FALLBACKS.tier;
+                        const idxA = ladder.indexOf(a.tier) !== -1 ? ladder.indexOf(a.tier) : 0;
+                        const idxB = ladder.indexOf(b.tier) !== -1 ? ladder.indexOf(b.tier) : 0;
+                        return filterState.sortBy === 'tier-asc' ? idxB - idxA : idxA - idxB;
+                    default:
+                        return 0;
+                }
             });
 
             filteredCharacters = result;
             currentPage = 1;
-            renderRosterPage();
-            renderFilterChips();
+            renderActiveFilterChips();
+            renderCharacterList();
         }
 
-        function renderRosterPage() {
-            totalCharacters.textContent = filteredCharacters.length;
+        function renderActiveFilterChips() {
+            const chipsContainer = document.getElementById('filterChips');
+            const activeCount = document.getElementById('activeFilterCount');
+            chipsContainer.innerHTML = '';
+
+            let count = 0;
+            const createChip = (label, resetFn) => {
+                count++;
+                const chip = document.createElement('span');
+                chip.className = 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs bg-blue-600/20 text-blue-300 border border-blue-500/30';
+                chip.innerHTML = `${label} <button class="hover:text-white"><i class="fa-solid fa-xmark"></i></button>`;
+                chip.querySelector('button').onclick = resetFn;
+                chipsContainer.appendChild(chip);
+            };
+
+            if (filterState.search) createChip(`Search: "${filterState.search}"`, () => {
+                document.getElementById('searchInput').value = '';
+                filterState.search = '';
+                applyFilters();
+            });
+
+            if (filterState.series) createChip(`Series: ${filterState.series}`, () => {
+                document.getElementById('seriesFilter').value = '';
+                filterState.series = '';
+                applyFilters();
+            });
+
+            if (filterState.tier) createChip(`Tier: ${filterState.tier}`, () => {
+                document.getElementById('tierFilter').value = '';
+                filterState.tier = '';
+                applyFilters();
+            });
+
+            if (filterState.gender) createChip(`Gender: ${filterState.gender}`, () => {
+                document.getElementById('genderFilter').value = '';
+                filterState.gender = '';
+                applyFilters();
+            });
+
+            activeCount.textContent = count;
+        }
+
+        function renderCharacterList() {
+            const grid = document.getElementById('characterGrid');
+            const empty = document.getElementById('emptyState');
+            grid.innerHTML = '';
+
+            document.getElementById('totalCharacters').textContent = characterDatabase.length;
+            document.getElementById('totalItemsCount').textContent = itemDatabase.length;
 
             if (filteredCharacters.length === 0) {
-                characterGrid.innerHTML = '';
-                characterGrid.classList.add('hidden');
-                emptyState.classList.remove('hidden');
-                updatePaginationControls(0);
+                grid.classList.add('hidden');
+                empty.classList.remove('hidden');
+                document.getElementById('showingStart').textContent = '0';
+                document.getElementById('showingEnd').textContent = '0';
+                renderPagination();
                 return;
             }
 
-            emptyState.classList.add('hidden');
-            characterGrid.classList.remove('hidden');
+            grid.classList.remove('hidden');
+            empty.classList.add('hidden');
 
-            const total = filteredCharacters.length;
-            const totalPages = Math.ceil(total / itemsPerPage) || 1;
-            
-            if (currentPage > totalPages) currentPage = totalPages;
-            
             const startIdx = (currentPage - 1) * itemsPerPage;
-            const endIdx = Math.min(startIdx + itemsPerPage, total);
+            const endIdx = Math.min(startIdx + itemsPerPage, filteredCharacters.length);
+            const pageChars = filteredCharacters.slice(startIdx, endIdx);
 
-            showingStart.textContent = total > 0 ? startIdx + 1 : 0;
-            showingEnd.textContent = endIdx;
-
-            const pageItems = filteredCharacters.slice(startIdx, endIdx);
+            document.getElementById('showingStart').textContent = startIdx + 1;
+            document.getElementById('showingEnd').textContent = endIdx;
 
             if (currentView === 'grid') {
-                characterGrid.className = "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4";
-                characterGrid.innerHTML = pageItems.map(char => createCharacterCardHtml(char)).join('');
-            } else {
-                characterGrid.className = "flex flex-col space-y-2";
-                characterGrid.innerHTML = pageItems.map(char => createCharacterCompactHtml(char)).join('');
-            }
+                grid.className = 'grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4';
+                pageChars.forEach(c => {
+                    const card = document.createElement('div');
+                    card.className = 'glass-card rounded-2xl overflow-hidden cursor-pointer flex flex-col group';
+                    card.onclick = () => openCharacterModal(c.id);
 
-            updatePaginationControls(totalPages);
-        }
-
-        function createCharacterCardHtml(char) {
-            const tierBadgeStyle = getTierBadgeClass(char.tier);
-            const portraitUrl = resolveImageUrl(char.portrait, char.name);
-
-            return `
-                <div onclick="openCharacterModal('${escapeHtml(char.id)}')" 
-                    class="glass-card rounded-2xl p-3.5 flex flex-col justify-between cursor-pointer group relative overflow-hidden">
-                    
-                    <div class="space-y-3">
-                        <div class="relative w-full aspect-square rounded-xl overflow-hidden bg-slate-950 border border-slate-800">
-                            <img src="${portraitUrl}" alt="${escapeHtml(char.name)}" 
-                                class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
-                                onerror="this.onerror=null; this.src='https://placehold.co/400x400/1e293b/94a3b8?text=${encodeURIComponent(char.name)}';">
-                            
-                            <span class="absolute top-2 left-2 px-2.5 py-0.5 rounded-md text-[10px] font-extrabold tracking-wider font-tech border shadow-lg ${tierBadgeStyle}">
-                                TIER ${escapeHtml(char.tier || 'N/A')}
+                    card.innerHTML = `
+                        <div class="relative h-56 bg-slate-950 overflow-hidden">
+                            <img src="${c.portrait}" alt="${c.name}" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                            <span class="absolute top-2 right-2 px-2.5 py-1 rounded-md text-[11px] font-bold font-tech bg-slate-950/80 text-blue-400 border border-blue-500/30 backdrop-blur-sm">
+                                TIER ${c.tier || 'N/A'}
                             </span>
                         </div>
-
-                        <div>
-                            <h3 class="font-bold text-sm text-slate-100 group-hover:text-blue-400 transition-colors line-clamp-1">
-                                ${escapeHtml(char.name)}
-                            </h3>
-                            <p class="text-[11px] text-slate-400 line-clamp-1">
-                                <i class="fa-solid fa-tv text-[10px] mr-1 text-slate-500"></i>${escapeHtml(char.series || 'Unknown')}
-                            </p>
+                        <div class="p-4 flex-1 flex flex-col justify-between space-y-2">
+                            <div>
+                                <h3 class="font-bold text-base text-slate-100 group-hover:text-blue-400 transition">${c.name}</h3>
+                                <p class="text-xs text-slate-400 line-clamp-1">${c.series || 'Unknown Series'}</p>
+                            </div>
+                            <div class="text-[11px] text-slate-500 flex justify-between items-center pt-2 border-t border-slate-800">
+                                <span>${c.gender || 'N/A'}</span>
+                                <span class="text-blue-400 font-medium">Inspect Profile <i class="fa-solid fa-chevron-right text-[9px]"></i></span>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="mt-3 pt-2.5 border-t border-slate-800/80 flex flex-col gap-1 text-[11px] text-slate-400">
-                        <div class="flex justify-between items-center">
-                            <span class="text-[10px] text-slate-500 uppercase font-semibold">AP:</span>
-                            <span class="text-slate-200 font-medium line-clamp-1 max-w-[120px] text-right">${escapeHtml(char.stats?.attackPotency || 'N/A')}</span>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <span class="text-[10px] text-slate-500 uppercase font-semibold">Speed:</span>
-                            <span class="text-slate-200 font-medium line-clamp-1 max-w-[120px] text-right">${escapeHtml(char.stats?.combatSpeed || 'N/A')}</span>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-
-        function createCharacterCompactHtml(char) {
-            const tierBadgeStyle = getTierBadgeClass(char.tier);
-            const portraitUrl = resolveImageUrl(char.portrait, char.name);
-
-            return `
-                <div onclick="openCharacterModal('${escapeHtml(char.id)}')" 
-                    class="glass-card rounded-xl p-3 flex items-center justify-between gap-4 cursor-pointer group">
-                    <div class="flex items-center gap-3 min-w-0">
-                        <img src="${portraitUrl}" alt="${escapeHtml(char.name)}" 
-                            class="w-12 h-12 rounded-lg object-cover object-top bg-slate-950 border border-slate-800 flex-shrink-0"
-                            onerror="this.onerror=null; this.src='https://placehold.co/100x100/1e293b/94a3b8?text=${encodeURIComponent(char.name)}';">
-                        <div class="min-w-0">
-                            <h3 class="font-bold text-sm text-slate-100 group-hover:text-blue-400 transition-colors truncate">
-                                ${escapeHtml(char.name)}
-                            </h3>
-                            <p class="text-xs text-slate-400 truncate">
-                                ${escapeHtml(char.series)}
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="flex items-center gap-4 flex-shrink-0">
-                        <span class="px-2.5 py-1 rounded-md text-xs font-bold font-tech border ${tierBadgeStyle}">
-                            TIER ${escapeHtml(char.tier || 'N/A')}
-                        </span>
-                        <i class="fa-solid fa-chevron-right text-slate-600 group-hover:text-blue-400 text-xs transition"></i>
-                    </div>
-                </div>
-            `;
-        }
-
-        function openCharacterModal(characterId) {
-            const char = characterDatabase.find(c => c.id === characterId);
-            if (!char) return;
-
-            const bannerUrl = resolveImageUrl(char.banner, char.series || 'VS Battle');
-            modalBanner.src = bannerUrl;
-            document.getElementById('modalBannerBg').src = bannerUrl;
-            modalPortrait.src = resolveImageUrl(char.portrait, char.name);
-
-            modalName.textContent = char.name || 'Unknown Character';
-            modalAlias.querySelector('span').textContent = char.alias || 'None';
-            modalGender.querySelector('span').textContent = char.gender || 'Unknown';
-            modalAge.querySelector('span').textContent = char.age || 'Unknown';
-            modalClassification.querySelector('span').textContent = char.classification || 'Unclassified';
-
-            if (char.sourceUrl) {
-                modalSourceUrl.href = char.sourceUrl;
-                modalSourceUrl.classList.remove('hidden');
+                    `;
+                    grid.appendChild(card);
+                });
             } else {
-                modalSourceUrl.classList.add('hidden');
+                grid.className = 'flex flex-col gap-2';
+                pageChars.forEach(c => {
+                    const row = document.createElement('div');
+                    row.className = 'glass-card rounded-xl p-3 flex items-center justify-between gap-4 cursor-pointer hover:border-blue-500/50';
+                    row.onclick = () => openCharacterModal(c.id);
+
+                    row.innerHTML = `
+                        <div class="flex items-center gap-3">
+                            <img src="${c.portrait}" alt="${c.name}" class="w-12 h-12 rounded-lg object-cover object-top bg-slate-950">
+                            <div>
+                                <h3 class="font-bold text-sm text-slate-100">${c.name}</h3>
+                                <p class="text-xs text-slate-400">${c.series || 'Unknown'} • ${c.gender || 'N/A'}</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="px-2.5 py-1 rounded text-xs font-bold font-tech bg-slate-900 text-blue-400 border border-slate-700">
+                                ${c.tier || 'N/A'}
+                            </span>
+                            <i class="fa-solid fa-chevron-right text-xs text-slate-500"></i>
+                        </div>
+                    `;
+                    grid.appendChild(row);
+                });
             }
 
-            modalTierBadge.textContent = `TIER ${char.tier || 'N/A'}`;
-            modalTierBadge.className = `px-3 py-1 rounded-md text-xs font-bold font-tech uppercase tracking-wider shadow-md border ${getTierBadgeClass(char.tier)}`;
-            modalSeriesBadge.textContent = char.series || 'Series N/A';
-            modalSummary.textContent = char.summary || 'No overview summary available for this character.';
+            renderPagination();
+        }
 
-            const { itemAbilities, itemWeaknesses, itemStatBoosts } = renderEquipmentSection(char.equipment);
+        function renderPagination() {
+            const pageNumbers = document.getElementById('pageNumbers');
+            const prevBtn = document.getElementById('prevPageBtn');
+            const nextBtn = document.getElementById('nextPageBtn');
+            pageNumbers.innerHTML = '';
 
-            renderCharacterAbilities(char.abilities || [], itemAbilities);
-            renderCharacterWeaknesses(char.weaknesses || [], itemWeaknesses);
-            renderStatsGrid(char.stats, itemStatBoosts);
+            const totalPages = Math.ceil(filteredCharacters.length / itemsPerPage) || 1;
 
-            modalNotes.textContent = char.notes || 'None.';
-            modalJson.textContent = JSON.stringify(char, null, 2);
-            jsonContainer.classList.add('hidden');
+            prevBtn.disabled = currentPage === 1;
+            nextBtn.disabled = currentPage === totalPages;
 
-            characterModal.classList.remove('hidden');
+            for (let i = 1; i <= totalPages; i++) {
+                if (totalPages > 7 && Math.abs(i - currentPage) > 2 && i !== 1 && i !== totalPages) {
+                    if (i === 2 || i === totalPages - 1) {
+                        const span = document.createElement('span');
+                        span.className = 'text-xs text-slate-600 px-1';
+                        span.textContent = '...';
+                        pageNumbers.appendChild(span);
+                    }
+                    continue;
+                }
+
+                const btn = document.createElement('button');
+                btn.className = `px-3 py-1.5 rounded-lg text-xs font-medium transition ${
+                    i === currentPage 
+                        ? 'bg-blue-600 text-white font-bold shadow-md shadow-blue-600/30' 
+                        : 'bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800'
+                }`;
+                btn.textContent = i;
+                btn.onclick = () => {
+                    currentPage = i;
+                    renderCharacterList();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                };
+                pageNumbers.appendChild(btn);
+            }
+        }
+
+        function openCharacterModal(charId) {
+            const character = characterDatabase.find(c => c.id === charId);
+            if (!character) return;
+
+            document.getElementById('modalName').textContent = character.name || 'Unknown';
+            document.getElementById('modalAlias').querySelector('span').textContent = character.alias || 'None';
+            document.getElementById('modalGender').querySelector('span').textContent = character.gender || 'N/A';
+            document.getElementById('modalAge').querySelector('span').textContent = character.age || 'N/A';
+            document.getElementById('modalClassification').querySelector('span').textContent = character.classification || 'Unclassified';
+            document.getElementById('modalSeriesBadge').textContent = character.series || 'Series N/A';
+            document.getElementById('modalTierBadge').textContent = `TIER ${character.tier || 'N/A'}`;
+            document.getElementById('modalSummary').textContent = character.summary || 'No summary available.';
+            document.getElementById('modalNotes').textContent = character.notes || 'None.';
+
+            document.getElementById('modalPortrait').src = character.portrait;
+            document.getElementById('modalBanner').src = character.banner;
+            document.getElementById('modalBannerBg').src = character.banner;
+
+            const sourceBtn = document.getElementById('modalSourceUrl');
+            if (character.sourceUrl) {
+                sourceBtn.href = character.sourceUrl;
+                sourceBtn.classList.remove('hidden');
+            } else {
+                sourceBtn.classList.add('hidden');
+            }
+
+            // Find equipped item objects
+            const equippedItemObjects = [];
+            if (Array.isArray(character.equipment)) {
+                character.equipment.forEach(eq => {
+                    const slug = slugify(eq);
+                    const foundItem = itemDatabase.find(item => 
+                        slugify(item.id) === slug || 
+                        slugify(item.name) === slug
+                    );
+                    if (foundItem) {
+                        equippedItemObjects.push(foundItem);
+                    }
+                });
+            }
+
+            // Render Equipment Badges
+            const equipContainer = document.getElementById('modalEquipment');
+            equipContainer.innerHTML = '';
+            if (Array.isArray(character.equipment) && character.equipment.length > 0) {
+                character.equipment.forEach(eq => {
+                    const slug = slugify(eq);
+                    const matchedItem = itemDatabase.find(i => slugify(i.id) === slug || slugify(i.name) === slug);
+
+                    const badge = document.createElement('button');
+                    badge.className = 'px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-500/10 text-amber-300 border border-amber-500/30 hover:bg-amber-500 hover:text-slate-950 transition flex items-center gap-1.5';
+                    badge.innerHTML = `<i class="fa-solid fa-shield-cat text-amber-400"></i> ${matchedItem ? matchedItem.name : eq}`;
+                    
+                    if (matchedItem) {
+                        badge.onclick = () => openItemModal(matchedItem.id);
+                    } else {
+                        badge.onclick = () => alert(`Equipment: ${eq}\nNo detailed JSON file found in items database.`);
+                    }
+                    equipContainer.appendChild(badge);
+                });
+            } else {
+                equipContainer.innerHTML = '<span class="text-xs text-slate-500 italic">No standard equipment listed.</span>';
+            }
+
+            // Check for Stat Boost Attributes from equipped items
+            const itemStatBoosts = {};
+            equippedItemObjects.forEach(item => {
+                const attrs = item.attributes || item.stats || [];
+                
+                // Helper to record boost
+                const addBoost = (attrName) => {
+                    const cleanAttr = String(attrName).trim();
+                    if (cleanAttr.endsWith('+')) {
+                        const statKey = cleanAttr.slice(0, -1).trim().toLowerCase();
+                        itemStatBoosts[statKey] = item.name;
+                    }
+                };
+
+                if (Array.isArray(attrs)) {
+                    attrs.forEach(addBoost);
+                } else if (typeof attrs === 'object') {
+                    Object.keys(attrs).forEach(k => {
+                        if (attrs[k] === true || String(k).endsWith('+')) {
+                            addBoost(k);
+                        }
+                    });
+                }
+            });
+
+            // Render Stats Grid Matrix (14 parameters)
+            const statsGrid = document.getElementById('modalStatsGrid');
+            statsGrid.innerHTML = '';
+            const stats = character.stats || {};
+            const statKeys = [
+                'tier', 'attackPotency', 'durability', 'attackSpeed', 'combatSpeed', 
+                'reactionSpeed', 'perceptionSpeed', 'travelSpeed', 'flightSpeed', 
+                'liftingStrength', 'strikingStrength', 'stamina', 'range', 'intelligence'
+            ];
+
+            statKeys.forEach(key => {
+                let val = stats[key] || 'N/A';
+                const lowerKey = key.toLowerCase();
+                const isBoosted = itemStatBoosts.hasOwnProperty(lowerKey);
+
+                const itemSource = itemStatBoosts[lowerKey];
+                let displayVal = val;
+
+                if (isBoosted) {
+                    const upgradedVal = getUpgradedTier(val, key);
+                    displayVal = `<span class="line-through opacity-60 mr-1.5">${val}</span><span class="text-emerald-400 font-bold">${upgradedVal}</span>`;
+                }
+
+                const itemHtml = `
+                    <div class="p-2.5 rounded-lg bg-slate-950/70 border ${isBoosted ? 'border-amber-500/50 bg-amber-500/5' : 'border-slate-800'} flex flex-col justify-between">
+                        <span class="text-[11px] text-slate-400 font-medium capitalize flex items-center justify-between">
+                            ${key.replace(/([A-Z])/g, ' $1')}
+                            ${isBoosted ? `<span class="text-[10px] text-amber-400 font-bold"><i class="fa-solid fa-shield text-[9px]"></i> 🗡️ Boosted</span>` : ''}
+                        </span>
+                        <span class="text-xs text-slate-100 font-semibold mt-1">
+                            ${displayVal}
+                        </span>
+                        ${isBoosted ? `<span class="text-[10px] text-amber-300/80 mt-1 italic">🗡️ Granted by: ${itemSource}</span>` : ''}
+                    </div>
+                `;
+                statsGrid.innerHTML += itemHtml;
+            });
+
+            // Render Powers & Abilities (including equipment granted abilities)
+            const abContainer = document.getElementById('modalAbilities');
+            abContainer.innerHTML = '';
+            
+            const nativeAbilities = character.abilities || [];
+            nativeAbilities.forEach(ab => {
+                const tag = document.createElement('span');
+                tag.className = 'px-2.5 py-1 rounded-md text-xs bg-slate-800 text-slate-200 border border-slate-700';
+                tag.textContent = ab;
+                abContainer.appendChild(tag);
+            });
+
+            // Equipment granted abilities
+            equippedItemObjects.forEach(item => {
+                if (Array.isArray(item.abilities)) {
+                    item.abilities.forEach(itemAb => {
+                        const tag = document.createElement('span');
+                        tag.className = 'px-2.5 py-1 rounded-md text-xs bg-cyan-950/80 text-cyan-300 border border-cyan-500/40 font-medium flex items-center gap-1.5';
+                        tag.innerHTML = `<i class="fa-solid fa-cube text-cyan-400"></i> 🗡️ ${itemAb} <span class="text-[10px] opacity-75">(${item.name})</span>`;
+                        abContainer.appendChild(tag);
+                    });
+                }
+            });
+
+            // Render Weaknesses
+            const weakContainer = document.getElementById('modalWeaknesses');
+            weakContainer.innerHTML = '';
+            const weaknesses = character.weaknesses || ['None listed.'];
+            weaknesses.forEach(w => {
+                const p = document.createElement('p');
+                p.className = 'flex items-start gap-2';
+                p.innerHTML = `<i class="fa-solid fa-circle-exclamation text-amber-500 mt-0.5 text-xs"></i> <span>${w}</span>`;
+                weakContainer.appendChild(p);
+            });
+
+            // Equipment drawbacks
+            equippedItemObjects.forEach(item => {
+                if (Array.isArray(item.weaknesses)) {
+                    item.weaknesses.forEach(iw => {
+                        const p = document.createElement('p');
+                        p.className = 'flex items-start gap-2 text-rose-300';
+                        p.innerHTML = `<i class="fa-solid fa-shield-virus text-rose-400 mt-0.5 text-xs"></i> <span>🗡️ <strong>${item.name}:</strong> ${iw}</span>`;
+                        weakContainer.appendChild(p);
+                    });
+                }
+            });
+
+            // JSON Schema Viewer
+            document.getElementById('modalJson').textContent = JSON.stringify(character, null, 2);
+
+            document.getElementById('characterModal').classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }
 
-        function renderEquipmentSection(equipmentList) {
-            const itemAbilities = [];
-            const itemWeaknesses = [];
-            const itemStatBoosts = [];
-
-            if (!equipmentList || equipmentList.length === 0) {
-                modalEquipment.innerHTML = `<span class="text-xs text-slate-500 italic">None</span>`;
-                return { itemAbilities, itemWeaknesses, itemStatBoosts };
-            }
-
-            modalEquipment.innerHTML = equipmentList.map(eqName => {
-                const matchedItem = findItemByEquipmentName(eqName);
-
-                if (matchedItem) {
-                    const displayName = matchedItem.name || eqName;
-                    
-                    if (matchedItem.abilities && Array.isArray(matchedItem.abilities)) {
-                        matchedItem.abilities.forEach(ab => {
-                            itemAbilities.push({ ability: ab, itemName: displayName, itemId: matchedItem.id });
-                        });
-                    }
-
-                    if (matchedItem.weaknesses && Array.isArray(matchedItem.weaknesses)) {
-                        matchedItem.weaknesses.forEach(wk => {
-                            itemWeaknesses.push({ weakness: wk, itemName: displayName, itemId: matchedItem.id });
-                        });
-                    }
-
-                    itemStatBoosts.push({ 
-                        stats: matchedItem.stats || null, 
-                        attributes: matchedItem.attributes || null,
-                        itemName: displayName, 
-                        itemId: matchedItem.id 
-                    });
-
-                    return `
-                        <button onclick="openItemModal('${escapeHtml(matchedItem.id)}')" 
-                            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-500/10 text-amber-300 border border-amber-500/40 hover:bg-amber-500/20 hover:border-amber-400 transition shadow-sm group">
-                            <i class="fa-solid fa-box-open text-amber-400 text-xs group-hover:scale-110 transition-transform"></i>
-                            <span>${escapeHtml(displayName)}</span>
-                            <span class="text-[10px] px-1 rounded bg-amber-400/20 text-amber-200">ITEM</span>
-                        </button>
-                    `;
-                } else {
-                    return `
-                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs bg-slate-800 text-slate-300 border border-slate-700/80">
-                            <i class="fa-solid fa-shield-halved text-slate-500 text-xs"></i>
-                            <span>${escapeHtml(eqName)}</span>
-                        </span>
-                    `;
-                }
-            }).join('');
-
-            return { itemAbilities, itemWeaknesses, itemStatBoosts };
-        }
-
-        function renderCharacterAbilities(innateAbilities, itemAbilities) {
-            let html = '';
-
-            innateAbilities.forEach(ab => {
-                html += `
-                    <span class="px-2.5 py-1 rounded-lg text-xs bg-slate-800 text-slate-200 border border-slate-700/80">
-                        <i class="fa-solid fa-bolt text-blue-400 mr-1 text-[10px]"></i>${escapeHtml(ab)}
-                    </span>`;
-            });
-
-            itemAbilities.forEach(itemAb => {
-                html += `
-                    <button onclick="openItemModal('${escapeHtml(itemAb.itemId)}')"
-                        class="px-2.5 py-1 rounded-lg text-xs bg-amber-950/40 text-amber-200 border border-amber-500/40 hover:bg-amber-900/60 transition flex items-center gap-1.5">
-                        <span class="text-amber-400 font-bold" title="Power granted by equipment">🗡️</span>
-                        <span>${escapeHtml(itemAb.ability)}</span>
-                        <span class="text-[9px] text-amber-400/80 italic">(${escapeHtml(itemAb.itemName)})</span>
-                    </button>`;
-            });
-
-            modalAbilities.innerHTML = html || `<span class="text-xs text-slate-500 italic">None specified</span>`;
-        }
-
-        function renderCharacterWeaknesses(innateWeaknesses, itemWeaknesses) {
-            let html = '';
-
-            innateWeaknesses.forEach(wk => {
-                html += `
-                    <p class="flex items-start gap-1.5">
-                        <i class="fa-solid fa-angle-right text-amber-500 mt-0.5"></i> 
-                        <span>${escapeHtml(wk)}</span>
-                    </p>`;
-            });
-
-            itemWeaknesses.forEach(itemWk => {
-                html += `
-                    <div class="flex items-start gap-1.5 text-amber-200/90 bg-amber-950/20 p-1.5 rounded border border-amber-500/20">
-                        <span class="text-amber-400 font-bold">🗡️</span>
-                        <div class="flex-1">
-                            <span>${escapeHtml(itemWk.weakness)}</span>
-                            <span class="text-[10px] text-amber-400/70 ml-1 font-semibold">[Equipped: ${escapeHtml(itemWk.itemName)}]</span>
-                        </div>
-                    </div>`;
-            });
-
-            modalWeaknesses.innerHTML = html || `<p class="text-slate-500 italic">None notable</p>`;
-        }
-
-        function renderStatsGrid(stats, itemStatBoosts) {
-            if (!stats) {
-                modalStatsGrid.innerHTML = `<p class="text-slate-500 italic col-span-2">No detailed statistics provided.</p>`;
-                return;
-            }
-
-            const statFields = [
-                { key: 'tier', label: 'Tier', icon: 'fa-trophy', color: 'text-yellow-400' },
-                { key: 'attackPotency', label: 'Attack Potency', icon: 'fa-burst', color: 'text-red-400' },
-                { key: 'durability', label: 'Durability', icon: 'fa-shield', color: 'text-blue-400' },
-                { key: 'attackSpeed', label: 'Attack Speed', icon: 'fa-gauge-high', color: 'text-indigo-400' },
-                { key: 'combatSpeed', label: 'Combat Speed', icon: 'fa-bolt-lightning', color: 'text-amber-400' },
-                { key: 'reactionSpeed', label: 'Reaction Speed', icon: 'fa-eye', color: 'text-cyan-400' },
-                { key: 'perceptionSpeed', label: 'Perception Speed', icon: 'fa-brain', color: 'text-purple-400' },
-                { key: 'travelSpeed', label: 'Travel Speed', icon: 'fa-person-running', color: 'text-emerald-400' },
-                { key: 'flightSpeed', label: 'Flight Speed', icon: 'fa-plane-wings', color: 'text-teal-400' },
-                { key: 'liftingStrength', label: 'Lifting Strength', icon: 'fa-weight-hanging', color: 'text-orange-400' },
-                { key: 'strikingStrength', label: 'Striking Strength', icon: 'fa-hand-fist', color: 'text-rose-400' },
-                { key: 'stamina', label: 'Stamina', icon: 'fa-heart-pulse', color: 'text-green-400' },
-                { key: 'range', label: 'Range', icon: 'fa-ruler-combined', color: 'text-sky-400' },
-                { key: 'intelligence', label: 'Intelligence', icon: 'fa-graduation-cap', color: 'text-violet-400' }
-            ];
-
-            modalStatsGrid.innerHTML = statFields.map(field => {
-                let val = stats[field.key] || 'Unknown';
-                let hasItemBoost = false;
-                let boostDetails = [];
-                let hasPlusAttribute = false;
-                let plusItemInfo = null;
-
-                itemStatBoosts.forEach(boostObj => {
-                    if (Array.isArray(boostObj.attributes)) {
-                        boostObj.attributes.forEach(attr => {
-                            if (typeof attr === 'string' && attr.endsWith('+')) {
-                                const attrBase = attr.slice(0, -1).trim().toLowerCase();
-                                if (attrBase === field.key.toLowerCase()) {
-                                    hasPlusAttribute = true;
-                                    plusItemInfo = {
-                                        attrName: attr,
-                                        itemName: boostObj.itemName,
-                                        rawVal: '+1 Tier Boost'
-                                    };
-                                }
-                            }
-                        });
-                    }
-
-                    if (boostObj.stats && typeof boostObj.stats === 'object') {
-                        const plusKey = `${field.key}+`;
-                        const matchingKey = Object.keys(boostObj.stats).find(
-                            k => k.toLowerCase() === plusKey.toLowerCase()
-                        );
-
-                        if (matchingKey) {
-                            hasPlusAttribute = true;
-                            plusItemInfo = {
-                                attrName: matchingKey,
-                                itemName: boostObj.itemName,
-                                rawVal: boostObj.stats[matchingKey]
-                            };
-                        } else {
-                            const exactStatKey = Object.keys(boostObj.stats).find(
-                                k => k.toLowerCase() === field.key.toLowerCase()
-                            );
-                            if (exactStatKey) {
-                                hasItemBoost = true;
-                                boostDetails.push(`🗡️️ ${boostObj.itemName}: ${boostObj.stats[exactStatKey]}`);
-                            }
-                        }
-                    }
-                });
-
-                let upgradedVal = null;
-                if (hasPlusAttribute) {
-                    upgradedVal = getUpgradedTier(val, field.key);
-                }
-
-                return `
-                    <div class="bg-slate-950/70 p-2.5 rounded-xl border ${hasPlusAttribute ? 'border-emerald-500/60 bg-emerald-950/20 shadow-md shadow-emerald-500/10' : hasItemBoost ? 'border-amber-500/50 bg-amber-950/10' : 'border-slate-800'} flex items-start gap-2.5 relative">
-                        <i class="fa-solid ${field.icon} ${field.color} mt-0.5 text-sm"></i>
-                        <div class="min-w-0 flex-1">
-                            <div class="flex items-center justify-between">
-                                <span class="text-[10px] text-slate-500 uppercase font-semibold block">${field.label}</span>
-                                ${hasPlusAttribute ? 
-                                    `<span class="text-[9px] font-extrabold px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 animate-pulse">
-                                        ⚡ ${escapeHtml(plusItemInfo.attrName)} (+1 Tier)
-                                    </span>` : 
-                                  hasItemBoost ? '<span class="text-[10px] font-bold text-amber-400">🗡️ EQUIPPED</span>' : ''}
-                            </div>
-
-                            ${hasPlusAttribute ? `
-                                <div class="mt-1 space-y-1">
-                                    <div class="flex items-center gap-2 text-xs flex-wrap">
-                                        <span class="text-slate-400 line-through opacity-75">${escapeHtml(val)}</span>
-                                        <i class="fa-solid fa-arrow-right text-emerald-400 text-[10px]"></i>
-                                        <span class="text-emerald-300 font-bold bg-emerald-900/40 px-2 py-0.5 rounded border border-emerald-500/30">
-                                            ${escapeHtml(upgradedVal)}
-                                        </span>
-                                    </div>
-                                    <span class="text-[10px] text-emerald-400/90 font-mono block">
-                                        🗡️ Granted by: <strong>${escapeHtml(plusItemInfo.itemName)}</strong>
-                                    </span>
-                                </div>
-                            ` : `
-                                <span class="text-xs text-slate-200 font-medium break-words block mt-0.5">${escapeHtml(val)}</span>
-                            `}
-                            
-                            ${boostDetails.map(bd => `
-                                <span class="text-[10px] text-amber-300 font-mono block mt-1 bg-amber-500/10 p-1 rounded border border-amber-500/20">
-                                    ${escapeHtml(bd)}
-                                </span>
-                            `).join('')}
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
-
         function openItemModal(itemId) {
-            const item = itemDatabase.find(i => i.id === itemId || slugify(i.name) === itemId);
+            const item = itemDatabase.find(i => slugify(i.id) === slugify(itemId) || slugify(i.name) === slugify(itemId));
             if (!item) return;
 
-            modalItemName.textContent = item.name || 'Equipment Item';
-            modalItemAlias.textContent = item.alias ? `Alias: ${item.alias}` : (item.type ? `Type: ${item.type}` : 'Standard Equipment');
-            itemModalCategory.textContent = item.category || (item.type ? `EQUIPMENT / ${item.type.toUpperCase()}` : 'EQUIPMENT / ITEM');
-            modalItemDescription.textContent = item.summary || item.description || 'No detailed description available.';
-            itemModalImage.src = resolveImageUrl(item.portrait, item.name);
+            document.getElementById('modalItemName').textContent = item.name || 'Equipment Item';
+            document.getElementById('modalItemAlias').textContent = item.alias ? `Alias: ${item.alias}` : 'Alias: N/A';
+            document.getElementById('itemModalCategory').textContent = item.category || item.type || 'EQUIPMENT / ITEM';
+            document.getElementById('modalItemDescription').textContent = item.summary || item.description || 'No item description recorded.';
 
-            if (item.abilities && item.abilities.length > 0) {
-                modalItemAbilities.innerHTML = item.abilities.map(ab => 
-                    `<span class="px-2.5 py-1 rounded-lg text-xs bg-amber-500/10 text-amber-300 border border-amber-500/30 flex items-center gap-1">
-                        <span class="font-bold">🗡️️</span> ${escapeHtml(ab)}
-                    </span>`
-                ).join('');
-            } else {
-                modalItemAbilities.innerHTML = `<span class="text-xs text-slate-500 italic">None specified</span>`;
-            }
+            const itemImg = document.getElementById('itemModalImage');
+            itemImg.src = item.portrait || 'https://placehold.co/300x300/1e293b/f59e0b?text=Equipment';
 
-            if (item.weaknesses && item.weaknesses.length > 0) {
-                modalItemWeaknesses.innerHTML = item.weaknesses.map(wk => 
-                    `<p class="flex items-start gap-1.5"><i class="fa-solid fa-angle-right text-rose-400 mt-0.5"></i> <span>${escapeHtml(wk)}</span></p>`
-                ).join('');
-            } else {
-                modalItemWeaknesses.innerHTML = `<p class="text-slate-500 italic">No specific drawbacks noted.</p>`;
-            }
-
-            const hasAttributes = Array.isArray(item.attributes) && item.attributes.length > 0;
-            const hasStats = item.stats && typeof item.stats === 'object' && Object.keys(item.stats).length > 0;
-
-            if (hasAttributes || hasStats) {
-                let modsHtml = '';
-                
-                if (hasAttributes) {
-                    modsHtml += `<div class="col-span-full flex flex-wrap gap-2 mb-2">`;
-                    item.attributes.forEach(attr => {
-                        const isBoost = typeof attr === 'string' && attr.endsWith('+');
-                        if (isBoost) {
-                            modsHtml += `
-                                <span class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 shadow-sm flex items-center gap-1.5 animate-pulse">
-                                    <span>⚡</span> ${escapeHtml(attr)} <span class="text-[10px] bg-emerald-500/30 px-1 py-0.5 rounded text-emerald-200 font-mono">(+1 Tier)</span>
-                                </span>`;
-                        } else {
-                            modsHtml += `
-                                <span class="px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-200 border border-slate-700/80 flex items-center gap-1.5">
-                                    <i class="fa-solid fa-tag text-amber-400 text-[10px]"></i> ${escapeHtml(attr)}
-                                </span>`;
-                        }
-                    });
-                    modsHtml += `</div>`;
-                }
-
-                if (hasStats) {
-                    modsHtml += Object.entries(item.stats).map(([key, val]) => `
-                        <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
-                            <span class="text-[10px] text-amber-400 uppercase font-semibold block">${escapeHtml(key)}</span>
-                            <span class="text-xs text-slate-200 font-medium">${escapeHtml(val)}</span>
-                        </div>
-                    `).join('');
-                }
-
-                modalItemStats.innerHTML = modsHtml;
-            } else {
-                modalItemStats.innerHTML = `<p class="text-slate-500 italic col-span-2">No direct stat modifiers listed.</p>`;
-            }
-
+            const sourceLink = document.getElementById('modalItemSource');
             if (item.sourceUrl) {
-                modalItemSource.href = item.sourceUrl;
-                modalItemSource.classList.remove('hidden');
+                sourceLink.href = item.sourceUrl;
+                sourceLink.classList.remove('hidden');
             } else {
-                modalItemSource.classList.add('hidden');
+                sourceLink.classList.add('hidden');
             }
 
-            itemModal.classList.remove('hidden');
-        }
-
-        async function fetchGitHubRoster() {
-            try {
-                fetchGithubBtn.disabled = true;
-                document.getElementById('fetchIcon').classList.add('fa-spin');
-                syncText.textContent = "Fetching GitHub Repo...";
-                syncDot.className = "w-2 h-2 rounded-full bg-amber-500 animate-ping";
-
-                const repoUrl = 'https://api.github.com/repos/crunchycodes/VS-Battle/git/trees/main?recursive=1';
-                const response = await fetch(repoUrl);
-
-                if (!response.ok) throw new Error(`GitHub API Error: ${response.status}`);
-
-                const data = await response.json();
-
-                const charFiles = data.tree.filter(item => 
-                    item.path.startsWith('chars/') && item.path.endsWith('.json')
-                );
-
-                const itemFiles = data.tree.filter(item => 
-                    item.path.startsWith('items/') && item.path.endsWith('.json')
-                );
-
-                syncText.textContent = `Syncing ${charFiles.length} chars & ${itemFiles.length} items...`;
-
-                if (itemFiles.length > 0) {
-                    const fetchedItems = [];
-                    for (let file of itemFiles) {
-                        try {
-                            const rawUrl = `https://raw.githubusercontent.com/crunchycodes/VS-Battle/main/${file.path}`;
-                            const res = await fetch(rawUrl);
-                            if (res.ok) {
-                                const itemObj = await res.json();
-                                if (!itemObj.id) itemObj.id = file.path.replace('items/', '').replace('.json', '');
-                                if (itemObj.portrait && !itemObj.portrait.startsWith('http')) {
-                                    itemObj.portrait = `https://raw.githubusercontent.com/crunchycodes/VS-Battle/main/${itemObj.portrait}`;
-                                }
-                                fetchedItems.push(itemObj);
-                            }
-                        } catch (err) {
-                            console.warn("Item fetch error:", file.path, err);
-                        }
-                    }
-                    if (fetchedItems.length > 0) {
-                        itemDatabase = fetchedItems;
-                        totalItemsCount.textContent = itemDatabase.length;
-                    }
-                }
-
-                try {
-                    const tiersRes = await fetch('https://raw.githubusercontent.com/crunchycodes/VS-Battle/main/abilities/stat-tiers.json');
-                    if (tiersRes.ok) {
-                        statTiersData = await tiersRes.json();
-                    }
-                } catch (err) {
-                    console.warn("Could not load live stat-tiers.json, utilizing default tier fallback hierarchy.");
-                }
-
-                if (charFiles.length > 0) {
-                    const fetchedChars = [];
-                    const batchSize = 10;
-
-                    for (let i = 0; i < charFiles.length; i += batchSize) {
-                        const batch = charFiles.slice(i, i + batchSize);
-                        const promises = batch.map(async file => {
-                            try {
-                                const rawUrl = `https://raw.githubusercontent.com/crunchycodes/VS-Battle/main/${file.path}`;
-                                const res = await fetch(rawUrl);
-                                if (res.ok) {
-                                    const profile = await res.json();
-                                    if (profile.portrait && !profile.portrait.startsWith('http')) {
-                                        profile.portrait = `https://raw.githubusercontent.com/crunchycodes/VS-Battle/main/${profile.portrait}`;
-                                    }
-                                    if (profile.banner && !profile.banner.startsWith('http')) {
-                                        profile.banner = `https://raw.githubusercontent.com/crunchycodes/VS-Battle/main/${profile.banner}`;
-                                    }
-                                    return profile;
-                                }
-                            } catch (e) { console.warn(e); }
-                            return null;
-                        });
-
-                        const results = await Promise.all(promises);
-                        results.forEach(r => { if (r) fetchedChars.push(r); });
-                    }
-
-                    if (fetchedChars.length > 0) {
-                        characterDatabase = fetchedChars;
-                        populateFilterOptions();
-                        applyFiltersAndRender();
-                    }
-                }
-
-                syncText.textContent = `Synced (${characterDatabase.length} Chars / ${itemDatabase.length} Items)`;
-                syncDot.className = "w-2 h-2 rounded-full bg-emerald-500";
-
-            } catch (err) {
-                console.error("GitHub Sync Error:", err);
-                syncText.textContent = "Sync Fallback (Seed Loaded)";
-                syncDot.className = "w-2 h-2 rounded-full bg-amber-500";
-            } finally {
-                fetchGithubBtn.disabled = false;
-                document.getElementById('fetchIcon').classList.remove('fa-spin');
+            // Render Item Abilities
+            const abContainer = document.getElementById('modalItemAbilities');
+            abContainer.innerHTML = '';
+            if (Array.isArray(item.abilities) && item.abilities.length > 0) {
+                item.abilities.forEach(ab => {
+                    const tag = document.createElement('span');
+                    tag.className = 'px-2.5 py-1 rounded-md text-xs bg-amber-500/20 text-amber-300 border border-amber-500/30';
+                    tag.textContent = ab;
+                    abContainer.appendChild(tag);
+                });
+            } else {
+                abContainer.innerHTML = '<span class="text-xs text-slate-500 italic">No direct special abilities listed.</span>';
             }
+
+            // Render Item Drawbacks
+            const weakContainer = document.getElementById('modalItemWeaknesses');
+            weakContainer.innerHTML = '';
+            if (Array.isArray(item.weaknesses) && item.weaknesses.length > 0) {
+                item.weaknesses.forEach(w => {
+                    const p = document.createElement('p');
+                    p.className = 'flex items-start gap-2';
+                    p.innerHTML = `<i class="fa-solid fa-triangle-exclamation text-rose-400 mt-0.5 text-xs"></i> <span>${w}</span>`;
+                    weakContainer.appendChild(p);
+                });
+            } else {
+                weakContainer.innerHTML = '<span class="text-xs text-slate-500 italic">No specified drawbacks.</span>';
+            }
+
+            // Render Item Attributes & Stat Boost Tags
+            const statsContainer = document.getElementById('modalItemStats');
+            statsContainer.innerHTML = '';
+            const attrs = item.attributes || item.stats || [];
+            
+            if (Array.isArray(attrs) && attrs.length > 0) {
+                attrs.forEach(attr => {
+                    const isBoost = String(attr).endsWith('+');
+                    const div = document.createElement('div');
+                    div.className = `p-2 rounded-lg bg-slate-950 border ${isBoost ? 'border-amber-500/50 text-amber-300' : 'border-slate-800 text-slate-300'} flex items-center justify-between`;
+                    div.innerHTML = `
+                        <span>${attr}</span>
+                        ${isBoost ? '<span class="text-[10px] bg-amber-500/20 text-amber-400 px-1.5 py-0.5 rounded font-bold">⚡ (+1 Tier)</span>' : ''}
+                    `;
+                    statsContainer.appendChild(div);
+                });
+            } else {
+                statsContainer.innerHTML = '<span class="text-xs text-slate-500 italic">No direct stat modifiers listed.</span>';
+            }
+
+            document.getElementById('itemModal').classList.remove('hidden');
         }
 
-        function setupEventListeners() {
-            searchInput.addEventListener('input', (e) => {
-                filterState.search = e.target.value.trim();
-                clearSearchBtn.classList.toggle('hidden', !filterState.search);
-                applyFiltersAndRender();
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initializing application state
+            filteredCharacters = [...characterDatabase];
+            populateFilterDropdowns();
+            renderCharacterList();
+
+            // Search listener
+            document.getElementById('searchInput').addEventListener('input', (e) => {
+                filterState.search = e.target.value;
+                document.getElementById('clearSearchBtn').classList.toggle('hidden', !e.target.value);
+                applyFilters();
             });
 
-            clearSearchBtn.addEventListener('click', () => {
+            document.getElementById('clearSearchBtn').onclick = () => {
+                document.getElementById('searchInput').value = '';
                 filterState.search = '';
-                searchInput.value = '';
-                clearSearchBtn.classList.add('hidden');
-                applyFiltersAndRender();
-            });
+                document.getElementById('clearSearchBtn').classList.add('hidden');
+                applyFilters();
+            };
 
-            seriesFilter.addEventListener('change', (e) => { filterState.series = e.target.value; applyFiltersAndRender(); });
-            tierFilter.addEventListener('change', (e) => { filterState.tier = e.target.value; applyFiltersAndRender(); });
-            genderFilter.addEventListener('change', (e) => { filterState.gender = e.target.value; applyFiltersAndRender(); });
-            sortBySelect.addEventListener('change', (e) => { filterState.sortBy = e.target.value; applyFiltersAndRender(); });
+            // Filter dropdown listeners
+            document.getElementById('seriesFilter').onchange = (e) => {
+                filterState.series = e.target.value;
+                applyFilters();
+            };
+            document.getElementById('tierFilter').onchange = (e) => {
+                filterState.tier = e.target.value;
+                applyFilters();
+            };
+            document.getElementById('genderFilter').onchange = (e) => {
+                filterState.gender = e.target.value;
+                applyFilters();
+            };
+            document.getElementById('sortBySelect').onchange = (e) => {
+                filterState.sortBy = e.target.value;
+                applyFilters();
+            };
 
-            perPageSelect.addEventListener('change', (e) => {
+            document.getElementById('perPageSelect').onchange = (e) => {
                 itemsPerPage = parseInt(e.target.value, 10);
                 currentPage = 1;
-                renderRosterPage();
-            });
+                renderCharacterList();
+            };
 
+            // Reset buttons
             const resetAll = () => {
-                filterState.search = ''; filterState.series = ''; filterState.tier = ''; filterState.gender = ''; filterState.sortBy = 'name-asc';
-                searchInput.value = ''; seriesFilter.value = ''; tierFilter.value = ''; genderFilter.value = ''; sortBySelect.value = 'name-asc';
-                clearSearchBtn.classList.add('hidden');
-                applyFiltersAndRender();
+                filterState.search = '';
+                filterState.series = '';
+                filterState.tier = '';
+                filterState.gender = '';
+                filterState.sortBy = 'name-asc';
+
+                document.getElementById('searchInput').value = '';
+                document.getElementById('seriesFilter').value = '';
+                document.getElementById('tierFilter').value = '';
+                document.getElementById('genderFilter').value = '';
+                document.getElementById('sortBySelect').value = 'name-asc';
+                document.getElementById('clearSearchBtn').classList.add('hidden');
+
+                applyFilters();
             };
 
-            resetFiltersBtn.addEventListener('click', resetAll);
-            emptyResetBtn.addEventListener('click', resetAll);
+            document.getElementById('resetFiltersBtn').onclick = resetAll;
+            document.getElementById('emptyResetBtn').onclick = resetAll;
 
-            prevPageBtn.addEventListener('click', () => {
-                if (currentPage > 1) { currentPage--; renderRosterPage(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
-            });
-
-            nextPageBtn.addEventListener('click', () => {
-                const totalPages = Math.ceil(filteredCharacters.length / itemsPerPage);
-                if (currentPage < totalPages) { currentPage++; renderRosterPage(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
-            });
-
-            viewGridBtn.addEventListener('click', () => {
+            // View toggle
+            document.getElementById('viewGridBtn').onclick = () => {
                 currentView = 'grid';
-                viewGridBtn.className = "px-2.5 py-1 rounded text-blue-400 bg-slate-800 transition";
-                viewCompactBtn.className = "px-2.5 py-1 rounded text-slate-400 hover:text-slate-200 transition";
-                renderRosterPage();
-            });
-
-            viewCompactBtn.addEventListener('click', () => {
-                currentView = 'compact';
-                viewCompactBtn.className = "px-2.5 py-1 rounded text-blue-400 bg-slate-800 transition";
-                viewGridBtn.className = "px-2.5 py-1 rounded text-slate-400 hover:text-slate-200 transition";
-                renderRosterPage();
-            });
-
-            fetchGithubBtn.addEventListener('click', fetchGitHubRoster);
-
-            closeModalBtn.addEventListener('click', closeModal);
-            closeItemModalBtn.addEventListener('click', closeItemModal);
-
-            characterModal.addEventListener('click', (e) => { if (e.target === characterModal) closeModal(); });
-            itemModal.addEventListener('click', (e) => { if (e.target === itemModal) closeItemModal(); });
-
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    if (!itemModal.classList.contains('hidden')) closeItemModal();
-                    else if (!characterModal.classList.contains('hidden')) closeModal();
-                }
-            });
-
-            toggleJsonBtn.addEventListener('click', () => {
-                const isHidden = jsonContainer.classList.contains('hidden');
-                jsonContainer.classList.toggle('hidden');
-                document.getElementById('jsonChevron').className = isHidden ? 'fa-solid fa-chevron-up text-[10px]' : 'fa-solid fa-chevron-down text-[10px]';
-            });
-
-            copyJsonBtn.addEventListener('click', () => {
-                const text = modalJson.textContent;
-                if (navigator.clipboard && window.isSecureContext) {
-                    navigator.clipboard.writeText(text);
-                } else {
-                    const textArea = document.createElement("textarea");
-                    textArea.value = text;
-                    document.body.appendChild(textArea);
-                    textArea.select();
-                    document.execCommand('copy');
-                    document.body.removeChild(textArea);
-                }
-                copyJsonBtn.innerHTML = '<i class="fa-solid fa-check text-emerald-400 mr-1"></i> Copied!';
-                setTimeout(() => { copyJsonBtn.innerHTML = '<i class="fa-regular fa-copy mr-1"></i> Copy JSON'; }, 2000);
-            });
-        }
-
-        function closeModal() {
-            characterModal.classList.add('hidden');
-            document.body.style.overflow = '';
-        }
-
-        function closeItemModal() {
-            itemModal.classList.add('hidden');
-        }
-
-        function updatePaginationControls(totalPages) {
-            prevPageBtn.disabled = currentPage <= 1;
-            nextPageBtn.disabled = currentPage >= totalPages || totalPages === 0;
-
-            pageNumbers.innerHTML = '';
-            if (totalPages <= 1) return;
-
-            let pages = [];
-            for (let i = 1; i <= totalPages; i++) {
-                if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) pages.push(i);
-                else if (pages[pages.length - 1] !== '...') pages.push('...');
-            }
-
-            pages.forEach(p => {
-                if (p === '...') {
-                    const dots = document.createElement('span');
-                    dots.className = 'px-2 text-xs text-slate-600';
-                    dots.textContent = '...';
-                    pageNumbers.appendChild(dots);
-                } else {
-                    const btn = document.createElement('button');
-                    btn.className = `px-3 py-1.5 rounded-lg text-xs font-semibold transition ${p === currentPage ? 'bg-blue-600 text-white shadow-md shadow-blue-600/30' : 'bg-slate-900 border border-slate-800 text-slate-400 hover:text-white hover:bg-slate-800'}`;
-                    btn.textContent = p;
-                    btn.onclick = () => { currentPage = p; renderRosterPage(); window.scrollTo({ top: 0, behavior: 'smooth' }); };
-                    pageNumbers.appendChild(btn);
-                }
-            });
-        }
-
-        function renderFilterChips() {
-            let activeCount = 0;
-            filterChips.innerHTML = '';
-
-            const addChip = (label, value, clearFn) => {
-                activeCount++;
-                const chip = document.createElement('div');
-                chip.className = 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] bg-blue-500/10 border border-blue-500/20 text-blue-300';
-                chip.innerHTML = `<span><strong>${label}:</strong> ${escapeHtml(value)}</span><button class="hover:text-white"><i class="fa-solid fa-xmark text-[10px]"></i></button>`;
-                chip.querySelector('button').onclick = clearFn;
-                filterChips.appendChild(chip);
+                document.getElementById('viewGridBtn').className = 'px-2.5 py-1 rounded text-blue-400 bg-slate-800 transition';
+                document.getElementById('viewCompactBtn').className = 'px-2.5 py-1 rounded text-slate-400 hover:text-slate-200 transition';
+                renderCharacterList();
             };
 
-            if (filterState.search) addChip('Search', filterState.search, () => { filterState.search = ''; searchInput.value = ''; clearSearchBtn.classList.add('hidden'); applyFiltersAndRender(); });
-            if (filterState.series) addChip('Series', filterState.series, () => { filterState.series = ''; seriesFilter.value = ''; applyFiltersAndRender(); });
-            if (filterState.tier) addChip('Tier', filterState.tier, () => { filterState.tier = ''; tierFilter.value = ''; applyFiltersAndRender(); });
-            if (filterState.gender) addChip('Gender', filterState.gender, () => { filterState.gender = ''; genderFilter.value = ''; applyFiltersAndRender(); });
+            document.getElementById('viewCompactBtn').onclick = () => {
+                currentView = 'compact';
+                document.getElementById('viewCompactBtn').className = 'px-2.5 py-1 rounded text-blue-400 bg-slate-800 transition';
+                document.getElementById('viewGridBtn').className = 'px-2.5 py-1 rounded text-slate-400 hover:text-slate-200 transition';
+                renderCharacterList();
+            };
 
-            activeFilterCount.textContent = activeCount;
-        }
+            // Modals close buttons
+            document.getElementById('closeModalBtn').onclick = () => {
+                document.getElementById('characterModal').classList.add('hidden');
+                document.body.style.overflow = '';
+            };
 
-        window.addEventListener('DOMContentLoaded', () => {
-            initDOMElements();
-            populateFilterOptions();
-            applyFiltersAndRender();
-            setupEventListeners();
-            totalItemsCount.textContent = itemDatabase.length;
+            document.getElementById('closeItemModalBtn').onclick = () => {
+                document.getElementById('itemModal').classList.add('hidden');
+            };
+
+            // GitHub Fetch Button
+            document.getElementById('fetchGithubBtn').onclick = fetchGitHubRoster;
+
+            // Pagination Prev/Next
+            document.getElementById('prevPageBtn').onclick = () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    renderCharacterList();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            };
+
+            document.getElementById('nextPageBtn').onclick = () => {
+                const totalPages = Math.ceil(filteredCharacters.length / itemsPerPage);
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    renderCharacterList();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            };
+
+            // JSON Toggle
+            document.getElementById('toggleJsonBtn').onclick = () => {
+                const container = document.getElementById('jsonContainer');
+                const chevron = document.getElementById('jsonChevron');
+                container.classList.toggle('hidden');
+                chevron.classList.toggle('rotate-180');
+            };
+
+            // Copy JSON
+            document.getElementById('copyJsonBtn').onclick = () => {
+                const text = document.getElementById('modalJson').textContent;
+                navigator.clipboard.writeText(text).then(() => {
+                    const copyBtn = document.getElementById('copyJsonBtn');
+                    copyBtn.innerHTML = '<i class="fa-solid fa-check text-emerald-400 mr-1"></i> Copied!';
+                    setTimeout(() => {
+                        copyBtn.innerHTML = '<i class="fa-regular fa-copy mr-1"></i> Copy JSON';
+                    }, 2000);
+                });
+            };
+
+            // Auto fetch on boot
             fetchGitHubRoster();
         });
     </script>
