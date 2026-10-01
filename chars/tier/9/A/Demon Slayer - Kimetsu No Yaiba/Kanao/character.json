@@ -1,0 +1,55 @@
+{
+  "id": "kanao-post-demon-slayer-training",
+  "name": "Kanao Tsuyuri",
+  "variant": "Post-Demon Slayer Training",
+  "alias": "Flower Breathing Swordswoman",
+  "series": "Demon Slayer: Kimetsu No Yaiba",
+  "tier": "9-A",
+  "portrait": "chars/tier/9/A/Demon Slayer - Kimetsu No Yaiba/Kanao/1.webp",
+  "banner": "chars/tier/9/A/Demon Slayer - Kimetsu No Yaiba/Kanao/2.webp",
+  "sourceUrl": "https://vsbattles.fandom.com/wiki/Kanao_Tsuyuri",
+  "gender": "Female",
+  "age": "16",
+  "classification": "Human; Demon Slayer; Tsuchinoto",
+  "summary": "Kanao Tsuyuri is a Demon Slayer and the Tsuguko of Shinobu Kocho. She was adopted by Kanae and Shinobu Kocho after being rescued from an abusive childhood. Through rigorous training, Kanao became an exceptionally skilled swordswoman and mastered Flower Breathing. She possesses extraordinary physical abilities, eyesight, reflexes, and combat instincts, making her one of the most talented young Demon Slayers.",
+  "otherVariants": [
+    "kanao-post-hashira-training"
+  ],
+  "stats": {
+    "tier": "9-A",
+    "attackPotency": "9-A",
+    "durability": "9-A",
+    "attackSpeed": "Supersonic+",
+    "combatSpeed": "Supersonic+",
+    "reactionSpeed": "Supersonic+",
+    "perceptionSpeed": "Supersonic+",
+    "travelSpeed": "Supersonic+",
+    "flightSpeed": "Not applicable",
+    "liftingStrength": "Class 5",
+    "strikingStrength": "9-A",
+    "stamina": "Superhuman",
+    "range": "Extended Melee Range, Several Meters with Breathing Techniques",
+    "intelligence": "Gifted"
+  },
+  "abilities": [
+    "Superhuman Physical Characteristics",
+    "Enhanced Senses",
+    "Enhanced Vision",
+    "Extrasensory Perception",
+    "Supernatural Willpower",
+    "Acrobatics",
+    "Martial Arts",
+    "Weapon Mastery",
+    "Statistics Amplification",
+    "Flower Breathing",
+    "Battle Spirit",
+    "Precognition"
+  ],
+  "equipment": [
+    "nichirin-sword"
+  ],
+  "weaknesses": [
+    "Her final Flower Breathing technique severely damages her eyesight"
+  ],
+  "notes": "Kanao's Post-Demon Slayer Training key. She is an exceptionally talented swordswoman and Flower Breathing user. Her extraordinary eyesight allows her to perceive extremely fast movements and attacks."
+}

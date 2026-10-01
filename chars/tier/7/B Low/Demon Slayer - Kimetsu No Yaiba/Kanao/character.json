@@ -1,0 +1,60 @@
+{
+  "id": "kanao-post-hashira-training",
+  "name": "Kanao Tsuyuri",
+  "variant": "Post-Hashira Training",
+  "alias": "Flower Breathing Swordswoman",
+  "series": "Demon Slayer: Kimetsu No Yaiba",
+  "tier": "Low 7-B",
+  "portrait": "chars/tier/9/A/Demon Slayer - Kimetsu No Yaiba/Kanao/1.webp",
+  "banner": "chars/tier/9/A/Demon Slayer - Kimetsu No Yaiba/Kanao/2.webp",
+  "sourceUrl": "https://vsbattles.fandom.com/wiki/Kanao_Tsuyuri",
+  "gender": "Female",
+  "age": "16",
+  "classification": "Human; Demon Slayer; Tsuchinoto",
+  "summary": "After completing the Hashira Training, Kanao became one of the strongest young Demon Slayers. She possesses exceptional physical abilities, swordsmanship, eyesight, and reaction speed. During the final battles, she fought alongside Inosuke against Doma and later helped restore Tanjiro after his transformation into a demon. Her mastery of Flower Breathing and her final technique, Equinoctial Vermilion Eye, allow her to dramatically enhance her perception at the cost of her eyesight.",
+  "otherVariants": [
+    "kanao-post-demon-slayer-training"
+  ],
+  "stats": {
+    "tier": "Low 7-B",
+    "attackPotency": "Low 7-B",
+    "durability": "Low 7-B",
+    "attackSpeed": "Sub-Relativistic",
+    "combatSpeed": "Sub-Relativistic",
+    "reactionSpeed": "Sub-Relativistic",
+    "perceptionSpeed": "Sub-Relativistic",
+    "travelSpeed": "Sub-Relativistic",
+    "flightSpeed": "Not applicable",
+    "liftingStrength": "Class K",
+    "strikingStrength": "Low 7-B",
+    "stamina": "Superhuman",
+    "range": "Extended Melee Range, Several Meters with Flower Breathing",
+    "intelligence": "Gifted"
+  },
+  "abilities": [
+    "Superhuman Physical Characteristics",
+    "Enhanced Senses",
+    "Enhanced Vision",
+    "Extrasensory Perception",
+    "Supernatural Willpower",
+    "Acrobatics",
+    "Martial Arts",
+    "Weapon Mastery",
+    "Statistics Amplification",
+    "Flower Breathing",
+    "Battle Spirit",
+    "Precognition",
+    "Instinctive Reaction",
+    "Accelerated Development",
+    "Reactive Power Level",
+    "Perception Manipulation",
+    "Equinoctial Vermilion Eye"
+  ],
+  "equipment": [
+    "nichirin-sword"
+  ],
+  "weaknesses": [
+    "Equinoctial Vermilion Eye severely damages her eyesight and can potentially leave her blind"
+  ],
+  "notes": "Kanao's Post-Hashira Training key. Her Equinoctial Vermilion Eye dramatically enhances her visual perception and allows her to perceive the movements of extremely fast opponents, but causes severe strain and permanent damage to her eyesight."
+}
