@@ -1,0 +1,66 @@
+{
+  "id": "zenitsu-post-rehab",
+  "name": "Zenitsu Agatsuma",
+  "variant": "Post-Rehabilitation Training",
+  "alias": "Thunder Breathing Swordsman",
+  "series": "Demon Slayer: Kimetsu No Yaiba",
+  "tier": "Low 7-C",
+  "portrait": "chars/tier/9/A/Demon Slayer - Kimetsu No Yaiba/Zenitsu/2.webp",
+  "banner": "chars/tier/9/A/Demon Slayer - Kimetsu No Yaiba/Zenitsu/3.webp",
+  "sourceUrl": "https://vsbattles.fandom.com/wiki/Zenitsu_Agatsuma#Post-Rehabilitation_Training",
+  "gender": "Male",
+  "age": "16",
+  "classification": "Human; Demon Slayer; Hinoe",
+  "summary": "Following his rehabilitation training at the Butterfly Mansion, Zenitsu became significantly stronger and faster. He learned Total Concentration: Constant and continued developing his Thunder Breathing techniques. During the Entertainment District Arc, he was able to keep up with Awakened Daki and further enhanced his Thunderclap and Flash through Eightfold and Godspeed.",
+  "otherVariants": [
+    "zenitsu-post-demon-slayer-training",
+    "zenitsu-post-hashira"
+  ],
+  "stats": {
+    "tier": "Low 7-C",
+    "attackPotency": "Low 7-C",
+    "durability": "Low 7-C",
+    "attackSpeed": "Massively Hypersonic",
+    "combatSpeed": "Massively Hypersonic",
+    "reactionSpeed": "Massively Hypersonic",
+    "perceptionSpeed": "Massively Hypersonic",
+    "travelSpeed": "Massively Hypersonic",
+    "flightSpeed": "Not applicable",
+    "liftingStrength": "At least Class 25",
+    "strikingStrength": "Low 7-C",
+    "stamina": "Higher",
+    "range": "Extended Melee Range, Several Meters with Breathing Styles",
+    "intelligence": "Gifted"
+  },
+  "abilities": [
+    "Superhuman Physical Characteristics",
+    "Acrobatics",
+    "Battle Spirit",
+    "Supernatural Willpower",
+    "Enhanced Hearing",
+    "Telepathy",
+    "Extrasensory Perception",
+    "Expert Swordsman",
+    "Sunlight Absorption",
+    "Non-Physical Interaction",
+    "Perception Manipulation",
+    "Shockwave Generation",
+    "Sound Manipulation",
+    "Statistics Amplification",
+    "Awakened Power",
+    "Body Control",
+    "Low Regeneration",
+    "Reactive Power Level",
+    "Accelerated Development",
+    "Limited Dream Manipulation",
+    "Mind Manipulation",
+    "Pseudo-Flight"
+  ],
+  "equipment": [
+    "nichirin-sword"
+  ],
+  "weaknesses": [
+    "Using Godspeed twice in a day makes him unable to use his legs"
+  ],
+  "notes": "Zenitsu's Post-Rehabilitation Training key. He gained Total Concentration: Constant and significantly improved his physical abilities. His Thunderclap and Flash can be enhanced through Sixfold, Eightfold, and Godspeed. Godspeed greatly increases his speed but places severe strain on his legs. His practical experience against Upper Rank 6 allowed him to rapidly develop during battle."
+}
