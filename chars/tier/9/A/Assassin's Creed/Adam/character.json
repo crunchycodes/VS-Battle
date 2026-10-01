@@ -1,0 +1,58 @@
+{
+  "id": "adam-assassins-creed",
+  "name": "Adam",
+  "alias": "The first rebel",
+  "series": "Assassin's Creed",
+  "tier": "At least 9-A",
+  "portrait": "chars/tier/9/A/Assassin's Creed/Adam (Assassin's Creed) _ VS Battles Wiki _ Fandom_files/Adam_assassins_creed.webp",
+  "portraitAlt": "Adam from Assassin's Creed",
+  "sourceUrl": "https://vsbattles.fandom.com/wiki/Adam_(Assassin%27s_Creed)",
+  "snapshotPath": "chars/tier/9/A/Assassin's Creed/Adam (Assassin's Creed) _ VS Battles Wiki _ Fandom.html",
+  "sourceLabel": "Local VS Battles Wiki snapshot",
+  "gender": "Male",
+  "age": "Unknown",
+  "classification": "Human-Isu hybrid; Proto-Assassin; leader of the human rebellion against the Isu",
+  "summary": "A powerful Human-Isu hybrid who led humanity's rebellion against the Isu. His profile lists exceptional physical ability, high-end combat speed, advanced perception and analysis, and access to Pieces of Eden and other equipment.",
+  "stats": {
+    "attackPotency": "At least Small Building level+; higher with melee weapons, firearms and Pieces of Eden; potentially higher with preparation",
+    "durability": "At least Small Building level+; higher with Pieces of Eden and preparation",
+    "speed": "Hypersonic; higher with Pieces of Eden, firearms and preparation",
+    "liftingStrength": "At least Class 5; higher with Pieces of Eden",
+    "strikingStrength": "At least Small Building level+; higher with Pieces of Eden and preparation",
+    "stamina": "Superhuman (fought for decades without food, drink, or sleep); Infinite with Pieces of Eden",
+    "range": "Extended melee; higher with weapons; at least kilometers with the Apple of Eden and projectiles",
+    "intelligence": "Extraordinary Genius; military strategist with knowledge of Isu technology"
+  },
+  "ratings": {
+    "attackPotency": 8.4,
+    "strikingStrength": 8.4,
+    "liftingStrength": 7,
+    "speed": 9.3,
+    "durability": 8.2,
+    "hax": 8.3,
+    "range": 8.6,
+    "stamina": 9.5,
+    "intelligence": 9.2
+  },
+  "abilities": [
+    "Superhuman physical characteristics",
+    "Enhanced senses",
+    "Longevity",
+    "Extrasensory perception",
+    "Clairvoyance",
+    "Information analysis",
+    "Retrocognition",
+    "Psychometry",
+    "Analytical prediction",
+    "Melee weapons and firearms",
+    "Pieces of Eden (including the Apple of Eden)",
+    "Preparation and tactical planning"
+  ],
+  "equipment": ["Apple of Eden", "Other Pieces of Eden", "Koh-i-Noor", "Melee weapons"],
+  "weaknesses": ["No notable weaknesses listed on the saved profile."],
+  "elemental": { "attacks": [], "weaknesses": [], "resistances": [] },
+  "adjustments": {
+    "prep": { "attackPotency": 0.4, "hax": 0.8, "range": 0.4 }
+  },
+  "evidence": "The profile gives several capabilities conditionally: weapon/Artifact boosts and a further increase with preparation. The default comparison uses listed standard equipment but does not assume preparation or unlisted Isu technology. Ratings are qualitative conversions for this demo, not official VS Battles Wiki numbers."
+}

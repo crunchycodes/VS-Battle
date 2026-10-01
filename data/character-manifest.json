@@ -1,0 +1,7 @@
+{
+  "description": "Manually curated character profile files. Add a relative path here when importing another profile.",
+  "profiles": [
+    "chars/tier/9/A/Assassin's Creed/character.json",
+    "chars/tier/9/A/Demon Slayer - Kimetsu No Yaiba/character.json"
+  ]
+}

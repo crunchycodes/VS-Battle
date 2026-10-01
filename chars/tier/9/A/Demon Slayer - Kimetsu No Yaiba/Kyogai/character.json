@@ -1,0 +1,57 @@
+{
+  "id": "kyogai-demon-slayer",
+  "name": "Kyogai",
+  "alias": "Former Lower Rank Six",
+  "series": "Demon Slayer: Kimetsu No Yaiba",
+  "tier": "9-A",
+  "portrait": "chars/tier/9/A/Demon Slayer - Kimetsu No Yaiba/Kyogai _ VS Battles Wiki _ Fandom_files/Kyogai_anime.webp",
+  "portraitAlt": "Kyogai from Demon Slayer: Kimetsu No Yaiba",
+  "sourceUrl": "https://vsbattles.fandom.com/wiki/Kyogai",
+  "snapshotPath": "chars/tier/9/A/Demon Slayer - Kimetsu No Yaiba/Kyogai _ VS Battles Wiki _ Fandom.html",
+  "sourceLabel": "Local VS Battles Wiki snapshot",
+  "gender": "Male",
+  "age": "Unknown",
+  "classification": "Demon; former member of the Twelve Kizuki; former Lower Rank Six",
+  "summary": "A demon whose Blood Demon Art manipulates the rooms of his mansion through the drums on his body. He can alter gravity and room orientation, send claw-like air attacks, and teleport within the house; much of this toolkit depends on the mansion and his drums.",
+  "stats": {
+    "attackPotency": "Small Building level",
+    "durability": "Varies by body part; at most Small Building level, likely higher when reinforced",
+    "speed": "Subsonic combat speed; Transonic attack speed for his claw attacks",
+    "liftingStrength": "Superhuman",
+    "strikingStrength": "Small Building level",
+    "stamina": "Infinite; demons do not tire",
+    "range": "Several meters; tens of meters with teleportation",
+    "intelligence": "Average"
+  },
+  "ratings": {
+    "attackPotency": 7.3,
+    "strikingStrength": 7.3,
+    "liftingStrength": 4.5,
+    "speed": 5.5,
+    "durability": 7.1,
+    "hax": 7.4,
+    "range": 5.8,
+    "stamina": 10,
+    "intelligence": 5
+  },
+  "abilities": [
+    "Demon physiology, including regeneration and enhanced senses",
+    "Gravity manipulation (room orientation)",
+    "Air manipulation (claw-like attacks)",
+    "Teleportation within his house",
+    "Possible fungus manipulation (noted mold smell before claw attacks)",
+    "Fear-inducing battle spirit",
+    "Can reinforce parts of his body"
+  ],
+  "equipment": ["Drums on his body; Blood Demon Art is tied to them and his mansion"],
+  "weaknesses": [
+    "Standard Demon weaknesses are listed on the profile.",
+    "His Blood Demon Art depends on his mansion.",
+    "The drums can fall off when he is injured and can be used by others; he is apparently unable to grow replacement drums."
+  ],
+  "elemental": { "attacks": ["air"], "weaknesses": ["sunlight", "Nichirin weapons"], "resistances": [] },
+  "adjustments": {
+    "homeArena": { "hax": 1.4, "range": 1 }
+  },
+  "evidence": "The profile explicitly ties room manipulation and teleportation to his mansion and drums. Sunlight and Nichirin are standard Demon Slayer weaknesses, not direct elemental matchups; neither is assumed available to Adam. Ratings are qualitative conversions for this demo, not official VS Battles Wiki numbers."
+}
