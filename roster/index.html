@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VS Battle - Character & Item Roster Database</title>
+    
+    <!-- External CSS Libraries -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,27 +18,8 @@
             theme: {
                 extend: {
                     colors: {
-                        brand: {
-                            50: '#f0f6ff',
-                            100: '#e0edff',
-                            500: '#3b82f6',
-                            600: '#2563eb',
-                            700: '#1d4ed8',
-                            900: '#0f172a',
+                        slate: {
                             950: '#030712'
-                        },
-                        tier: {
-                            boundless: '#dc2626',
-                            outerversal: '#eab308',
-                            hyperversal: '#f59e0b',
-                            multiversal: '#a855f7',
-                            universal: '#6366f1',
-                            stellar: '#06b6d4',
-                            planetary: '#10b981',
-                            tectonic: '#84cc16',
-                            urban: '#eab308',
-                            building: '#f97316',
-                            human: '#94a3b8'
                         }
                     },
                     fontFamily: {
@@ -46,10 +29,26 @@
                     }
                 }
             }
-        }
+        };
     </script>
     
     <style>
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(51, 65, 85, 0.5);
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(51, 65, 85, 0.6);
+            transition: all 0.25s ease-in-out;
+        }
+        .glass-card:hover {
+            border-color: rgba(99, 102, 241, 0.6);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(99, 102, 241, 0.2);
+        }
         .custom-scrollbar::-webkit-scrollbar {
             width: 6px;
             height: 6px;
@@ -58,31 +57,14 @@
             background: rgba(15, 23, 42, 0.6);
         }
         .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #334155;
-            border-radius: 4px;
+            background: rgba(51, 65, 85, 0.8);
+            border-radius: 9999px;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: #475569;
-        }
-        .glass-panel {
-            background: rgba(15, 23, 42, 0.75);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-        }
-        .glass-card {
-            background: rgba(30, 41, 59, 0.6);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .glass-card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(59, 130, 246, 0.4);
-            box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.5), 0 0 15px -3px rgba(59, 130, 246, 0.2);
+            background: rgba(99, 102, 241, 0.8);
         }
         .modal-enter {
-            animation: modalIn 0.25s ease-out forwards;
+            animation: modalIn 0.2s ease-out forwards;
         }
         @keyframes modalIn {
             from { opacity: 0; transform: scale(0.95); }
@@ -92,7 +74,6 @@
 </head>
 <body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col font-sans selection:bg-blue-600 selection:text-white">
 
-    <!-- Top Navigation Header -->
     <header class="sticky top-0 z-30 glass-panel border-b border-slate-800 px-4 lg:px-8 py-3">
         <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
             <!-- Brand Logo & Title -->
@@ -152,8 +133,6 @@
 
             <!-- Filter Dropdowns Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 pt-2 border-t border-slate-800/80">
-                
-                <!-- Series Filter -->
                 <div>
                     <label class="block text-xs font-medium text-slate-400 mb-1">
                         <i class="fa-solid fa-tv mr-1 text-slate-500"></i> Series
@@ -163,7 +142,6 @@
                     </select>
                 </div>
 
-                <!-- Tier Filter -->
                 <div>
                     <label class="block text-xs font-medium text-slate-400 mb-1">
                         <i class="fa-solid fa-trophy mr-1 text-slate-500"></i> Tier Level
@@ -173,7 +151,6 @@
                     </select>
                 </div>
 
-                <!-- Gender Filter -->
                 <div>
                     <label class="block text-xs font-medium text-slate-400 mb-1">
                         <i class="fa-solid fa-venus-mars mr-1 text-slate-500"></i> Gender
@@ -183,7 +160,6 @@
                     </select>
                 </div>
 
-                <!-- Sort By -->
                 <div>
                     <label class="block text-xs font-medium text-slate-400 mb-1">
                         <i class="fa-solid fa-arrow-down-a-z mr-1 text-slate-500"></i> Sort By
@@ -197,7 +173,6 @@
                     </select>
                 </div>
 
-                <!-- Items Per Page -->
                 <div>
                     <label class="block text-xs font-medium text-slate-400 mb-1">
                         <i class="fa-solid fa-list-ol mr-1 text-slate-500"></i> Per Page
@@ -209,7 +184,6 @@
                         <option value="100">100 Per Page</option>
                     </select>
                 </div>
-
             </div>
 
             <!-- Active Filter Badges Container -->
@@ -235,7 +209,6 @@
             </div>
         </div>
 
-        <!-- Character Grid Display Container -->
         <div id="characterGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
             <!-- Cards populated dynamically -->
         </div>
@@ -267,22 +240,18 @@
 
     </main>
 
-    <!-- Full Character Profile Modal -->
     <div id="characterModal" class="fixed inset-0 z-50 hidden bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
         <div class="relative w-full max-w-4xl bg-slate-900 border border-slate-700/80 rounded-2xl shadow-2xl overflow-y-auto max-h-[92vh] custom-scrollbar modal-enter">
             
-            <!-- Close Modal Button -->
             <button id="closeModalBtn" class="absolute top-4 right-4 z-30 w-9 h-9 rounded-full bg-slate-950/80 border border-slate-700/80 text-slate-300 hover:text-white hover:bg-slate-800 flex items-center justify-center transition shadow-xl backdrop-blur-sm">
                 <i class="fa-solid fa-xmark text-lg"></i>
             </button>
 
-            <!-- Banner Header Area -->
             <div class="relative w-full h-48 sm:h-60 bg-slate-950 overflow-hidden flex items-center justify-center">
                 <img id="modalBannerBg" src="" alt="" class="absolute inset-0 w-full h-full object-cover filter blur-md opacity-30 scale-110">
                 <img id="modalBanner" src="" alt="Banner" class="relative z-10 w-full h-full object-cover object-center filter brightness-95 transition-opacity duration-300">
                 <div class="absolute inset-0 z-20 bg-gradient-to-t from-slate-900 via-slate-900/30 to-transparent"></div>
                 
-                <!-- Quick Badge overlay -->
                 <div class="absolute bottom-4 left-6 sm:left-8 flex flex-wrap items-center gap-2 z-20">
                     <span id="modalTierBadge" class="px-3 py-1 rounded-md text-xs font-bold font-tech uppercase tracking-wider text-white shadow-md border border-white/20">
                         TIER
@@ -293,17 +262,12 @@
                 </div>
             </div>
 
-            <!-- Modal Content Area -->
             <div class="p-6 sm:p-8 space-y-6 bg-slate-900">
-                
-                <!-- Main Header Info -->
                 <div class="flex flex-col sm:flex-row gap-6 items-start -mt-16 sm:-mt-20 relative z-10">
-                    <!-- Character Portrait Image -->
                     <div class="relative group flex-shrink-0">
                         <img id="modalPortrait" src="" alt="Character Portrait" class="w-32 h-32 sm:w-40 sm:h-40 rounded-2xl object-cover object-top border-4 border-slate-800 bg-slate-950 shadow-2xl">
                     </div>
 
-                    <!-- Name & Sub-details -->
                     <div class="flex-1 space-y-1 pt-2 sm:pt-14">
                         <h2 id="modalName" class="text-2xl sm:text-3xl font-extrabold font-display text-white tracking-wide">
                             Character Name
@@ -318,7 +282,6 @@
                         </p>
                     </div>
 
-                    <!-- Source Link -->
                     <div class="sm:self-end">
                         <a id="modalSourceUrl" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium bg-blue-600/20 text-blue-300 border border-blue-500/30 hover:bg-blue-600 hover:text-white transition">
                             <span>VS Battles Wiki</span>
@@ -327,7 +290,6 @@
                     </div>
                 </div>
 
-                <!-- Character Summary -->
                 <div class="space-y-2">
                     <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2">
                         <i class="fa-solid fa-align-left text-blue-400"></i> Character Summary
@@ -337,7 +299,6 @@
                     </p>
                 </div>
 
-                <!-- Standard Equipment (Interactive Items Section) -->
                 <div class="space-y-2 bg-slate-950/50 p-4 rounded-xl border border-slate-800/80">
                     <div class="flex items-center justify-between">
                         <h3 class="text-xs font-bold uppercase tracking-wider text-slate-300 flex items-center gap-2">
@@ -347,44 +308,31 @@
                             <i class="fa-solid fa-circle-info"></i> Click equipment for item details
                         </span>
                     </div>
-                    <div id="modalEquipment" class="flex flex-wrap gap-2 pt-1">
-                        <!-- Equipment tags -->
-                    </div>
+                    <div id="modalEquipment" class="flex flex-wrap gap-2 pt-1"></div>
                 </div>
 
-                <!-- Detailed Stats Matrix Grid -->
                 <div class="space-y-3">
                     <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center justify-between">
                         <span class="flex items-center gap-2"><i class="fa-solid fa-chart-simple text-blue-400"></i> Battle Statistics Matrix</span>
                         <span class="text-[11px] text-amber-400/90 font-normal"><i class="fa-solid fa-shield text-xs"></i> 🗡️ = Item Boosted</span>
                     </h3>
-                    
-                    <div id="modalStatsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs">
-                        <!-- Stat items rendered dynamically -->
-                    </div>
+                    <div id="modalStatsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs"></div>
                 </div>
 
-                <!-- Abilities & Powers Section -->
                 <div class="space-y-2">
                     <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2">
                         <i class="fa-solid fa-wand-magic-sparkles text-blue-400"></i> Powers & Abilities
                     </h3>
-                    <div id="modalAbilities" class="flex flex-wrap gap-2">
-                        <!-- Ability badges -->
-                    </div>
+                    <div id="modalAbilities" class="flex flex-wrap gap-2"></div>
                 </div>
 
-                <!-- Weaknesses Section -->
                 <div class="space-y-2">
                     <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2">
                         <i class="fa-solid fa-triangle-exclamation text-amber-400"></i> Weaknesses
                     </h3>
-                    <div id="modalWeaknesses" class="space-y-1.5 text-xs text-slate-300 bg-slate-950/50 p-3 rounded-xl border border-slate-800/80">
-                        <!-- Weaknesses list -->
-                    </div>
+                    <div id="modalWeaknesses" class="space-y-1.5 text-xs text-slate-300 bg-slate-950/50 p-3 rounded-xl border border-slate-800/80"></div>
                 </div>
 
-                <!-- Notes & Metadata -->
                 <div class="space-y-2 pt-2 border-t border-slate-800">
                     <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2">
                         <i class="fa-solid fa-note-sticky text-blue-400"></i> Additional Notes
@@ -394,7 +342,6 @@
                     </p>
                 </div>
 
-                <!-- Raw JSON Accordion -->
                 <div class="pt-2">
                     <button id="toggleJsonBtn" class="text-xs text-slate-500 hover:text-slate-300 flex items-center gap-2 transition">
                         <i class="fa-solid fa-code"></i> View Raw Character JSON Schema
@@ -407,21 +354,16 @@
                         <pre id="modalJson" class="text-[11px] font-mono text-emerald-400 bg-slate-950 p-4 rounded-xl overflow-x-auto max-h-60 custom-scrollbar border border-slate-800"></pre>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 
-    <!-- Interactive Item Profile Modal -->
     <div id="itemModal" class="fixed inset-0 z-50 hidden bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
         <div class="relative w-full max-w-2xl bg-slate-900 border border-amber-500/30 rounded-2xl shadow-2xl overflow-hidden modal-enter">
-            
-            <!-- Close Modal Button -->
             <button id="closeItemModalBtn" class="absolute top-4 right-4 z-30 w-8 h-8 rounded-full bg-slate-950/80 border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-800 flex items-center justify-center transition">
                 <i class="fa-solid fa-xmark text-sm"></i>
             </button>
 
-            <!-- Item Modal Header -->
             <div class="relative p-6 bg-gradient-to-r from-amber-950/40 via-slate-900 to-slate-900 border-b border-amber-500/20 flex flex-col sm:flex-row items-start sm:items-center gap-4">
                 <div class="w-20 h-20 rounded-xl bg-slate-950 border-2 border-amber-500/40 p-1 flex-shrink-0 flex items-center justify-center overflow-hidden">
                     <img id="itemModalImage" src="" alt="Item Image" class="w-full h-full object-contain">
@@ -439,10 +381,7 @@
                 </div>
             </div>
 
-            <!-- Item Content Body -->
             <div class="p-6 space-y-5 max-h-[70vh] overflow-y-auto custom-scrollbar">
-                
-                <!-- Description -->
                 <div class="space-y-1">
                     <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
                         <i class="fa-solid fa-file-lines text-amber-400"></i> Item Overview
@@ -452,57 +391,69 @@
                     </p>
                 </div>
 
-                <!-- Granted Abilities -->
                 <div class="space-y-2">
                     <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
                         <i class="fa-solid fa-wand-magic-sparkles text-amber-400"></i> Granted Abilities & Perks
                     </h3>
-                    <div id="modalItemAbilities" class="flex flex-wrap gap-2">
-                        <!-- Granted abilities -->
-                    </div>
+                    <div id="modalItemAbilities" class="flex flex-wrap gap-2"></div>
                 </div>
 
-                <!-- Granted Weaknesses -->
                 <div class="space-y-2">
                     <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
                         <i class="fa-solid fa-shield-cat text-rose-400"></i> Item Drawbacks / Weaknesses
                     </h3>
-                    <div id="modalItemWeaknesses" class="space-y-1 text-xs text-slate-300 bg-slate-950/60 p-3 rounded-xl border border-slate-800">
-                        <!-- Item drawbacks -->
-                    </div>
+                    <div id="modalItemWeaknesses" class="space-y-1 text-xs text-slate-300 bg-slate-950/60 p-3 rounded-xl border border-slate-800"></div>
                 </div>
 
-                <!-- Stat Boosts / Attributes -->
                 <div class="space-y-2">
                     <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1.5">
                         <i class="fa-solid fa-bolt-lightning text-amber-400"></i> Attribute & Stat Modifiers
                     </h3>
-                    <div id="modalItemStats" class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-                        <!-- Item stat boosts -->
-                    </div>
+                    <div id="modalItemStats" class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs"></div>
                 </div>
 
-                <!-- External Source Link -->
                 <div class="pt-2 flex justify-between items-center text-xs">
                     <a id="modalItemSource" href="#" target="_blank" class="inline-flex items-center gap-1.5 text-blue-400 hover:underline">
                         <i class="fa-solid fa-external-link text-[10px]"></i> View Item Source Page
                     </a>
                 </div>
-
             </div>
         </div>
     </div>
 
     <script>
-        // Built-in seed database for equipment items matching items/*.json schema
+        // Seed Database for items matching items/*.json schema
         const SEED_ITEMS = [
+            {
+                "id": "red-nichirin-chained-spiked-flail-and-axe",
+                "name": "Red Nichirin Chained Spiked Flail and Axe",
+                "series": "Demon Slayer: Kimetsu No Yaiba",
+                "portrait": "https://placehold.co/300x300/1e293b/f59e0b?text=Red+Nichirin+Flail",
+                "sourceUrl": "https://vsbattles.fandom.com/wiki/Kyogai",
+                "type": "Blade, Blunt",
+                "summary": "A chained spiked flail and axe made from sunlight-absorbing metals that disintegrate demons upon decapitation or equivalent slicing",
+                "abilities": [
+                    "Sun Absorbtion",
+                    "Sun Damage",
+                    "Non-Physical Interaction"
+                ],
+                "attributes": [
+                    "Nichirin",
+                    "Tier+",
+                    "attackPotency+"
+                ],
+                "weaknesses": [
+                    "unknown"
+                ],
+                "notes": "unknown"
+            },
             {
                 "id": "power-pole",
                 "name": "Power Pole (Nyoi-bo)",
                 "alias": "Mind Staff / Nyoi-bo",
                 "category": "Weapon / Artifact",
                 "portrait": "https://placehold.co/300x300/1e293b/f59e0b?text=Power+Pole",
-                "description": "A magical, indestructible red staff originally given to Goku by Grandpa Gohan. It can extend its length to astronomical distances upon command.",
+                "summary": "A magical, indestructible red staff originally given to Goku by Grandpa Gohan. It can extend its length to astronomical distances upon command.",
                 "sourceUrl": "https://vsbattles.fandom.com/wiki/Power_Pole",
                 "abilities": [
                     "Size & Length Alteration",
@@ -510,15 +461,15 @@
                     "Extended Range Attack",
                     "Magical Weapon Properties"
                 ],
+                "attributes": [
+                    "Magical",
+                    "Indestructible",
+                    "range+"
+                ],
                 "weaknesses": [
                     "Requires verbal or mental command to extend",
                     "Can be disarmed if caught off guard"
-                ],
-                "stats": {
-                    "attackPotency": "Varies by wielder (Multi-City Block to Planetary impact)",
-                    "range": "Planetary (Can extend from Earth to the Moon)",
-                    "strikingStrength": "Enhanced Kinetic Impact"
-                }
+                ]
             },
             {
                 "id": "senzu-beans",
@@ -526,21 +477,22 @@
                 "alias": "Mystic Recovery Beans",
                 "category": "Consumable / Healing Item",
                 "portrait": "https://placehold.co/300x300/1e293b/10b981?text=Senzu+Beans",
-                "description": "Magical beans grown by Korin that instantly restore a creature's physical energy and heal all non-fatal injuries or illness.",
+                "summary": "Magical beans grown by Korin that instantly restore a creature's physical energy and heal all non-fatal injuries or illness.",
                 "sourceUrl": "https://dragonball.fandom.com/wiki/Senzu_Bean",
                 "abilities": [
                     "Instant Complete Cellular Regeneration",
                     "Full Stamina & Ki Restoration",
                     "Fatigue Elimination"
                 ],
+                "attributes": [
+                    "Consumable",
+                    "stamina+",
+                    "durability+"
+                ],
                 "weaknesses": [
                     "Finite quantity in battle",
                     "Cannot cure pre-existing organic diseases"
-                ],
-                "stats": {
-                    "stamina": "Instant 100% Recovery",
-                    "durability": "Restores full durability instantly upon consumption"
-                }
+                ]
             },
             {
                 "id": "blindfold",
@@ -548,20 +500,20 @@
                 "alias": "Six Eyes Visor",
                 "category": "Accessory / Restraint",
                 "portrait": "https://placehold.co/300x300/1e293b/818cf8?text=Blindfold",
-                "description": "A dark blindfold used by Satoru Gojo to reduce the overwhelming influx of visual sensory information processed by his Six Eyes.",
+                "summary": "A dark blindfold used by Satoru Gojo to reduce the overwhelming influx of visual sensory information processed by his Six Eyes.",
                 "sourceUrl": "https://jujutsu-kaisen.fandom.com/wiki/Satoru_Gojo",
                 "abilities": [
                     "Sensory Inflow Dampening",
                     "Stamina Preservation",
                     "Enhanced High-Frequency Cursed Energy Sensing"
                 ],
+                "attributes": [
+                    "Sensory Restraint",
+                    "perceptionSpeed+"
+                ],
                 "weaknesses": [
                     "Blocks normal physical optical spectrum"
-                ],
-                "stats": {
-                    "stamina": "Reduces passive brain fatigue by 90%",
-                    "perceptionSpeed": "Heightened cursed energy awareness"
-                }
+                ]
             },
             {
                 "id": "nichirin-sword",
@@ -569,20 +521,20 @@
                 "alias": "Black Nichirin Katana",
                 "category": "Weapon",
                 "portrait": "https://placehold.co/300x300/1e293b/10b981?text=Nichirin+Sword",
-                "description": "A specialized blade forged from Scarlet Crimson Iron and Ore, absorbing sunlight to permanently neutralize demon cellular regeneration.",
+                "summary": "A specialized blade forged from Scarlet Crimson Iron and Ore, absorbing sunlight to permanently neutralize demon cellular regeneration.",
                 "sourceUrl": "https://kimetsu-no-yaiba.fandom.com/wiki/Nichirin_Blade",
                 "abilities": [
                     "Demon Regeneration Negation",
                     "Sunlight Energy Absorption",
                     "Thermal Blade Heating"
                 ],
+                "attributes": [
+                    "Nichirin",
+                    "attackPotency+"
+                ],
                 "weaknesses": [
                     "Can chip or snap under extreme force without proper technique"
-                ],
-                "stats": {
-                    "attackPotency": "Negates demon durability via decapitation",
-                    "strikingStrength": "Enhanced cutting power against supernatural foes"
-                }
+                ]
             },
             {
                 "id": "hero-costume",
@@ -590,22 +542,23 @@
                 "alias": "Yellow Hero Jumpsuit",
                 "category": "Armor / Apparel",
                 "portrait": "https://placehold.co/300x300/1e293b/eab308?text=Hero+Suit",
-                "description": "A custom-made yellow jumpsuit crafted by a tailor. Surprisingly durable against atmospheric re-entry heat and supersonic friction.",
+                "summary": "A custom-made yellow jumpsuit crafted by a tailor. Surprisingly durable against atmospheric re-entry heat and supersonic friction.",
                 "sourceUrl": "https://onepunchman.fandom.com/wiki/Saitama",
                 "abilities": [
                     "High Thermal Resistance",
                     "Atmospheric Friction Survival"
                 ],
+                "attributes": [
+                    "Thermal Protection",
+                    "durability+"
+                ],
                 "weaknesses": [
                     "Can suffer cosmetic tears under hyper-velocity combat"
-                ],
-                "stats": {
-                    "durability": "Withstands friction heat up to atmospheric re-entry"
-                }
+                ]
             }
         ];
 
-        // Built-in seed characters matching schema
+        // Seed Characters database
         const SEED_CHARACTERS = [
             {
                 "id": "goku-dragon-ball",
@@ -730,7 +683,7 @@
                     "Selfless State",
                     "Enhanced Smell"
                 ],
-                "equipment": ["Nichirin Sword"],
+                "equipment": ["Red Nichirin Chained Spiked Flail and Axe", "Nichirin Sword"],
                 "weaknesses": ["Sun Breathing causes stamina exhaustion if overused."],
                 "notes": "Demon Slayer Mark unlocks peak capabilities."
             },
@@ -777,96 +730,37 @@
             }
         ];
 
-        // Global State
+        const STAT_TIER_FALLBACKS = {
+            "tier": [
+                "11-C", "11-B", "11-A", "10-C", "10-B", "10-A", "9-C", "9-B", "9-A", 
+                "8-C", "8-B", "8-A", "7-C", "7-B", "7-A", "6-C", "6-B", "6-A", 
+                "5-C", "5-B", "5-A", "4-C", "4-B", "4-A", "3-C", "3-B", "3-A", 
+                "2-C", "2-B", "2-A", "1-C", "1-B", "1-A", "High 1-A", "0"
+            ],
+            "stats": [
+                "Below Human level", "Human level", "Street level", "Wall level", "Small Building level", 
+                "Building level", "Large Building level", "City Block level", "Multi-City Block level", 
+                "Small Town level", "Town level", "Large Town level", "Small City level", "City level", 
+                "Mountain level", "Large Mountain level", "Island level", "Large Island level", 
+                "Small Country level", "Country level", "Large Country level", "Continent level", 
+                "Multi-Continent level", "Moon level", "Small Planet level", "Planet level", 
+                "Large Planet level", "Dwarf Star level", "Star level", "Large Star level", 
+                "Solar System level", "Multi-Solar System level", "Galaxy level", "Multi-Galaxy level", 
+                "Universal level", "Universal+", "Low Multiversal", "Multiversal", "Multiversal+", 
+                "Complex Multiversal", "High Complex Multiversal", "Hyperversal", "High Hyperversal", 
+                "Outerversal", "High Outerversal", "Boundless"
+            ]
+        };
+
+        // Application Global State
         let characterDatabase = [...SEED_CHARACTERS];
         let itemDatabase = [...SEED_ITEMS];
-        let statTiersData = null; // Fetched from stat-tiers.json
+        let statTiersData = STAT_TIER_FALLBACKS;
         let filteredCharacters = [];
         let currentPage = 1;
         let itemsPerPage = 25;
         let currentView = 'grid';
 
-        // Fallback Tier Lists if stat-tiers.json is loading or offline (lowest to highest)
-        const DEFAULT_TIER_LIST = [
-            "11-C", "11-B", "11-A",
-            "10-C", "10-B", "10-A",
-            "9-C", "9-B", "9-A",
-            "8-C", "8-B", "8-A",
-            "7-C", "7-B", "7-A",
-            "6-C", "6-B", "6-A",
-            "5-C", "5-B", "5-A",
-            "4-C", "4-B", "4-A",
-            "3-C", "3-B", "3-A",
-            "2-C", "2-B", "2-A",
-            "1-C", "1-B", "1-A",
-            "High 1-A", "0"
-        ];
-
-        const DEFAULT_AP_LIST = [
-            "Below Human level", "Human level", "Street level", "Wall level",
-            "Small Building level", "Building level", "Large Building level",
-            "City Block level", "Multi-City Block level",
-            "Small Town level", "Town level", "Large Town level",
-            "Small City level", "City level", "Mountain level", "Large Mountain level",
-            "Island level", "Large Island level", "Country level", "Large Country level",
-            "Continent level", "Multi-Continent level", "Moon level", "Small Planet level",
-            "Planet level", "Large Planet level", "Dwarf Star level", "Small Star level",
-            "Star level", "Large Star level", "Solar System level", "Multi-Solar System level",
-            "Galaxy level", "Multi-Galaxy level", "Universal level", "Universal+",
-            "Low Multiversal", "Multiversal", "Multiversal+", "Complex Multiversal",
-            "High Complex Multiversal", "Hyperversal", "High Hyperversal",
-            "Outerversal", "High Outerversal", "Boundless"
-        ];
-
-        // Helper to advance a stat value up one tier using stat-tiers.json hierarchy
-        function getUpgradedTier(currentVal, statKey) {
-            if (!currentVal || currentVal === 'Unknown' || currentVal === 'N/A') return 'Next Tier';
-
-            // Select tier array to evaluate
-            let tierList = DEFAULT_TIER_LIST;
-            if (statKey === 'attackPotency' || statKey === 'durability' || statKey === 'strikingStrength') {
-                tierList = DEFAULT_AP_LIST;
-            }
-
-            // If statTiersData was fetched from GitHub and contains lists
-            if (statTiersData) {
-                if (Array.isArray(statTiersData)) {
-                    tierList = statTiersData;
-                } else if (statTiersData[statKey] && Array.isArray(statTiersData[statKey])) {
-                    tierList = statTiersData[statKey];
-                } else if (statTiersData.tiers && Array.isArray(statTiersData.tiers)) {
-                    tierList = statTiersData.tiers;
-                }
-            }
-
-            const cleanVal = currentVal.trim();
-
-            // 1. Try exact match first
-            let index = tierList.findIndex(t => t.toLowerCase() === cleanVal.toLowerCase());
-
-            // 2. Try substring match if full sentence AP description (e.g., "At least Large Town level, likely far higher")
-            if (index === -1) {
-                let bestMatchIndex = -1;
-                let longestMatchLen = 0;
-                tierList.forEach((t, i) => {
-                    if (cleanVal.toLowerCase().includes(t.toLowerCase()) && t.length > longestMatchLen) {
-                        longestMatchLen = t.length;
-                        bestMatchIndex = i;
-                    }
-                });
-                index = bestMatchIndex;
-            }
-
-            // Return next tier if found
-            if (index !== -1 && index + 1 < tierList.length) {
-                const nextTier = tierList[index + 1];
-                return nextTier;
-            }
-
-            return `${cleanVal} (+1 Tier Up)`;
-        }
-
-        // Filter State
         const filterState = {
             search: '',
             series: '',
@@ -875,88 +769,36 @@
             sortBy: 'name-asc'
         };
 
-        // DOM Elements
-        const characterGrid = document.getElementById('characterGrid');
-        const emptyState = document.getElementById('emptyState');
-        const searchInput = document.getElementById('searchInput');
-        const clearSearchBtn = document.getElementById('clearSearchBtn');
-        const seriesFilter = document.getElementById('seriesFilter');
-        const tierFilter = document.getElementById('tierFilter');
-        const genderFilter = document.getElementById('genderFilter');
-        const sortBySelect = document.getElementById('sortBySelect');
-        const perPageSelect = document.getElementById('perPageSelect');
-        const activeFilterCount = document.getElementById('activeFilterCount');
-        const filterChips = document.getElementById('filterChips');
-        const resetFiltersBtn = document.getElementById('resetFiltersBtn');
-        const emptyResetBtn = document.getElementById('emptyResetBtn');
-        const totalItemsCount = document.getElementById('totalItemsCount');
+        function getUpgradedTier(cleanVal, key) {
+            if (!cleanVal || cleanVal === 'Unknown' || cleanVal === 'N/A') return 'Next Tier Boosted';
+            
+            const isTierKey = key.toLowerCase() === 'tier';
+            const ladder = isTierKey ? (statTiersData.tier || STAT_TIER_FALLBACKS.tier) : (statTiersData.stats || STAT_TIER_FALLBACKS.stats);
 
-        // Pagination DOM
-        const showingStart = document.getElementById('showingStart');
-        const showingEnd = document.getElementById('showingEnd');
-        const totalCharacters = document.getElementById('totalCharacters');
-        const prevPageBtn = document.getElementById('prevPageBtn');
-        const nextPageBtn = document.getElementById('nextPageBtn');
-        const pageNumbers = document.getElementById('pageNumbers');
+            const normalizedBase = String(cleanVal).trim().toLowerCase();
+            let index = ladder.findIndex(t => t.toLowerCase() === normalizedBase);
 
-        // View Toggle
-        const viewGridBtn = document.getElementById('viewGridBtn');
-        const viewCompactBtn = document.getElementById('viewCompactBtn');
+            if (index === -1) {
+                index = ladder.findIndex(t => normalizedBase.includes(t.toLowerCase()) || t.toLowerCase().includes(normalizedBase));
+            }
 
-        // Character Modal DOM
-        const characterModal = document.getElementById('characterModal');
-        const closeModalBtn = document.getElementById('closeModalBtn');
-        const modalBanner = document.getElementById('modalBanner');
-        const modalPortrait = document.getElementById('modalPortrait');
-        const modalName = document.getElementById('modalName');
-        const modalAlias = document.getElementById('modalAlias');
-        const modalGender = document.getElementById('modalGender');
-        const modalAge = document.getElementById('modalAge');
-        const modalClassification = document.getElementById('modalClassification');
-        const modalSourceUrl = document.getElementById('modalSourceUrl');
-        const modalTierBadge = document.getElementById('modalTierBadge');
-        const modalSeriesBadge = document.getElementById('modalSeriesBadge');
-        const modalSummary = document.getElementById('modalSummary');
-        const modalStatsGrid = document.getElementById('modalStatsGrid');
-        const modalAbilities = document.getElementById('modalAbilities');
-        const modalEquipment = document.getElementById('modalEquipment');
-        const modalWeaknesses = document.getElementById('modalWeaknesses');
-        const modalNotes = document.getElementById('modalNotes');
-        const toggleJsonBtn = document.getElementById('toggleJsonBtn');
-        const jsonContainer = document.getElementById('jsonContainer');
-        const modalJson = document.getElementById('modalJson');
-        const copyJsonBtn = document.getElementById('copyJsonBtn');
+            if (index !== -1 && index + 1 < ladder.length) {
+                return ladder[index + 1];
+            }
 
-        // Item Modal DOM
-        const itemModal = document.getElementById('itemModal');
-        const closeItemModalBtn = document.getElementById('closeItemModalBtn');
-        const itemModalImage = document.getElementById('itemModalImage');
-        const modalItemName = document.getElementById('modalItemName');
-        const modalItemAlias = document.getElementById('modalItemAlias');
-        const itemModalCategory = document.getElementById('itemModalCategory');
-        const modalItemDescription = document.getElementById('modalItemDescription');
-        const modalItemAbilities = document.getElementById('modalItemAbilities');
-        const modalItemWeaknesses = document.getElementById('modalItemWeaknesses');
-        const modalItemStats = document.getElementById('modalItemStats');
-        const modalItemSource = document.getElementById('modalItemSource');
+            return `${cleanVal} (+1 Tier Boost)`;
+        }
 
-        // GitHub Status
-        const fetchGithubBtn = document.getElementById('fetchGithubBtn');
-        const syncText = document.getElementById('syncText');
-        const syncDot = document.getElementById('syncDot');
-
-        // Slugify helper for matching item names
         function slugify(text) {
             if (!text) return '';
             return text.toString().toLowerCase()
-                .replace(/\s+/g, '-')           // Replace spaces with -
-                .replace(/[^\w\-]+/g, '')       // Remove non-word chars
-                .replace(/\-\-+/g, '-')         // Replace multiple - with single -
-                .replace(/^-+/, '')             // Trim - from start
-                .replace(/-+$/, '');            // Trim - from end
+                .replace(/\s+/g, '-')
+                .replace(/[^\w\-]+/g, '')
+                .replace(/\-\-+/g, '-')
+                .replace(/^-+/, '')
+                .replace(/-+$/, '');
         }
 
-        // Find matching item record from item database
         function findItemByEquipmentName(equipName) {
             if (!equipName) return null;
             const targetSlug = slugify(equipName);
@@ -970,16 +812,16 @@
 
                 return itemIdSlug === targetSlug || 
                        itemNameSlug === targetSlug || 
+                       itemLowerName === lowerName ||
                        itemLowerName.includes(lowerName) || 
                        lowerName.includes(itemLowerName) ||
                        (itemLowerAlias && itemLowerAlias.includes(lowerName));
             }) || null;
         }
 
-        // Tier Color Class Mapper
         function getTierBadgeClass(tier) {
-            if (!tier) return 'bg-slate-700 text-slate-200';
-            const t = tier.toUpperCase();
+            if (!tier) return 'bg-slate-800 text-slate-300 border-slate-600';
+            const t = String(tier).toUpperCase();
             if (t.startsWith('0')) return 'bg-gradient-to-r from-red-600 to-red-950 text-white border-red-500';
             if (t.startsWith('1')) return 'bg-gradient-to-r from-amber-500 to-yellow-600 text-slate-950 border-yellow-300 font-extrabold';
             if (t.startsWith('2')) return 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white border-purple-400';
@@ -993,15 +835,97 @@
             return 'bg-slate-800 text-slate-300 border-slate-600';
         }
 
-        // Initialize Application
-        function initApp() {
-            populateFilterOptions();
-            applyFiltersAndRender();
-            setupEventListeners();
-            totalItemsCount.textContent = itemDatabase.length;
+        function resolveImageUrl(url, fallbackText) {
+            if (!url) return `https://placehold.co/400x400/1e293b/94a3b8?text=${encodeURIComponent(fallbackText || 'VS Battle')}`;
+            if (url.startsWith('http://') || url.startsWith('https://')) return url;
+            return `https://raw.githubusercontent.com/crunchycodes/VS-Battle/main/${url}`;
         }
 
-        // Populate Dropdowns Dynamically from Database
+        function escapeHtml(str) {
+            if (typeof str !== 'string') return str || '';
+            return str.replace(/[&<>"']/g, match => {
+                const mask = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
+                return mask[match];
+            });
+        }
+
+        let characterGrid, emptyState, searchInput, clearSearchBtn, seriesFilter, tierFilter, genderFilter, 
+            sortBySelect, perPageSelect, activeFilterCount, filterChips, resetFiltersBtn, emptyResetBtn, 
+            totalItemsCount, showingStart, showingEnd, totalCharacters, prevPageBtn, nextPageBtn, 
+            pageNumbers, viewGridBtn, viewCompactBtn, characterModal, closeModalBtn, modalBanner, 
+            modalPortrait, modalName, modalAlias, modalGender, modalAge, modalClassification, 
+            modalSourceUrl, modalTierBadge, modalSeriesBadge, modalSummary, modalStatsGrid, modalAbilities, 
+            modalEquipment, modalWeaknesses, modalNotes, toggleJsonBtn, jsonContainer, modalJson, copyJsonBtn, 
+            itemModal, closeItemModalBtn, itemModalImage, modalItemName, modalItemAlias, itemModalCategory, 
+            modalItemDescription, modalItemAbilities, modalItemWeaknesses, modalItemStats, modalItemSource, 
+            fetchGithubBtn, syncText, syncDot;
+
+        function initDOMElements() {
+            characterGrid = document.getElementById('characterGrid');
+            emptyState = document.getElementById('emptyState');
+            searchInput = document.getElementById('searchInput');
+            clearSearchBtn = document.getElementById('clearSearchBtn');
+            seriesFilter = document.getElementById('seriesFilter');
+            tierFilter = document.getElementById('tierFilter');
+            genderFilter = document.getElementById('genderFilter');
+            sortBySelect = document.getElementById('sortBySelect');
+            perPageSelect = document.getElementById('perPageSelect');
+            activeFilterCount = document.getElementById('activeFilterCount');
+            filterChips = document.getElementById('filterChips');
+            resetFiltersBtn = document.getElementById('resetFiltersBtn');
+            emptyResetBtn = document.getElementById('emptyResetBtn');
+            totalItemsCount = document.getElementById('totalItemsCount');
+
+            showingStart = document.getElementById('showingStart');
+            showingEnd = document.getElementById('showingEnd');
+            totalCharacters = document.getElementById('totalCharacters');
+            prevPageBtn = document.getElementById('prevPageBtn');
+            nextPageBtn = document.getElementById('nextPageBtn');
+            pageNumbers = document.getElementById('pageNumbers');
+
+            viewGridBtn = document.getElementById('viewGridBtn');
+            viewCompactBtn = document.getElementById('viewCompactBtn');
+
+            characterModal = document.getElementById('characterModal');
+            closeModalBtn = document.getElementById('closeModalBtn');
+            modalBanner = document.getElementById('modalBanner');
+            modalPortrait = document.getElementById('modalPortrait');
+            modalName = document.getElementById('modalName');
+            modalAlias = document.getElementById('modalAlias');
+            modalGender = document.getElementById('modalGender');
+            modalAge = document.getElementById('modalAge');
+            modalClassification = document.getElementById('modalClassification');
+            modalSourceUrl = document.getElementById('modalSourceUrl');
+            modalTierBadge = document.getElementById('modalTierBadge');
+            modalSeriesBadge = document.getElementById('modalSeriesBadge');
+            modalSummary = document.getElementById('modalSummary');
+            modalStatsGrid = document.getElementById('modalStatsGrid');
+            modalAbilities = document.getElementById('modalAbilities');
+            modalEquipment = document.getElementById('modalEquipment');
+            modalWeaknesses = document.getElementById('modalWeaknesses');
+            modalNotes = document.getElementById('modalNotes');
+            toggleJsonBtn = document.getElementById('toggleJsonBtn');
+            jsonContainer = document.getElementById('jsonContainer');
+            modalJson = document.getElementById('modalJson');
+            copyJsonBtn = document.getElementById('copyJsonBtn');
+
+            itemModal = document.getElementById('itemModal');
+            closeItemModalBtn = document.getElementById('closeItemModalBtn');
+            itemModalImage = document.getElementById('itemModalImage');
+            modalItemName = document.getElementById('modalItemName');
+            modalItemAlias = document.getElementById('modalItemAlias');
+            itemModalCategory = document.getElementById('itemModalCategory');
+            modalItemDescription = document.getElementById('modalItemDescription');
+            modalItemAbilities = document.getElementById('modalItemAbilities');
+            modalItemWeaknesses = document.getElementById('modalItemWeaknesses');
+            modalItemStats = document.getElementById('modalItemStats');
+            modalItemSource = document.getElementById('modalItemSource');
+
+            fetchGithubBtn = document.getElementById('fetchGithubBtn');
+            syncText = document.getElementById('syncText');
+            syncDot = document.getElementById('syncDot');
+        }
+
         function populateFilterOptions() {
             const seriesSet = new Set(characterDatabase.map(c => c.series).filter(Boolean));
             seriesFilter.innerHTML = '<option value="">All Series</option>' + 
@@ -1019,7 +943,6 @@
         function applyFiltersAndRender() {
             let result = [...characterDatabase];
 
-            // Search filter (including equipment & item abilities)
             if (filterState.search) {
                 const query = filterState.search.toLowerCase();
                 result = result.filter(c => 
@@ -1058,7 +981,7 @@
                 characterGrid.innerHTML = '';
                 characterGrid.classList.add('hidden');
                 emptyState.classList.remove('hidden');
-                updatePaginationControls(0, 0, 0);
+                updatePaginationControls(0);
                 return;
             }
 
@@ -1086,7 +1009,7 @@
                 characterGrid.innerHTML = pageItems.map(char => createCharacterCompactHtml(char)).join('');
             }
 
-            updatePaginationControls(totalPages, startIdx, endIdx);
+            updatePaginationControls(totalPages);
         }
 
         function createCharacterCardHtml(char) {
@@ -1163,18 +1086,15 @@
             `;
         }
 
-        // Open Full Character Profile Modal (Matches equipment & injects item attributes with symbols)
         function openCharacterModal(characterId) {
             const char = characterDatabase.find(c => c.id === characterId);
             if (!char) return;
 
-            // Header Banner & Portrait
             const bannerUrl = resolveImageUrl(char.banner, char.series || 'VS Battle');
             modalBanner.src = bannerUrl;
             document.getElementById('modalBannerBg').src = bannerUrl;
             modalPortrait.src = resolveImageUrl(char.portrait, char.name);
 
-            // Metadata
             modalName.textContent = char.name || 'Unknown Character';
             modalAlias.querySelector('span').textContent = char.alias || 'None';
             modalGender.querySelector('span').textContent = char.gender || 'Unknown';
@@ -1193,16 +1113,10 @@
             modalSeriesBadge.textContent = char.series || 'Series N/A';
             modalSummary.textContent = char.summary || 'No overview summary available for this character.';
 
-            // Render Equipment & collect item-granted abilities/weaknesses/stats
             const { itemAbilities, itemWeaknesses, itemStatBoosts } = renderEquipmentSection(char.equipment);
 
-            // Merge Innate Abilities + Equipment Abilities (marked with equipment symbol 🗡️)
             renderCharacterAbilities(char.abilities || [], itemAbilities);
-
-            // Merge Innate Weaknesses + Equipment Weaknesses (marked with equipment symbol 🗡️)
             renderCharacterWeaknesses(char.weaknesses || [], itemWeaknesses);
-
-            // Render Stats Matrix with equipment attribute boost indicators
             renderStatsGrid(char.stats, itemStatBoosts);
 
             modalNotes.textContent = char.notes || 'None.';
@@ -1213,7 +1127,6 @@
             document.body.style.overflow = 'hidden';
         }
 
-        // Render Equipment Badges with live Item JSON matching & Populating Actual Item Name
         function renderEquipmentSection(equipmentList) {
             const itemAbilities = [];
             const itemWeaknesses = [];
@@ -1228,27 +1141,26 @@
                 const matchedItem = findItemByEquipmentName(eqName);
 
                 if (matchedItem) {
-                    // Populate actual official item name from matched JSON
                     const displayName = matchedItem.name || eqName;
                     
-                    // Collect abilities granted by equipment
                     if (matchedItem.abilities && Array.isArray(matchedItem.abilities)) {
                         matchedItem.abilities.forEach(ab => {
                             itemAbilities.push({ ability: ab, itemName: displayName, itemId: matchedItem.id });
                         });
                     }
 
-                    // Collect weaknesses added by equipment
                     if (matchedItem.weaknesses && Array.isArray(matchedItem.weaknesses)) {
                         matchedItem.weaknesses.forEach(wk => {
                             itemWeaknesses.push({ weakness: wk, itemName: displayName, itemId: matchedItem.id });
                         });
                     }
 
-                    // Collect stat boosts added by equipment
-                    if (matchedItem.stats && typeof matchedItem.stats === 'object') {
-                        itemStatBoosts.push({ stats: matchedItem.stats, itemName: displayName, itemId: matchedItem.id });
-                    }
+                    itemStatBoosts.push({ 
+                        stats: matchedItem.stats || null, 
+                        attributes: matchedItem.attributes || null,
+                        itemName: displayName, 
+                        itemId: matchedItem.id 
+                    });
 
                     return `
                         <button onclick="openItemModal('${escapeHtml(matchedItem.id)}')" 
@@ -1271,11 +1183,9 @@
             return { itemAbilities, itemWeaknesses, itemStatBoosts };
         }
 
-        // Render merged abilities with equipment symbol 🗡️
         function renderCharacterAbilities(innateAbilities, itemAbilities) {
             let html = '';
 
-            // Innate abilities
             innateAbilities.forEach(ab => {
                 html += `
                     <span class="px-2.5 py-1 rounded-lg text-xs bg-slate-800 text-slate-200 border border-slate-700/80">
@@ -1283,7 +1193,6 @@
                     </span>`;
             });
 
-            // Item-granted abilities with Equipment symbol
             itemAbilities.forEach(itemAb => {
                 html += `
                     <button onclick="openItemModal('${escapeHtml(itemAb.itemId)}')"
@@ -1297,7 +1206,6 @@
             modalAbilities.innerHTML = html || `<span class="text-xs text-slate-500 italic">None specified</span>`;
         }
 
-        // Render merged weaknesses with equipment symbol 🗡️
         function renderCharacterWeaknesses(innateWeaknesses, itemWeaknesses) {
             let html = '';
 
@@ -1323,7 +1231,6 @@
             modalWeaknesses.innerHTML = html || `<p class="text-slate-500 italic">None notable</p>`;
         }
 
-        // Render stats matrix including equipment attributes & boosted stats
         function renderStatsGrid(stats, itemStatBoosts) {
             if (!stats) {
                 modalStatsGrid.innerHTML = `<p class="text-slate-500 italic col-span-2">No detailed statistics provided.</p>`;
@@ -1354,26 +1261,48 @@
                 let hasPlusAttribute = false;
                 let plusItemInfo = null;
 
-                // Check if any equipped item modifies or provides attribute+ info for this stat
                 itemStatBoosts.forEach(boostObj => {
-                    if (boostObj.stats) {
+                    if (Array.isArray(boostObj.attributes)) {
+                        boostObj.attributes.forEach(attr => {
+                            if (typeof attr === 'string' && attr.endsWith('+')) {
+                                const attrBase = attr.slice(0, -1).trim().toLowerCase();
+                                if (attrBase === field.key.toLowerCase()) {
+                                    hasPlusAttribute = true;
+                                    plusItemInfo = {
+                                        attrName: attr,
+                                        itemName: boostObj.itemName,
+                                        rawVal: '+1 Tier Boost'
+                                    };
+                                }
+                            }
+                        });
+                    }
+
+                    if (boostObj.stats && typeof boostObj.stats === 'object') {
                         const plusKey = `${field.key}+`;
-                        // Direct boost value or + attribute boost
-                        if (boostObj.stats[plusKey] !== undefined) {
+                        const matchingKey = Object.keys(boostObj.stats).find(
+                            k => k.toLowerCase() === plusKey.toLowerCase()
+                        );
+
+                        if (matchingKey) {
                             hasPlusAttribute = true;
                             plusItemInfo = {
-                                attrName: plusKey,
+                                attrName: matchingKey,
                                 itemName: boostObj.itemName,
-                                rawVal: boostObj.stats[plusKey]
+                                rawVal: boostObj.stats[matchingKey]
                             };
-                        } else if (boostObj.stats[field.key]) {
-                            hasItemBoost = true;
-                            boostDetails.push(`🗡️ ${boostObj.itemName}: ${boostObj.stats[field.key]}`);
+                        } else {
+                            const exactStatKey = Object.keys(boostObj.stats).find(
+                                k => k.toLowerCase() === field.key.toLowerCase()
+                            );
+                            if (exactStatKey) {
+                                hasItemBoost = true;
+                                boostDetails.push(`🗡️️ ${boostObj.itemName}: ${boostObj.stats[exactStatKey]}`);
+                            }
                         }
                     }
                 });
 
-                // Calculate boosted next-tier value if attribute+ is active
                 let upgradedVal = null;
                 if (hasPlusAttribute) {
                     upgradedVal = getUpgradedTier(val, field.key);
@@ -1420,29 +1349,26 @@
             }).join('');
         }
 
-        // Open Item Details Modal when equipment is clicked
         function openItemModal(itemId) {
             const item = itemDatabase.find(i => i.id === itemId || slugify(i.name) === itemId);
             if (!item) return;
 
             modalItemName.textContent = item.name || 'Equipment Item';
-            modalItemAlias.textContent = item.alias ? `Alias: ${item.alias}` : 'Standard Equipment';
-            itemModalCategory.textContent = item.category || 'EQUIPMENT / ITEM';
-            modalItemDescription.textContent = item.description || 'No detailed description available.';
+            modalItemAlias.textContent = item.alias ? `Alias: ${item.alias}` : (item.type ? `Type: ${item.type}` : 'Standard Equipment');
+            itemModalCategory.textContent = item.category || (item.type ? `EQUIPMENT / ${item.type.toUpperCase()}` : 'EQUIPMENT / ITEM');
+            modalItemDescription.textContent = item.summary || item.description || 'No detailed description available.';
             itemModalImage.src = resolveImageUrl(item.portrait, item.name);
 
-            // Granted Abilities
             if (item.abilities && item.abilities.length > 0) {
                 modalItemAbilities.innerHTML = item.abilities.map(ab => 
                     `<span class="px-2.5 py-1 rounded-lg text-xs bg-amber-500/10 text-amber-300 border border-amber-500/30 flex items-center gap-1">
-                        <span class="font-bold">🗡️</span> ${escapeHtml(ab)}
+                        <span class="font-bold">🗡️️</span> ${escapeHtml(ab)}
                     </span>`
                 ).join('');
             } else {
                 modalItemAbilities.innerHTML = `<span class="text-xs text-slate-500 italic">None specified</span>`;
             }
 
-            // Granted Weaknesses / Drawbacks
             if (item.weaknesses && item.weaknesses.length > 0) {
                 modalItemWeaknesses.innerHTML = item.weaknesses.map(wk => 
                     `<p class="flex items-start gap-1.5"><i class="fa-solid fa-angle-right text-rose-400 mt-0.5"></i> <span>${escapeHtml(wk)}</span></p>`
@@ -1451,14 +1377,41 @@
                 modalItemWeaknesses.innerHTML = `<p class="text-slate-500 italic">No specific drawbacks noted.</p>`;
             }
 
-            // Stat Boosts Matrix
-            if (item.stats && Object.keys(item.stats).length > 0) {
-                modalItemStats.innerHTML = Object.entries(item.stats).map(([key, val]) => `
-                    <div class="bg-slate-950 p-2 rounded-lg border border-slate-800">
-                        <span class="text-[10px] text-amber-400 uppercase font-semibold block">${escapeHtml(key)}</span>
-                        <span class="text-xs text-slate-200">${escapeHtml(val)}</span>
-                    </div>
-                `).join('');
+            const hasAttributes = Array.isArray(item.attributes) && item.attributes.length > 0;
+            const hasStats = item.stats && typeof item.stats === 'object' && Object.keys(item.stats).length > 0;
+
+            if (hasAttributes || hasStats) {
+                let modsHtml = '';
+                
+                if (hasAttributes) {
+                    modsHtml += `<div class="col-span-full flex flex-wrap gap-2 mb-2">`;
+                    item.attributes.forEach(attr => {
+                        const isBoost = typeof attr === 'string' && attr.endsWith('+');
+                        if (isBoost) {
+                            modsHtml += `
+                                <span class="px-2.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 shadow-sm flex items-center gap-1.5 animate-pulse">
+                                    <span>⚡</span> ${escapeHtml(attr)} <span class="text-[10px] bg-emerald-500/30 px-1 py-0.5 rounded text-emerald-200 font-mono">(+1 Tier)</span>
+                                </span>`;
+                        } else {
+                            modsHtml += `
+                                <span class="px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-slate-800 text-slate-200 border border-slate-700/80 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-tag text-amber-400 text-[10px]"></i> ${escapeHtml(attr)}
+                                </span>`;
+                        }
+                    });
+                    modsHtml += `</div>`;
+                }
+
+                if (hasStats) {
+                    modsHtml += Object.entries(item.stats).map(([key, val]) => `
+                        <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800">
+                            <span class="text-[10px] text-amber-400 uppercase font-semibold block">${escapeHtml(key)}</span>
+                            <span class="text-xs text-slate-200 font-medium">${escapeHtml(val)}</span>
+                        </div>
+                    `).join('');
+                }
+
+                modalItemStats.innerHTML = modsHtml;
             } else {
                 modalItemStats.innerHTML = `<p class="text-slate-500 italic col-span-2">No direct stat modifiers listed.</p>`;
             }
@@ -1473,7 +1426,6 @@
             itemModal.classList.remove('hidden');
         }
 
-        // Fetch Live JSON Files from crunchycodes/VS-Battle Repository (chars/*.json and items/*.json)
         async function fetchGitHubRoster() {
             try {
                 fetchGithubBtn.disabled = true;
@@ -1488,19 +1440,16 @@
 
                 const data = await response.json();
 
-                // 1. Filter Character JSON files under chars/
                 const charFiles = data.tree.filter(item => 
                     item.path.startsWith('chars/') && item.path.endsWith('.json')
                 );
 
-                // 2. Filter Item JSON files under items/
                 const itemFiles = data.tree.filter(item => 
                     item.path.startsWith('items/') && item.path.endsWith('.json')
                 );
 
                 syncText.textContent = `Syncing ${charFiles.length} chars & ${itemFiles.length} items...`;
 
-                // Fetch Items JSON contents
                 if (itemFiles.length > 0) {
                     const fetchedItems = [];
                     for (let file of itemFiles) {
@@ -1525,7 +1474,6 @@
                     }
                 }
 
-                // Fetch stat-tiers.json hierarchy
                 try {
                     const tiersRes = await fetch('https://raw.githubusercontent.com/crunchycodes/VS-Battle/main/abilities/stat-tiers.json');
                     if (tiersRes.ok) {
@@ -1535,7 +1483,6 @@
                     console.warn("Could not load live stat-tiers.json, utilizing default tier fallback hierarchy.");
                 }
 
-                // Fetch Characters JSON contents
                 if (charFiles.length > 0) {
                     const fetchedChars = [];
                     const batchSize = 10;
@@ -1585,7 +1532,6 @@
         }
 
         function setupEventListeners() {
-            // Search Input
             searchInput.addEventListener('input', (e) => {
                 filterState.search = e.target.value.trim();
                 clearSearchBtn.classList.toggle('hidden', !filterState.search);
@@ -1599,7 +1545,6 @@
                 applyFiltersAndRender();
             });
 
-            // Filters
             seriesFilter.addEventListener('change', (e) => { filterState.series = e.target.value; applyFiltersAndRender(); });
             tierFilter.addEventListener('change', (e) => { filterState.tier = e.target.value; applyFiltersAndRender(); });
             genderFilter.addEventListener('change', (e) => { filterState.gender = e.target.value; applyFiltersAndRender(); });
@@ -1621,7 +1566,6 @@
             resetFiltersBtn.addEventListener('click', resetAll);
             emptyResetBtn.addEventListener('click', resetAll);
 
-            // Pagination
             prevPageBtn.addEventListener('click', () => {
                 if (currentPage > 1) { currentPage--; renderRosterPage(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
             });
@@ -1631,7 +1575,6 @@
                 if (currentPage < totalPages) { currentPage++; renderRosterPage(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
             });
 
-            // View Toggles
             viewGridBtn.addEventListener('click', () => {
                 currentView = 'grid';
                 viewGridBtn.className = "px-2.5 py-1 rounded text-blue-400 bg-slate-800 transition";
@@ -1648,7 +1591,6 @@
 
             fetchGithubBtn.addEventListener('click', fetchGitHubRoster);
 
-            // Modals Close
             closeModalBtn.addEventListener('click', closeModal);
             closeItemModalBtn.addEventListener('click', closeItemModal);
 
@@ -1662,20 +1604,26 @@
                 }
             });
 
-            // Raw JSON Viewer
             toggleJsonBtn.addEventListener('click', () => {
                 const isHidden = jsonContainer.classList.contains('hidden');
                 jsonContainer.classList.toggle('hidden');
                 document.getElementById('jsonChevron').className = isHidden ? 'fa-solid fa-chevron-up text-[10px]' : 'fa-solid fa-chevron-down text-[10px]';
             });
 
-            // Copy JSON
             copyJsonBtn.addEventListener('click', () => {
                 const text = modalJson.textContent;
-                navigator.clipboard?.writeText(text).then(() => {
-                    copyJsonBtn.innerHTML = '<i class="fa-solid fa-check text-emerald-400 mr-1"></i> Copied!';
-                    setTimeout(() => { copyJsonBtn.innerHTML = '<i class="fa-regular fa-copy mr-1"></i> Copy JSON'; }, 2000);
-                });
+                if (navigator.clipboard && window.isSecureContext) {
+                    navigator.clipboard.writeText(text);
+                } else {
+                    const textArea = document.createElement("textarea");
+                    textArea.value = text;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                }
+                copyJsonBtn.innerHTML = '<i class="fa-solid fa-check text-emerald-400 mr-1"></i> Copied!';
+                setTimeout(() => { copyJsonBtn.innerHTML = '<i class="fa-regular fa-copy mr-1"></i> Copy JSON'; }, 2000);
             });
         }
 
@@ -1686,20 +1634,6 @@
 
         function closeItemModal() {
             itemModal.classList.add('hidden');
-        }
-
-        function escapeHtml(str) {
-            if (typeof str !== 'string') return str || '';
-            return str.replace(/[&<>"']/g, match => {
-                const mask = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
-                return mask[match];
-            });
-        }
-
-        function resolveImageUrl(url, fallbackText) {
-            if (!url) return `https://placehold.co/400x400/1e293b/94a3b8?text=${encodeURIComponent(fallbackText || 'VS Battle')}`;
-            if (url.startsWith('http://') || url.startsWith('https://')) return url;
-            return `https://raw.githubusercontent.com/crunchycodes/VS-Battle/main/${url}`;
         }
 
         function updatePaginationControls(totalPages) {
@@ -1752,10 +1686,14 @@
             activeFilterCount.textContent = activeCount;
         }
 
-        window.onload = function() {
-            initApp();
+        window.addEventListener('DOMContentLoaded', () => {
+            initDOMElements();
+            populateFilterOptions();
+            applyFiltersAndRender();
+            setupEventListeners();
+            totalItemsCount.textContent = itemDatabase.length;
             fetchGitHubRoster();
-        };
+        });
     </script>
 </body>
 </html>
