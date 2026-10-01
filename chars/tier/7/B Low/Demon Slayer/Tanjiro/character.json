@@ -1,0 +1,67 @@
+{
+  "id": "tanjiro-post-hashira",
+  "name": "Tanjiro Kamado",
+  "variant": "Post-Hashira Training",
+  "alias": "Demon Slayer",
+  "series": "Demon Slayer: Kimetsu No Yaiba",
+  "tier": "Low 7-B",
+  "portrait": "chars/tier/9/A/Demon Slayer - Kimetsu No Yaiba/Tanjiro/4.webp",
+  "banner": "chars/tier/9/A/Demon Slayer - Kimetsu No Yaiba/Tanjiro/6.webp",
+  "sourceUrl": "https://vsbattles.fandom.com/wiki/Tanjiro_Kamado",
+  "gender": "Male",
+  "age": "16",
+  "classification": "Human; Demon Slayer; Hinoe",
+  "summary": "After completing the Hashira Training, Tanjiro reached a level of physical ability and swordsmanship comparable to the Hashira. His Demon Slayer Mark became permanently active, effectively becoming his new base state. During the Infinity Castle battle, he fought Akaza alongside Giyu Tomioka and eventually gained access to the Transparent World and Selfless State.",
+  "otherVariants": [
+    "tanjiro-post-demon-slayer-training",
+    "tanjiro-post-rehab",
+    "tanjiro-post-type-zero",
+    "tanjiro-sunrise-countdown",
+    "tanjiro-demon-form"
+  ],
+  "stats": {
+    "tier": "Low 7-B",
+    "attackPotency": "Low 7-B",
+    "durability": "Low 7-B",
+    "attackSpeed": "Sub-Relativistic",
+    "combatSpeed": "Sub-Relativistic",
+    "reactionSpeed": "Sub-Relativistic",
+    "perceptionSpeed": "Sub-Relativistic",
+    "travelSpeed": "Sub-Relativistic",
+    "flightSpeed": "Not applicable",
+    "liftingStrength": "Class K",
+    "strikingStrength": "Low 7-B",
+    "stamina": "Superhuman",
+    "range": "Extended Melee Range, Several Meters with Breathing Styles",
+    "intelligence": "Gifted; Genius combatant"
+  },
+  "abilities": [
+    "Superhuman Physical Characteristics",
+    "Enhanced Senses",
+    "Clairvoyance",
+    "Telepathy",
+    "Supernatural Willpower",
+    "Battle Spirit",
+    "Statistics Amplification",
+    "Accelerated Development",
+    "Stealth Mastery",
+    "Rage Power",
+    "Reactive Power Level",
+    "Water Breathing",
+    "Sun Breathing",
+    "Weapon Mastery",
+    "Shockwave Generation",
+    "Energy Projection",
+    "Demon Slayer Mark",
+    "Transparent World",
+    "Selfless State"
+  ],
+  "equipment": [
+    "nichirin-sword"
+  ],
+  "weaknesses": [
+    "Cannot lie convincingly",
+    "Demon Slayer Mark places a toll on his stamina"
+  ],
+  "notes": "Tanjiro's Post-Hashira Training key. His Demon Slayer Mark is permanently active and functions as his new base form. He can fight alongside Marked Giyu against Akaza and can access the Transparent World and Selfless State."
+}

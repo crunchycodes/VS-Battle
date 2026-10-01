@@ -1,0 +1,64 @@
+{
+  "id": "tanjiro-post-rehab",
+  "name": "Tanjiro Kamado",
+  "variant": "Post-Rehabilitation Training",
+  "alias": "Demon Slayer",
+  "series": "Demon Slayer: Kimetsu No Yaiba",
+  "tier": "8-C",
+  "portrait": "chars/tier/9/A/Demon Slayer - Kimetsu No Yaiba/Tanjiro/1.webp",
+  "banner": "chars/tier/9/A/Demon Slayer - Kimetsu No Yaiba/Tanjiro/3.webp",
+  "sourceUrl": "https://vsbattles.fandom.com/wiki/Tanjiro_Kamado",
+  "gender": "Male",
+  "age": "15",
+  "classification": "Human; Demon Slayer; Hinoe",
+  "summary": "After recovering at the Butterfly Mansion, Tanjiro completed intensive rehabilitation and learned Total Concentration: Constant. His physical abilities increased substantially, allowing him to fight stronger demons and eventually confront Enmu and Daki. He further developed his Hinokami Kagura and learned to combine it with Water Breathing.",
+  "otherVariants": [
+    "tanjiro-post-demon-slayer-training",
+    "tanjiro-post-type-zero",
+    "tanjiro-post-hashira",
+    "tanjiro-sunrise-countdown",
+    "tanjiro-demon-form"
+  ],
+  "stats": {
+    "tier": "8-C",
+    "attackPotency": "8-C",
+    "durability": "8-C",
+    "attackSpeed": "Massively Hypersonic",
+    "combatSpeed": "Massively Hypersonic",
+    "reactionSpeed": "Massively Hypersonic",
+    "perceptionSpeed": "Massively Hypersonic",
+    "travelSpeed": "Massively Hypersonic",
+    "flightSpeed": "Not applicable",
+    "liftingStrength": "At least Class 25",
+    "strikingStrength": "8-C",
+    "stamina": "Superhuman",
+    "range": "Extended Melee Range, Several Meters with Breathing Styles",
+    "intelligence": "Gifted; Genius combatant"
+  },
+  "abilities": [
+    "Superhuman Physical Characteristics",
+    "Enhanced Senses",
+    "Clairvoyance",
+    "Telepathy",
+    "Supernatural Willpower",
+    "Battle Spirit",
+    "Statistics Amplification",
+    "Accelerated Development",
+    "Stealth Mastery",
+    "Rage Power",
+    "Reactive Power Level",
+    "Water Breathing",
+    "Hinokami Kagura",
+    "Weapon Mastery",
+    "Shockwave Generation"
+  ],
+  "equipment": [
+    "nichirin-sword"
+  ],
+  "weaknesses": [
+    "Cannot lie convincingly",
+    "Hinokami Kagura rapidly exhausts him",
+    "Using Water Breathing immediately before Hinokami Kagura places severe strain on his body"
+  ],
+  "notes": "Tanjiro's Post-Rehabilitation Training key. He is at least 8-C normally, with Constant Flux increasing his power, Hinokami Kagura reaching Low 7-C, and the Demon Slayer Mark reaching 7-C."
+}

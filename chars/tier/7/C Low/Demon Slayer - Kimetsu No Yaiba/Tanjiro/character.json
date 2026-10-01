@@ -1,0 +1,63 @@
+{
+  "id": "tanjiro-post-type-zero",
+  "name": "Tanjiro Kamado",
+  "variant": "Post-Type Zero Training",
+  "alias": "Demon Slayer",
+  "series": "Demon Slayer: Kimetsu No Yaiba",
+  "tier": "Low 7-C",
+  "portrait": "chars/tier/9/A/Demon Slayer - Kimetsu No Yaiba/Tanjiro/4.webp",
+  "banner": "chars/tier/9/A/Demon Slayer - Kimetsu No Yaiba/Tanjiro/5.webp",
+  "sourceUrl": "https://vsbattles.fandom.com/wiki/Tanjiro_Kamado",
+  "gender": "Male",
+  "age": "15",
+  "classification": "Human; Demon Slayer; Hinoe",
+  "summary": "Following his training with the Yoriichi Type Zero training doll, Tanjiro's physical abilities and swordsmanship improved dramatically. He surpassed his previous limits and became capable of fighting Hantengu's powerful emotion clones. His combat adaptability and ability to grow during battle continued to develop, while the Demon Slayer Mark further amplified his strength and speed.",
+  "otherVariants": [
+    "tanjiro-post-demon-slayer-training",
+    "tanjiro-post-rehab",
+    "tanjiro-post-hashira",
+    "tanjiro-sunrise-countdown",
+    "tanjiro-demon-form"
+  ],
+  "stats": {
+    "tier": "Low 7-C",
+    "attackPotency": "Low 7-C",
+    "durability": "Low 7-C",
+    "attackSpeed": "Massively Hypersonic",
+    "combatSpeed": "Massively Hypersonic",
+    "reactionSpeed": "Massively Hypersonic",
+    "perceptionSpeed": "Massively Hypersonic",
+    "travelSpeed": "Massively Hypersonic",
+    "flightSpeed": "Not applicable",
+    "liftingStrength": "At least Class 25",
+    "strikingStrength": "Low 7-C",
+    "stamina": "Superhuman",
+    "range": "Extended Melee Range, Several Meters with Breathing Styles",
+    "intelligence": "Gifted; Genius combatant"
+  },
+  "abilities": [
+    "Superhuman Physical Characteristics",
+    "Enhanced Senses",
+    "Clairvoyance",
+    "Telepathy",
+    "Supernatural Willpower",
+    "Battle Spirit",
+    "Statistics Amplification",
+    "Accelerated Development",
+    "Stealth Mastery",
+    "Rage Power",
+    "Reactive Power Level",
+    "Water Breathing",
+    "Hinokami Kagura",
+    "Weapon Mastery",
+    "Shockwave Generation",
+    "Energy Projection"
+  ],
+  "equipment": [
+    "nichirin-sword"
+  ],
+  "weaknesses": [
+    "Cannot lie convincingly"
+  ],
+  "notes": "Tanjiro's Post-Type Zero Training key. His base form reaches Low 7-C, with the Demon Slayer Mark providing a further increase to his strength and speed. He demonstrated significant growth while fighting Hantengu."
+}

@@ -1,0 +1,68 @@
+{
+  "id": "tanjiro-sunrise-countdown",
+  "name": "Tanjiro Kamado",
+  "variant": "Sunrise Countdown",
+  "alias": "Demon Slayer",
+  "series": "Demon Slayer: Kimetsu No Yaiba",
+  "tier": "Low 7-B",
+  "portrait": "chars/tier/7/B/Demon Slayer - Kimetsu No Yaiba/Tanjiro/1.webp",
+  "banner": "chars/tier/7/B/Demon Slayer - Kimetsu No Yaiba/Tanjiro/2.webp",
+  "sourceUrl": "https://vsbattles.fandom.com/wiki/Tanjiro_Kamado",
+  "gender": "Male",
+  "age": "16",
+  "classification": "Human; Demon Slayer; Hinoe",
+  "summary": "During the final battle against Muzan Kibutsuji, Tanjiro fought while severely injured and exhausted. Despite his condition, he continued fighting Muzan for an extended period and contributed directly to the battle until sunrise. He was able to keep pace with the heavily weakened Muzan and continued using his Sun Breathing techniques while relying on his exceptional stamina and determination.",
+  "otherVariants": [
+    "tanjiro-post-demon-slayer-training",
+    "tanjiro-post-rehab",
+    "tanjiro-post-type-zero",
+    "tanjiro-post-hashira",
+    "tanjiro-demon-form"
+  ],
+  "stats": {
+    "tier": "Low 7-B",
+    "attackPotency": "Low 7-B",
+    "durability": "Low 7-B",
+    "attackSpeed": "Sub-Relativistic",
+    "combatSpeed": "Sub-Relativistic",
+    "reactionSpeed": "Sub-Relativistic",
+    "perceptionSpeed": "Sub-Relativistic",
+    "travelSpeed": "Sub-Relativistic",
+    "flightSpeed": "Not applicable",
+    "liftingStrength": "Class K",
+    "strikingStrength": "Low 7-B",
+    "stamina": "Superhuman",
+    "range": "Extended Melee Range, Several Meters with Sun Breathing; Tens of Meters with Shockwaves and Tendrils",
+    "intelligence": "Gifted; Genius combatant"
+  },
+  "abilities": [
+    "Superhuman Physical Characteristics",
+    "Enhanced Senses",
+    "Clairvoyance",
+    "Telepathy",
+    "Supernatural Willpower",
+    "Battle Spirit",
+    "Statistics Amplification",
+    "Accelerated Development",
+    "Stealth Mastery",
+    "Rage Power",
+    "Reactive Power Level",
+    "Water Breathing",
+    "Sun Breathing",
+    "Weapon Mastery",
+    "Shockwave Generation",
+    "Energy Projection",
+    "Demon Slayer Mark",
+    "Transparent World",
+    "Selfless State",
+    "Bright Red Nichirin Sword"
+  ],
+  "equipment": [
+    "nichirin-sword"
+  ],
+  "weaknesses": [
+    "Cannot lie convincingly",
+    "Severe injuries and exhaustion greatly limit his physical condition"
+  ],
+  "notes": "Tanjiro's Sunrise Countdown key. He fought 4th Drug Muzan alongside other Demon Slayers and continued fighting for approximately one hour before sunrise. He was able to keep pace with Muzan and ultimately contributed to the final attack that defeated him."
+}

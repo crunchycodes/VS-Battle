@@ -2,7 +2,7 @@
   "id": "red-nichirin-chained-spiked-flail-and-axe",
   "name": "Red Nichirin Chained Spiked Flail and Axe",
   "series": "Demon Slayer: Kimetsu No Yaiba",
-  "portrait": "chars/tier/9/A/Demon Slayer - Kimetsu No Yaiba/Sabito/1.webp",
+  "portrait": "https://nextleveluk.net/cdn/shop/files/demon-slayer-sword-gyomei-himejima-nichirin-chained-spiked-flail-and-axe-foam-cosplay-prop-7978126_360x.jpg",
   "sourceUrl": "https://vsbattles.fandom.com/wiki/Kyogai",
   "type": "Blade, Blunt",
   "summary": "A chained spiked flail and axe made from sunlight-absorbing metals that disintegrate demons upon decapitation or equivalent slicing",
@@ -16,8 +16,6 @@
     "Tier+",
     "attackPotency+"
   ],
-  "weaknesses": [
-    "unknown"
-  ],
+  "weaknesses": [],
   "notes": "unknown"
 }

@@ -1,0 +1,62 @@
+{
+  "id": "tanjiro-post-demon-slayer-training",
+  "name": "Tanjiro Kamado",
+  "variant": "Post-Demon Slayer Training",
+  "alias": "Demon Slayer",
+  "series": "Demon Slayer: Kimetsu No Yaiba",
+  "tier": "9-A",
+  "portrait": "chars/tier/9/A/Demon Slayer - Kimetsu No Yaiba/Tanjiro/2.webp",
+  "banner": "chars/tier/9/A/Demon Slayer - Kimetsu No Yaiba/Tanjiro/3.webp",
+  "sourceUrl": "https://vsbattles.fandom.com/wiki/Tanjiro_Kamado",
+  "gender": "Male",
+  "age": "15",
+  "classification": "Human; Demon Slayer; Hinoe",
+  "summary": "Tanjiro Kamado is the main protagonist of Demon Slayer: Kimetsu No Yaiba. After his family was slaughtered by Muzan Kibutsuji and his sister Nezuko was turned into a demon, Tanjiro began training under Sakonji Urokodaki to become a Demon Slayer and find a way to restore Nezuko's humanity. Following his initial training, Tanjiro became a skilled swordsman capable of using Water Breathing and later began awakening the Hinokami Kagura inherited from his father.",
+  "otherVariants": [
+    "tanjiro-post-rehab",
+    "tanjiro-post-type-zero",
+    "tanjiro-post-hashira",
+    "tanjiro-sunrise-countdown",
+    "tanjiro-demon-form"
+  ],
+  "stats": {
+    "tier": "9-A",
+    "attackPotency": "9-A",
+    "durability": "9-A",
+    "attackSpeed": "Supersonic+",
+    "combatSpeed": "Supersonic+",
+    "reactionSpeed": "Supersonic+",
+    "perceptionSpeed": "Supersonic+",
+    "travelSpeed": "Supersonic+",
+    "flightSpeed": "Not applicable",
+    "liftingStrength": "Class 5",
+    "strikingStrength": "9-A",
+    "stamina": "Superhuman",
+    "range": "Extended Melee Range, Several Meters with Total Concentration Breathing and Water Breathing",
+    "intelligence": "Gifted; Genius combatant"
+  },
+  "abilities": [
+    "Superhuman Physical Characteristics",
+    "Enhanced Senses",
+    "Clairvoyance",
+    "Telepathy",
+    "Supernatural Willpower",
+    "Battle Spirit",
+    "Statistics Amplification",
+    "Accelerated Development",
+    "Stealth Mastery",
+    "Rage Power",
+    "Reactive Power Level",
+    "Water Breathing",
+    "Hinokami Kagura",
+    "Weapon Mastery"
+  ],
+  "equipment": [
+    "nichirin-sword"
+  ],
+  "weaknesses": [
+    "Cannot lie convincingly",
+    "Hinokami Kagura rapidly exhausts him"
+  ],
+  "notes": "Tanjiro's Post-Demon Slayer Training key. His normal physical abilities are 9-A, with Constant Flux providing additional power and Hinokami Kagura reaching 8-C."
+}
