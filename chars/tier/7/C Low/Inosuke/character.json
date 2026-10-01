@@ -1,0 +1,64 @@
+{
+  "id": "inosuke-post-rehab",
+  "name": "Inosuke Hashibira",
+  "variant": "Post-Hashira Training",
+  "alias": "Annoying Boar",
+  "series": "Demon Slayer: Kimetsu No Yaiba",
+  "tier": "Low 7-C",
+  "portrait": "chars/tier/7/C/Demon Slayer - Kimetsu No Yaiba/Inosuke Hashibira/1.webp",
+  "banner": "chars/tier/7/C/Demon Slayer - Kimetsu No Yaiba/Inosuke Hashibira/2.webp",
+  "sourceUrl": "https://vsbattles.fandom.com/wiki/Inosuke_Hashibira",
+  "gender": "Male",
+  "age": "15",
+  "classification": "Human; Demon Slayer; Hinoe",
+  "summary": "Inosuke Hashibira is a Demon Slayer in the Demon Slayer Corps and a traveling companion of Tanjiro Kamado. Raised by boars in the mountains, Inosuke developed an animalistic fighting style and extraordinary physical abilities. He created his own Beast Breathing style and fights with two chipped Nichirin swords. Despite his lack of common sense and tendency to rush into battle, Inosuke is an exceptionally skilled and adaptable combatant who rapidly develops through battle and training.",
+  "otherVariants": [
+    "inosuke-post-demon-slayer-training",
+    "inosuke-post-hashira"
+    ],
+  "stats": {
+    "tier": "Low 7-C",
+    "attackPotency": "Small Town level",
+    "durability": "Small Town level",
+    "attackSpeed": "Massively Hypersonic",
+    "combatSpeed": "Massively Hypersonic",
+    "reactionSpeed": "Massively Hypersonic",
+    "perceptionSpeed": "Massively Hypersonic",
+    "travelSpeed": "Massively Hypersonic",
+    "flightSpeed": "Not applicable",
+    "liftingStrength": "At least Class 25",
+    "strikingStrength": "Small Town level",
+    "stamina": "Superhuman",
+    "range": "Extended Melee Range, Several Meters with Breathing Techniques and Extending Bendy Slash",
+    "intelligence": "Above Average"
+  },
+  "abilities": [
+    "Superhuman Physical Characteristics",
+    "Enhanced Senses",
+    "Extrasensory Perception",
+    "Martial Arts",
+    "Acrobatics",
+    "Limited Elasticity",
+    "Low Regeneration",
+    "Battle Spirit",
+    "Weapon Mastery",
+    "Sunlight Absorption",
+    "Non-Physical Interaction",
+    "Statistics Amplification",
+    "Shockwave Generation",
+    "Air Manipulation",
+    "Accelerated Development",
+    "Body Control",
+    "Precognition",
+    "Instinctive Reaction",
+    "Reactive Power Level"
+  ],
+  "equipment": [
+    "dual-chipped-nichirin-swords",
+    "boar-head-mask"
+  ],
+  "weaknesses": [
+    "unknown"
+  ],
+  "notes": "Inosuke's Post-Hashira Training key is used. He developed Beast Breathing independently and possesses exceptional adaptability in battle. He can manipulate the position of his internal organs and temporarily dislocate his arm joints to extend his attack range. Optional equipment includes Yushiro's talisman, which can conceal his presence and allow him to perceive invisible beings and attacks."
+}
