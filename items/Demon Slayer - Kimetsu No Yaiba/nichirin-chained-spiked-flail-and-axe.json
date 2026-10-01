@@ -1,0 +1,21 @@
+{
+  "id": "nichirin-chained-spiked-flail-and-axe",
+  "name": "Nichirin Chained Spiked Flail and Axe",
+  "series": "Demon Slayer: Kimetsu No Yaiba",
+  "portrait": "chars/tier/9/A/Demon Slayer - Kimetsu No Yaiba/Sabito/1.webp",
+  "sourceUrl": "https://vsbattles.fandom.com/wiki/Kyogai",
+  "type": "Blade, Blunt",
+  "summary": "A chained spiked flail and axe made from sunlight-absorbing metals that disintegrate demons upon decapitation or equivalent slicing",
+  "abilities": [
+    "Sun Absorbtion",
+    "Sun Damage",
+    "Non-Physical Interaction"
+  ],
+  "attributes": [
+    "Nichirin"
+  ],
+  "weaknesses": [
+    "unknown"
+  ],
+  "notes": "unknown"
+}

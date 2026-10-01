@@ -1,0 +1,563 @@
+{
+  "statTiers": {
+    "speed": [
+      "Immobile",
+      "Below Average Human",
+      "Average Human",
+      "Athletic Human",
+      "Peak Human",
+      "Superhuman",
+      "Subsonic",
+      "Subsonic+",
+      "Transonic",
+      "Supersonic",
+      "Supersonic+",
+      "Hypersonic",
+      "Hypersonic+",
+      "High Hypersonic",
+      "High Hypersonic+",
+      "Massively Hypersonic",
+      "Massively Hypersonic+",
+      "Sub-Relativistic",
+      "Sub-Relativistic+",
+      "Relativistic",
+      "Relativistic+",
+      "Speed of Light",
+      "FTL",
+      "FTL+",
+      "Massively FTL",
+      "Massively FTL+"
+    ],
+
+    "attackPotency": [
+      {
+        "tier": "10-C",
+        "name": "Below Average Human",
+        "display": "Below Average Human - 10-C"
+      },
+      {
+        "tier": "10-B",
+        "name": "Human",
+        "display": "Human - 10-B"
+      },
+      {
+        "tier": "10-A",
+        "name": "Athlete",
+        "display": "Athlete - 10-A"
+      },
+      {
+        "tier": "9-C",
+        "name": "Street",
+        "display": "Street - 9-C"
+      },
+      {
+        "tier": "9-B",
+        "name": "Wall",
+        "display": "Wall - 9-B"
+      },
+      {
+        "tier": "9-A",
+        "name": "Small Building",
+        "display": "Small Building - 9-A"
+      },
+      {
+        "tier": "8-C",
+        "name": "Building",
+        "display": "Building - 8-C"
+      },
+      {
+        "tier": "High 8-C",
+        "name": "Large Building",
+        "display": "Large Building - High 8-C"
+      },
+      {
+        "tier": "8-B",
+        "name": "City Block",
+        "display": "City Block - 8-B"
+      },
+      {
+        "tier": "8-A",
+        "name": "Multi-City Block",
+        "display": "Multi-City Block - 8-A"
+      },
+      {
+        "tier": "Low 7-C",
+        "name": "Small Town",
+        "display": "Small Town - Low 7-C"
+      },
+      {
+        "tier": "7-C",
+        "name": "Town",
+        "display": "Town - 7-C"
+      },
+      {
+        "tier": "High 7-C",
+        "name": "Large Town",
+        "display": "Large Town - High 7-C"
+      },
+      {
+        "tier": "Low 7-B",
+        "name": "Small City",
+        "display": "Small City - Low 7-B"
+      },
+      {
+        "tier": "7-B",
+        "name": "City",
+        "display": "City - 7-B"
+      },
+      {
+        "tier": "7-A",
+        "name": "Mountain",
+        "display": "Mountain - 7-A"
+      },
+      {
+        "tier": "High 7-A",
+        "name": "Large Mountain",
+        "display": "Large Mountain - High 7-A"
+      },
+      {
+        "tier": "6-C",
+        "name": "Island",
+        "display": "Island - 6-C"
+      },
+      {
+        "tier": "High 6-C",
+        "name": "Large Island",
+        "display": "Large Island - High 6-C"
+      },
+      {
+        "tier": "Low 6-B",
+        "name": "Small Country",
+        "display": "Small Country - Low 6-B"
+      },
+      {
+        "tier": "6-B",
+        "name": "Country",
+        "display": "Country - 6-B"
+      },
+      {
+        "tier": "High 6-B",
+        "name": "Large Country",
+        "display": "Large Country - High 6-B"
+      },
+      {
+        "tier": "6-A",
+        "name": "Continent",
+        "display": "Continent - 6-A"
+      },
+      {
+        "tier": "High 6-A",
+        "name": "Multi-Continent",
+        "display": "Multi-Continent - High 6-A"
+      },
+      {
+        "tier": "5-C",
+        "name": "Moon",
+        "display": "Moon - 5-C"
+      },
+      {
+        "tier": "Low 5-B",
+        "name": "Small Planet",
+        "display": "Small Planet - Low 5-B"
+      },
+      {
+        "tier": "5-B",
+        "name": "Planet",
+        "display": "Planet - 5-B"
+      },
+      {
+        "tier": "5-A",
+        "name": "Large Planet",
+        "display": "Large Planet - 5-A"
+      },
+      {
+        "tier": "High 5-A",
+        "name": "Brown Dwarf",
+        "display": "Brown Dwarf - High 5-A"
+      },
+      {
+        "tier": "Low 4-C",
+        "name": "Small Star",
+        "display": "Small Star - Low 4-C"
+      },
+      {
+        "tier": "4-C",
+        "name": "Star",
+        "display": "Star - 4-C"
+      },
+      {
+        "tier": "High 4-C",
+        "name": "Large Star",
+        "display": "Large Star - High 4-C"
+      },
+      {
+        "tier": "4-B",
+        "name": "Solar System",
+        "display": "Solar System - 4-B"
+      },
+      {
+        "tier": "4-A",
+        "name": "Multi-Solar System",
+        "display": "Multi-Solar System - 4-A"
+      },
+      {
+        "tier": "3-C",
+        "name": "Galaxy",
+        "display": "Galaxy - 3-C"
+      },
+      {
+        "tier": "3-B",
+        "name": "Multi-Galaxy",
+        "display": "Multi-Galaxy - 3-B"
+      },
+      {
+        "tier": "3-A",
+        "name": "Universe",
+        "display": "Universe - 3-A"
+      }
+    ],
+
+    "durability": [
+      {
+        "tier": "10-C",
+        "name": "Below Average Human",
+        "display": "Below Average Human - 10-C"
+      },
+      {
+        "tier": "10-B",
+        "name": "Human",
+        "display": "Human - 10-B"
+      },
+      {
+        "tier": "10-A",
+        "name": "Athlete",
+        "display": "Athlete - 10-A"
+      },
+      {
+        "tier": "9-C",
+        "name": "Street",
+        "display": "Street - 9-C"
+      },
+      {
+        "tier": "9-B",
+        "name": "Wall",
+        "display": "Wall - 9-B"
+      },
+      {
+        "tier": "9-A",
+        "name": "Small Building",
+        "display": "Small Building - 9-A"
+      },
+      {
+        "tier": "8-C",
+        "name": "Building",
+        "display": "Building - 8-C"
+      },
+      {
+        "tier": "High 8-C",
+        "name": "Large Building",
+        "display": "Large Building - High 8-C"
+      },
+      {
+        "tier": "8-B",
+        "name": "City Block",
+        "display": "City Block - 8-B"
+      },
+      {
+        "tier": "8-A",
+        "name": "Multi-City Block",
+        "display": "Multi-City Block - 8-A"
+      },
+      {
+        "tier": "Low 7-C",
+        "name": "Small Town",
+        "display": "Small Town - Low 7-C"
+      },
+      {
+        "tier": "7-C",
+        "name": "Town",
+        "display": "Town - 7-C"
+      },
+      {
+        "tier": "High 7-C",
+        "name": "Large Town",
+        "display": "Large Town - High 7-C"
+      },
+      {
+        "tier": "Low 7-B",
+        "name": "Small City",
+        "display": "Small City - Low 7-B"
+      },
+      {
+        "tier": "7-B",
+        "name": "City",
+        "display": "City - 7-B"
+      },
+      {
+        "tier": "7-A",
+        "name": "Mountain",
+        "display": "Mountain - 7-A"
+      },
+      {
+        "tier": "High 7-A",
+        "name": "Large Mountain",
+        "display": "Large Mountain - High 7-A"
+      },
+      {
+        "tier": "6-C",
+        "name": "Island",
+        "display": "Island - 6-C"
+      },
+      {
+        "tier": "High 6-C",
+        "name": "Large Island",
+        "display": "Large Island - High 6-C"
+      },
+      {
+        "tier": "Low 6-B",
+        "name": "Small Country",
+        "display": "Small Country - Low 6-B"
+      },
+      {
+        "tier": "6-B",
+        "name": "Country",
+        "display": "Country - 6-B"
+      },
+      {
+        "tier": "High 6-B",
+        "name": "Large Country",
+        "display": "Large Country - High 6-B"
+      },
+      {
+        "tier": "6-A",
+        "name": "Continent",
+        "display": "Continent - 6-A"
+      },
+      {
+        "tier": "High 6-A",
+        "name": "Multi-Continent",
+        "display": "Multi-Continent - High 6-A"
+      },
+      {
+        "tier": "5-C",
+        "name": "Moon",
+        "display": "Moon - 5-C"
+      },
+      {
+        "tier": "Low 5-B",
+        "name": "Small Planet",
+        "display": "Small Planet - Low 5-B"
+      },
+      {
+        "tier": "5-B",
+        "name": "Planet",
+        "display": "Planet - 5-B"
+      },
+      {
+        "tier": "5-A",
+        "name": "Large Planet",
+        "display": "Large Planet - 5-A"
+      },
+      {
+        "tier": "High 5-A",
+        "name": "Brown Dwarf",
+        "display": "Brown Dwarf - High 5-A"
+      },
+      {
+        "tier": "Low 4-C",
+        "name": "Small Star",
+        "display": "Small Star - Low 4-C"
+      },
+      {
+        "tier": "4-C",
+        "name": "Star",
+        "display": "Star - 4-C"
+      },
+      {
+        "tier": "High 4-C",
+        "name": "Large Star",
+        "display": "Large Star - High 4-C"
+      },
+      {
+        "tier": "4-B",
+        "name": "Solar System",
+        "display": "Solar System - 4-B"
+      },
+      {
+        "tier": "4-A",
+        "name": "Multi-Solar System",
+        "display": "Multi-Solar System - 4-A"
+      },
+      {
+        "tier": "3-C",
+        "name": "Galaxy",
+        "display": "Galaxy - 3-C"
+      },
+      {
+        "tier": "3-B",
+        "name": "Multi-Galaxy",
+        "display": "Multi-Galaxy - 3-B"
+      },
+      {
+        "tier": "3-A",
+        "name": "Universe",
+        "display": "Universe - 3-A"
+      }
+    ],
+
+    "liftingStrength": [
+      "Insubstantial",
+      "Below Average Human",
+      "Average Human",
+      "Above Average Human",
+      "Athletic Human",
+      "Peak Human",
+      "Superhuman",
+      "Class 1",
+      "Class 5",
+      "Class 10",
+      "Class 25",
+      "Class 50",
+      "Class 100",
+      "Class K",
+      "Class M",
+      "Class G",
+      "Class T",
+      "Class P",
+      "Class E",
+      "Class Z",
+      "Class Y",
+      "Pre-Stellar",
+      "Stellar",
+      "Multi-Stellar",
+      "Galactic",
+      "Multi-Galactic",
+      "Universal",
+      "Infinite",
+      "Immeasurable",
+      "Inapplicable"
+    ],
+
+    "strikingStrength": [
+      "Low Hypoverse",
+      "Hypoverse",
+      "High Hypoverse",
+      "Below Average Human",
+      "Human",
+      "Athlete",
+      "Street",
+      "Wall",
+      "Small Building",
+      "Building",
+      "Large Building",
+      "City Block",
+      "Multi-City Block",
+      "Small Town",
+      "Town",
+      "Large Town",
+      "Small City",
+      "City level",
+      "Mountain level",
+      "Large Mountain",
+      "Island",
+      "Large Island",
+      "Small Country",
+      "Country",
+      "Large Country",
+      "Continent",
+      "Multi-Continent",
+      "Moon",
+      "Small Planet",
+      "Planet",
+      "Large Planet",
+      "Brown Dwarf",
+      "Small Star",
+      "Star",
+      "Large Star",
+      "Solar System",
+      "Multi-Solar System",
+      "Galaxy",
+      "Multi-Galaxy",
+      "Universe",
+      "High Universe",
+      "Universe+",
+      "Low Multiverse",
+      "Multiverse",
+      "Multiverse+",
+      "Low Complex Multiverse",
+      "Complex Multiverse",
+      "High Complex Multiverse",
+      "Hyperverse",
+      "High Hyperverse",
+      "Low Outerverse",
+      "Outerverse",
+      "Outerverse+",
+      "High Outerverse",
+      "Inapplicable"
+    ],
+
+    "intelligence": [
+      "Mindless",
+      "Instinctive",
+      "Animalistic",
+      "High Animalistic",
+      "Below Average",
+      "Average",
+      "Above Average",
+      "Gifted",
+      "Genius",
+      "Extraordinary Genius",
+      "Supergenius",
+      "Nigh-Omniscient",
+      "Omniscient"
+    ],
+
+    "range": [
+      "Below Standard Melee Range",
+      "Standard Melee Range",
+      "Extended Melee Range",
+      "Several Meters",
+      "Tens of Meters",
+      "Hundreds of Meters",
+      "Kilometers",
+      "Tens of Kilometers",
+      "Hundreds of Kilometers",
+      "Thousands of Kilometers",
+      "Planetary",
+      "Stellar",
+      "Interplanetary",
+      "Interstellar",
+      "Galactic",
+      "Intergalactic",
+      "Universal",
+      "High Universal",
+      "Universal+",
+      "Interdimensional",
+      "Low Multiversal",
+      "Multiversal",
+      "Multiversal+",
+      "Extradimensional",
+      "Low Complex Multiversal",
+      "Complex Multiversal",
+      "High Complex Multiversal",
+      "Hyperversal",
+      "High Hyperversal",
+      "Low Outerversal",
+      "Outerversal",
+      "Outerversal+",
+      "High Outerversal",
+      "High Outerversal+",
+      "Boundless"
+    ],
+
+    "stamina": [
+      "Below Average",
+      "Average",
+      "Athletic",
+      "Peak Human",
+      "Superhuman",
+      "Infinite",
+      "Inapplicable"
+    ]
+  }
+}
