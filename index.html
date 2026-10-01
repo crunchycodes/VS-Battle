@@ -65,9 +65,17 @@
             </div>
 
             <div class="flex items-center gap-2 flex-wrap">
-                <button onclick="openRepoModal()" class="px-3 py-1.5 text-xs font-medium text-brand-300 hover:text-white bg-brand-950/80 hover:bg-brand-900 rounded-lg border border-brand-500/30 transition flex items-center gap-1.5">
-                    <i data-lucide="folder-search" class="w-3.5 h-3.5 text-brand-400"></i> Scan Repo
-                </button>
+                <div class="flex items-center bg-slate-950 p-1 rounded-xl border border-slate-800 gap-1">
+                    <button id="nav-btn-roster" onclick="switchViewMode('roster')" class="px-3 py-1.5 text-xs font-semibold rounded-lg transition bg-brand-600 text-white shadow flex items-center gap-1.5">
+                        <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i> Character Roster <span id="roster-count-badge" class="px-1.5 py-0.2 bg-brand-900/80 text-brand-200 rounded-full text-[10px]">0</span>
+                    </button>
+                    <button id="nav-btn-editor" onclick="switchViewMode('editor')" class="px-3 py-1.5 text-xs font-semibold rounded-lg transition text-slate-400 hover:text-white flex items-center gap-1.5">
+                        <i data-lucide="user-cog" class="w-3.5 h-3.5"></i> Editor
+                    </button>
+                </div>
+
+                <div class="h-4 w-[1px] bg-slate-800 mx-1 hidden sm:block"></div>
+
                 <button onclick="resetToDefault()" class="px-3 py-1.5 text-xs font-medium text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-lg border border-slate-700 transition flex items-center gap-1.5">
                     <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i> Reset
                 </button>
@@ -81,61 +89,53 @@
         </div>
     </header>
 
-    <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
-        
-        <!-- LEFT COLUMN: EDIT FORM & TABS -->
-        <section class="lg:col-span-7 flex flex-col gap-4">
-            
-            <!-- Navigation Tabs -->
-            <div class="flex items-center bg-slate-900 border border-slate-800 rounded-xl p-1 gap-1">
-                <button id="tab-btn-general" onclick="switchTab('general')" class="tab-btn flex-1 py-2 text-xs font-semibold rounded-lg transition bg-brand-600 text-white shadow flex items-center justify-center gap-1.5">
-                    <i data-lucide="user" class="w-3.5 h-3.5"></i> General
-                </button>
-                <button id="tab-btn-stats" onclick="switchTab('stats')" class="tab-btn flex-1 py-2 text-xs font-semibold rounded-lg transition text-slate-400 hover:text-white flex items-center justify-center gap-1.5">
-                    <i data-lucide="swords" class="w-3.5 h-3.5"></i> Combat Stats
-                </button>
-                <button id="tab-btn-lists" onclick="switchTab('lists')" class="tab-btn flex-1 py-2 text-xs font-semibold rounded-lg transition text-slate-400 hover:text-white flex items-center justify-center gap-1.5">
-                    <i data-lucide="list-checks" class="w-3.5 h-3.5"></i> Abilities & Items
-                </button>
-                <button id="tab-btn-json" onclick="switchTab('json')" class="tab-btn flex-1 py-2 text-xs font-semibold rounded-lg transition text-slate-400 hover:text-white flex items-center justify-center gap-1.5">
-                    <i data-lucide="code-2" class="w-3.5 h-3.5"></i> Raw JSON
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 flex flex-col gap-6">
+
+        <!-- VIEW 1: CHARACTER ROSTER GRID -->
+        <section id="view-section-roster" class="flex flex-col gap-6">
+            <!-- Roster Controls Bar -->
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 sm:p-5 shadow-xl flex flex-col md:flex-row gap-4 justify-between items-stretch md:items-center">
+                <div class="relative flex-1">
+                    <i data-lucide="search" class="w-4 h-4 text-slate-500 absolute left-3.5 top-3"></i>
+                    <input type="text" id="roster-search-input" oninput="applyRosterFilters()" placeholder="Search by name, alias, series, classification, ability..." class="w-full bg-slate-950 border border-slate-800 rounded-xl pl-10 pr-4 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500">
+                </div>
+
+                <div class="flex items-center gap-2 flex-wrap sm:flex-nowrap">
+                    <select id="roster-tier-filter" onchange="applyRosterFilters()" class="bg-slate-950 border border-slate-800 text-slate-300 text-xs rounded-xl px-3 py-2 focus:outline-none focus:border-brand-500">
+                        <option value="ALL">All Tiers</option>
+                    </select>
+
+                    <select id="roster-series-filter" onchange="applyRosterFilters()" class="bg-slate-950 border border-slate-800 text-slate-300 text-xs rounded-xl px-3 py-2 focus:outline-none focus:border-brand-500 max-w-[180px] truncate">
+                        <option value="ALL">All Series</option>
+                    </select>
+
+                    <button onclick="autoFetchRoster()" class="px-3 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-xs font-medium border border-slate-700 transition flex items-center gap-1.5 flex-shrink-0" title="Reload profiles from repository">
+                        <i data-lucide="refresh-cw" id="roster-refresh-icon" class="w-3.5 h-3.5"></i> Refresh
+                    </button>
+                </div>
+            </div>
+
+            <!-- Roster Grid Container -->
+            <div id="roster-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Roster cards or loader inserted via JS -->
+            </div>
+        </section>
+
+        <!-- VIEW 2: CHARACTER EDITOR FORM & PREVIEW (Hidden by default when in Roster view) -->
+        <section id="view-section-editor" class="grid grid-cols-1 lg:grid-cols-12 gap-6 hidden">
+            <!-- Active Edit Banner -->
+            <div class="lg:col-span-12 bg-slate-900 border border-slate-800 rounded-xl p-3 px-4 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <span class="text-xs text-slate-400">Currently Editing:</span>
+                    <span id="active-editing-name" class="text-xs font-bold text-brand-300">Sabito</span>
+                </div>
+                <button onclick="switchViewMode('roster')" class="text-xs text-brand-400 hover:text-brand-300 font-medium flex items-center gap-1">
+                    <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> Return to Roster
                 </button>
             </div>
 
-            <!-- TAB 1: GENERAL INFO -->
-            <div id="tab-content-general" class="tab-content bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-4 shadow-xl">
-                <h2 class="text-sm font-bold text-brand-300 uppercase tracking-wider border-b border-slate-800 pb-2 flex items-center gap-2">
-                    <i data-lucide="info" class="w-4 h-4"></i> Identity & Background
-                </h2>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Unique Identifier (ID)</label>
-                        <input type="text" id="field-id" oninput="updateData('id', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 font-mono focus:outline-none focus:border-brand-500">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Character Name</label>
-                        <input type="text" id="field-name" oninput="updateData('name', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Alias / Title</label>
-                        <input type="text" id="field-alias" oninput="updateData('alias', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Series / Origin</label>
-                        <input type="text" id="field-series" oninput="updateData('series', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Gender</label>
-                        <input type="text" id="field-gender" oninput="updateData('gender', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Age</label>
-                        <input type="text" id="field-age" oninput="updateData('age', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500">
-                    </div>
-                    <div class="sm:col-span-2">
-                        <label class="block text-xs font-medium text-slate-400 mb-1">Classification</label>
-                        <input type="text" id="field-classification" oninput="updateData('classification', this.value)" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-500">
+            <!-- LEFT COLUMN: EDIT FORM & TABS -->
+            <div class="lg:col-span-7 flex flex-col gap-4">
                     </div>
                     <div>
                         <label class="block text-xs font-medium text-slate-400 mb-1">Main Tier Rating</label>
@@ -296,80 +296,6 @@
         </section>
 
         <!-- RIGHT COLUMN: LIVE PREVIEW & CODE PANEL -->
-        <section class="lg:col-span-5 flex flex-col gap-4 sticky top-20">
-            <div class="flex items-center justify-between bg-slate-900 border border-slate-800 rounded-xl p-1">
-                <div class="flex items-center gap-1 w-full">
-                    <button id="view-btn-preview" onclick="switchRightView('preview')" class="right-view-btn flex-1 py-1.5 text-xs font-semibold rounded-lg transition bg-slate-800 text-white flex items-center justify-center gap-1.5">
-                        <i data-lucide="eye" class="w-3.5 h-3.5"></i> Live Card
-                    </button>
-                    <button id="view-btn-json" onclick="switchRightView('json')" class="right-view-btn flex-1 py-1.5 text-xs font-semibold rounded-lg transition text-slate-400 flex items-center justify-center gap-1.5">
-                        <i data-lucide="code" class="w-3.5 h-3.5"></i> View Output
-                    </button>
-                </div>
-            </div>
-
-            <!-- LIVE CARD PREVIEW CONTAINER -->
-            <div id="right-view-preview" class="right-view-container bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl">
-                <div class="relative h-48 bg-gradient-to-br from-brand-900 via-slate-900 to-slate-950 p-4 flex items-end justify-between border-b border-slate-800">
-                    <div class="absolute inset-0 bg-cover bg-center opacity-30 mix-blend-overlay" style="background-image: url('https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=800&q=80');"></div>
-                    
-                    <div class="relative z-10 flex items-end gap-3">
-                        <img id="preview-portrait" src="https://placehold.co/300x300/1e293b/6366f1?text=No+Image" onerror="this.src='https://placehold.co/300x300/1e293b/6366f1?text=Image+Error'" class="w-20 h-20 rounded-xl object-cover border-2 border-brand-500/50 shadow-lg bg-slate-950">
-                        <div>
-                            <span id="preview-tier-badge" class="px-2 py-0.5 bg-brand-600 text-white font-mono font-bold text-[10px] rounded uppercase tracking-wide">TIER 9-A</span>
-                            <h3 id="preview-name" class="text-lg font-bold text-white leading-snug mt-1">Sabito</h3>
-                            <p id="preview-alias" class="text-xs text-brand-300 font-medium">"Fox Mask"</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="p-5 space-y-4">
-                    <div>
-                        <p id="preview-series" class="text-xs text-slate-400 font-medium">Demon Slayer: Kimetsu No Yaiba</p>
-                        <p id="preview-gender-age" class="text-[11px] text-slate-500 mt-0.5">Male • Age: 13</p>
-                    </div>
-
-                    <p id="preview-summary" class="text-xs text-slate-300 leading-relaxed line-clamp-4">
-                        He was a former Student of Sakonji Urokodaki...
-                    </p>
-
-                    <div class="grid grid-cols-2 gap-2 pt-2 border-t border-slate-800/80">
-                        <div class="bg-slate-950/80 border border-slate-800/80 rounded-lg p-2">
-                            <span class="text-[10px] text-slate-500 uppercase tracking-wider block">Attack Potency</span>
-                            <span id="preview-ap" class="text-xs font-semibold text-slate-200 truncate block">Small Building level</span>
-                        </div>
-                        <div class="bg-slate-950/80 border border-slate-800/80 rounded-lg p-2">
-                            <span class="text-[10px] text-slate-500 uppercase tracking-wider block">Durability</span>
-                            <span id="preview-durability" class="text-xs font-semibold text-slate-200 truncate block">Small Building level</span>
-                        </div>
-                        <div class="bg-slate-950/80 border border-slate-800/80 rounded-lg p-2">
-                            <span class="text-[10px] text-slate-500 uppercase tracking-wider block">Combat Speed</span>
-                            <span id="preview-speed" class="text-xs font-semibold text-slate-200 truncate block">Supersonic+</span>
-                        </div>
-                        <div class="bg-slate-950/80 border border-slate-800/80 rounded-lg p-2">
-                            <span class="text-[10px] text-slate-500 uppercase tracking-wider block">Stamina</span>
-                            <span id="preview-stamina" class="text-xs font-semibold text-slate-200 truncate block">Superhuman</span>
-                        </div>
-                    </div>
-
-                    <div class="space-y-1.5 pt-2 border-t border-slate-800/80">
-                        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Abilities</span>
-                        <div id="preview-abilities-tags" class="flex flex-wrap gap-1.5"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- RAW JSON RIGHT VIEW CONTAINER -->
-            <div id="right-view-json" class="right-view-container bg-slate-900 border border-slate-800 rounded-2xl p-4 hidden space-y-3">
-                <div class="flex items-center justify-between">
-                    <span class="text-xs font-semibold text-slate-400 font-mono">Current JSON Output</span>
-                    <button onclick="copyCurrentJSON()" class="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded text-xs transition flex items-center gap-1">
-                        <i data-lucide="copy" class="w-3 h-3"></i> Copy
-                    </button>
-                </div>
-                <pre class="bg-slate-950 border border-slate-800 rounded-xl p-3 text-[11px] font-mono text-brand-300 max-h-[450px] overflow-y-auto leading-relaxed"><code id="right-json-code"></code></pre>
-            </div>
-
         </section>
     </main>
 
@@ -523,6 +449,7 @@
         };
 
         let characterData = JSON.parse(JSON.stringify(DEFAULT_CHARACTER));
+        let currentViewMode = 'roster'; // 'roster' | 'editor'
 
         let repoConfig = {
             owner: 'crunchycodes',
@@ -530,114 +457,254 @@
             branch: 'main',
             folder: 'chars/'
         };
-        let scannedRepoFiles = [];
 
-        function openRepoModal() {
-            const modal = document.getElementById('repo-modal');
-            if (modal) modal.classList.remove('hidden');
-            if (scannedRepoFiles.length === 0) {
-                scanRepoProfiles();
+        let rosterCharacters = []; // Array of { path, data, status }
+
+        function resolvePortraitUrl(portraitPath) {
+            if (!portraitPath) return 'https://placehold.co/300x300/1e293b/6366f1?text=No+Image';
+            if (portraitPath.startsWith('http://') || portraitPath.startsWith('https://')) {
+                return portraitPath;
+            }
+            const cleanPath = portraitPath.replace(/^\/+/, '');
+            return `https://raw.githubusercontent.com/${repoConfig.owner}/${repoConfig.repo}/${repoConfig.branch}/${cleanPath}`;
+        }
+
+        function switchViewMode(mode) {
+            currentViewMode = mode;
+            const rosterSec = document.getElementById('view-section-roster');
+            const editorSec = document.getElementById('view-section-editor');
+            const btnRoster = document.getElementById('nav-btn-roster');
+            const btnEditor = document.getElementById('nav-btn-editor');
+
+            if (mode === 'roster') {
+                if (rosterSec) rosterSec.classList.remove('hidden');
+                if (editorSec) editorSec.classList.add('hidden');
+                
+                if (btnRoster) {
+                    btnRoster.className = "px-3 py-1.5 text-xs font-semibold rounded-lg transition bg-brand-600 text-white shadow flex items-center gap-1.5";
+                }
+                if (btnEditor) {
+                    btnEditor.className = "px-3 py-1.5 text-xs font-semibold rounded-lg transition text-slate-400 hover:text-white flex items-center gap-1.5";
+                }
+            } else {
+                if (rosterSec) rosterSec.classList.add('hidden');
+                if (editorSec) editorSec.classList.remove('hidden');
+
+                if (btnRoster) {
+                    btnRoster.className = "px-3 py-1.5 text-xs font-semibold rounded-lg transition text-slate-400 hover:text-white flex items-center gap-1.5";
+                }
+                if (btnEditor) {
+                    btnEditor.className = "px-3 py-1.5 text-xs font-semibold rounded-lg transition bg-brand-600 text-white shadow flex items-center gap-1.5";
+                }
+                
+                const activeName = document.getElementById('active-editing-name');
+                if (activeName) activeName.textContent = characterData.name || 'Unnamed Character';
             }
         }
 
-        function closeRepoModal() {
-            const modal = document.getElementById('repo-modal');
-            if (modal) modal.classList.add('hidden');
-        }
-
-        async function scanRepoProfiles() {
-            const listEl = document.getElementById('repo-profiles-list');
-            const countLabel = document.getElementById('repo-count-label');
-            const refreshIcon = document.getElementById('repo-refresh-icon');
+        async function autoFetchRoster() {
+            const gridEl = document.getElementById('roster-grid');
+            const refreshIcon = document.getElementById('roster-refresh-icon');
+            const badgeEl = document.getElementById('roster-count-badge');
 
             if (refreshIcon) refreshIcon.classList.add('animate-spin');
-            if (listEl) {
-                listEl.innerHTML = `<div class="text-center py-12 text-slate-400 text-xs flex flex-col items-center gap-2"><i data-lucide="loader-2" class="w-6 h-6 animate-spin text-brand-400"></i> Scanning repository tree for profiles...</div>`;
+            if (gridEl) {
+                gridEl.innerHTML = `
+                    <div class="col-span-full py-20 text-center flex flex-col items-center justify-center gap-3 text-slate-400">
+                        <i data-lucide="loader-2" class="w-8 h-8 animate-spin text-brand-400"></i>
+                        <p class="text-sm font-medium">Scanning crunchycodes/VS-Battle repository...</p>
+                        <p class="text-xs text-slate-500">Fetching character profile cards...</p>
+                    </div>
+                `;
             }
             if (window.lucide) lucide.createIcons();
 
             try {
                 const url = `https://api.github.com/repos/${repoConfig.owner}/${repoConfig.repo}/git/trees/${repoConfig.branch}?recursive=1`;
                 const response = await fetch(url);
-                if (!response.ok) {
-                    throw new Error(`GitHub API returned status ${response.status}`);
-                }
-                const data = await response.json();
+                if (!response.ok) throw new Error(`GitHub API error status ${response.status}`);
                 
-                scannedRepoFiles = (data.tree || []).filter(item => 
+                const data = await response.json();
+                const jsonFiles = (data.tree || []).filter(item => 
                     item.path.startsWith(repoConfig.folder) && item.path.toLowerCase().endsWith('.json')
                 );
 
-                if (countLabel) countLabel.textContent = `Found ${scannedRepoFiles.length} profile JSON file(s)`;
-                filterRepoProfiles();
+                if (badgeEl) badgeEl.textContent = `${jsonFiles.length}`;
+
+                // Parallel fetch all character JSONs
+                rosterCharacters = await Promise.all(
+                    jsonFiles.map(async (file) => {
+                        try {
+                            const rawUrl = `https://raw.githubusercontent.com/${repoConfig.owner}/${repoConfig.repo}/${repoConfig.branch}/${file.path}`;
+                            const res = await fetch(rawUrl);
+                            if (!res.ok) return { path: file.path, data: null, error: true };
+                            const charJson = await res.json();
+                            return { path: file.path, data: charJson, error: false };
+                        } catch (e) {
+                            return { path: file.path, data: null, error: true };
+                        }
+                    })
+                );
+
+                populateFilterDropdowns();
+                applyRosterFilters();
             } catch (err) {
-                console.error(err);
-                if (listEl) listEl.innerHTML = `<div class="text-center py-8 text-rose-400 text-xs">Failed to fetch repo contents: ${escapeHtml(err.message)}</div>`;
-                if (countLabel) countLabel.textContent = 'Scan failed';
+                console.error("Roster fetch failed:", err);
+                if (gridEl) {
+                    gridEl.innerHTML = `
+                        <div class="col-span-full py-16 text-center text-rose-400 text-xs bg-slate-900 border border-slate-800 rounded-2xl p-6">
+                            <i data-lucide="alert-triangle" class="w-8 h-8 mx-auto mb-2 text-rose-400 opacity-80"></i>
+                            Failed to auto-load repository roster: ${escapeHtml(err.message)}
+                        </div>
+                    `;
+                }
             } finally {
                 if (refreshIcon) refreshIcon.classList.remove('animate-spin');
+                if (window.lucide) lucide.createIcons();
             }
         }
 
-        function filterRepoProfiles() {
-            const searchInput = document.getElementById('repo-search-input');
-            const query = (searchInput ? searchInput.value : '').toLowerCase();
-            const listEl = document.getElementById('repo-profiles-list');
-            if (!listEl) return;
-            
-            const filtered = scannedRepoFiles.filter(item => item.path.toLowerCase().includes(query));
+        function populateFilterDropdowns() {
+            const tierSelect = document.getElementById('roster-tier-filter');
+            const seriesSelect = document.getElementById('roster-series-filter');
+            if (!tierSelect || !seriesSelect) return;
 
-            if (filtered.length === 0) {
-                listEl.innerHTML = `<div class="text-center py-8 text-slate-500 text-xs">No matching profiles found in ${repoConfig.folder}</div>`;
+            const tiers = new Set();
+            const seriesList = new Set();
+
+            rosterCharacters.forEach(item => {
+                if (item.data) {
+                    if (item.data.tier) tiers.add(item.data.tier);
+                    if (item.data.series) seriesList.add(item.data.series);
+                }
+            });
+
+            tierSelect.innerHTML = `<option value="ALL">All Tiers (${tiers.size})</option>`;
+            Array.from(tiers).sort().forEach(t => {
+                tierSelect.innerHTML += `<option value="${escapeHtml(t)}">Tier ${escapeHtml(t)}</option>`;
+            });
+
+            seriesSelect.innerHTML = `<option value="ALL">All Series (${seriesList.size})</option>`;
+            Array.from(seriesList).sort().forEach(s => {
+                seriesSelect.innerHTML += `<option value="${escapeHtml(s)}">${escapeHtml(s)}</option>`;
+            });
+        }
+
+        function applyRosterFilters() {
+            const searchVal = (document.getElementById('roster-search-input')?.value || '').toLowerCase();
+            const selectedTier = document.getElementById('roster-tier-filter')?.value || 'ALL';
+            const selectedSeries = document.getElementById('roster-series-filter')?.value || 'ALL';
+            const gridEl = document.getElementById('roster-grid');
+
+            if (!gridEl) return;
+
+            const filtered = rosterCharacters.filter(item => {
+                if (!item.data) return false;
+                const c = item.data;
+
+                if (selectedTier !== 'ALL' && c.tier !== selectedTier) return false;
+                if (selectedSeries !== 'ALL' && c.series !== selectedSeries) return false;
+
+                if (searchVal) {
+                    const matchName = (c.name || '').toLowerCase().includes(searchVal);
+                    const matchAlias = (c.alias || '').toLowerCase().includes(searchVal);
+                    const matchSeries = (c.series || '').toLowerCase().includes(searchVal);
+                    const matchClass = (c.classification || '').toLowerCase().includes(searchVal);
+                    const matchAbilities = (c.abilities || []).some(a => a.toLowerCase().includes(searchVal));
+
+                    return matchName || matchAlias || matchSeries || matchClass || matchAbilities;
+                }
+
+                return true;
+            });
+
+            renderRosterGrid(filtered);
+        }
+
+        function renderRosterGrid(items) {
+            const gridEl = document.getElementById('roster-grid');
+            if (!gridEl) return;
+
+            if (items.length === 0) {
+                gridEl.innerHTML = `
+                    <div class="col-span-full py-16 text-center text-slate-500 text-xs bg-slate-900 border border-slate-800 rounded-2xl">
+                        <i data-lucide="users" class="w-8 h-8 mx-auto mb-2 opacity-40"></i>
+                        No characters matched your criteria.
+                    </div>
+                `;
+                if (window.lucide) lucide.createIcons();
                 return;
             }
 
-            listEl.innerHTML = '';
-            filtered.forEach(item => {
-                const pathParts = item.path.split('/');
-                const fileName = pathParts[pathParts.length - 1];
-                const cleanName = fileName.replace('.json', '');
+            gridEl.innerHTML = '';
+
+            items.forEach((item) => {
+                const c = item.data;
+                const indexInMain = rosterCharacters.indexOf(item);
+                const portraitUrl = resolvePortraitUrl(c.portrait);
 
                 const card = document.createElement('div');
-                card.className = 'bg-slate-950 border border-slate-800 hover:border-brand-500/50 rounded-xl p-3 flex items-center justify-between transition group';
+                card.className = "bg-slate-900 border border-slate-800 hover:border-brand-500/50 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-brand-500/10 transition-all flex flex-col justify-between group";
+
                 card.innerHTML = `
-                    <div class="overflow-hidden pr-2">
-                        <div class="text-xs font-semibold text-slate-200 group-hover:text-brand-300 transition flex items-center gap-1.5 truncate">
-                            <i data-lucide="file-json" class="w-3.5 h-3.5 text-brand-400 flex-shrink-0"></i>
-                            <span>${escapeHtml(cleanName)}</span>
+                    <div>
+                        <div class="relative h-40 bg-slate-950 border-b border-slate-800 overflow-hidden flex items-end p-3">
+                            <div class="absolute inset-0 bg-cover bg-center opacity-25 group-hover:scale-105 transition duration-500" style="background-image: url('${portraitUrl}');"></div>
+                            <div class="relative z-10 flex items-end gap-3 w-full">
+                                <img src="${portraitUrl}" onerror="this.src='https://placehold.co/300x300/1e293b/6366f1?text=No+Image'" class="w-16 h-16 rounded-xl object-cover border-2 border-brand-500/50 shadow-md bg-slate-950 flex-shrink-0">
+                                <div class="overflow-hidden">
+                                    <span class="px-2 py-0.5 bg-brand-600 text-white font-mono font-bold text-[9px] rounded uppercase tracking-wide">TIER ${escapeHtml(c.tier || 'N/A')}</span>
+                                    <h3 class="text-sm font-bold text-white leading-snug mt-1 truncate group-hover:text-brand-300 transition">${escapeHtml(c.name || 'Unnamed')}</h3>
+                                    <p class="text-[11px] text-brand-300 font-medium truncate">${escapeHtml(c.alias ? `"${c.alias}"` : '')}</p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="text-[10px] text-slate-500 font-mono truncate mt-0.5" title="${escapeHtml(item.path)}">
-                            ${escapeHtml(item.path)}
+
+                        <div class="p-4 space-y-3">
+                            <div>
+                                <p class="text-[11px] text-slate-400 font-medium truncate">${escapeHtml(c.series || 'Unknown Series')}</p>
+                                <p class="text-[10px] text-slate-500 mt-0.5 truncate">${escapeHtml([c.gender, c.age ? `Age: ${c.age}` : null].filter(Boolean).join(' • ') || 'Info N/A')}</p>
+                            </div>
+
+                            <p class="text-[11px] text-slate-300 line-clamp-3 leading-relaxed">
+                                ${escapeHtml(c.summary || 'No summary available.')}
+                            </p>
+
+                            <div class="grid grid-cols-2 gap-1.5 pt-2 border-t border-slate-800/80">
+                                <div class="bg-slate-950 border border-slate-800/60 rounded-lg p-1.5">
+                                    <span class="text-[9px] text-slate-500 uppercase block">AP</span>
+                                    <span class="text-[10px] font-semibold text-slate-300 truncate block">${escapeHtml(c.stats?.attackPotency || 'N/A')}</span>
+                                </div>
+                                <div class="bg-slate-950 border border-slate-800/60 rounded-lg p-1.5">
+                                    <span class="text-[9px] text-slate-500 uppercase block">Speed</span>
+                                    <span class="text-[10px] font-semibold text-slate-300 truncate block">${escapeHtml(c.stats?.combatSpeed || 'N/A')}</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <button onclick="loadProfileFromRepo('${escapeHtml(item.path)}')" class="px-3 py-1.5 bg-brand-600/20 hover:bg-brand-600 text-brand-300 hover:text-white rounded-lg text-xs font-medium transition flex items-center gap-1 flex-shrink-0">
-                        <i data-lucide="download" class="w-3 h-3"></i> Load
-                    </button>
+
+                    <div class="p-4 pt-0">
+                        <button onclick="editCharacterFromRoster(${indexInMain})" class="w-full py-2 bg-brand-600/20 hover:bg-brand-600 text-brand-300 hover:text-white rounded-xl text-xs font-semibold transition border border-brand-500/30 hover:border-transparent flex items-center justify-center gap-1.5">
+                            <i data-lucide="edit-3" class="w-3.5 h-3.5"></i> Edit Profile
+                        </button>
+                    </div>
                 `;
-                listEl.appendChild(card);
+
+                gridEl.appendChild(card);
             });
 
             if (window.lucide) lucide.createIcons();
         }
 
-        async function loadProfileFromRepo(filePath) {
-            try {
-                showToast(`Fetching ${filePath}...`, 'info');
-                const rawUrl = `https://raw.githubusercontent.com/${repoConfig.owner}/${repoConfig.repo}/${repoConfig.branch}/${filePath}`;
-                const res = await fetch(rawUrl);
-                if (!res.ok) throw new Error(`HTTP ${res.status}`);
-                
-                const json = await res.json();
-                characterData = json;
-                
+        function editCharacterFromRoster(index) {
+            const item = rosterCharacters[index];
+            if (item && item.data) {
+                characterData = JSON.parse(JSON.stringify(item.data));
                 populateFormFromData();
                 renderPreviewCard();
                 updateJSONEditorView();
-                closeRepoModal();
-                showToast(`Successfully loaded "${characterData.name || filePath}"!`, 'success');
-            } catch (err) {
-                console.error(err);
-                showToast(`Failed to load profile: ${err.message}`, 'error');
+                switchViewMode('editor');
+                showToast(`Loaded "${characterData.name || 'Character'}" into editor`, 'info');
             }
         }
 
@@ -646,6 +713,7 @@
             populateFormFromData();
             renderPreviewCard();
             updateJSONEditorView();
+            autoFetchRoster();
         };
 
         function setSafeValue(id, value) {
