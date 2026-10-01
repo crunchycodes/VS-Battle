@@ -1,0 +1,45 @@
+{
+  "id": "sabito-demon-slayer",
+  "name": "Sabito",
+  "alias": "Fox Mask",
+  "series": "Demon Slayer: Kimetsu No Yaiba",
+  "tier": "9-A",
+  "portrait": "chars/tier/9/A/Demon Slayer - Kimetsu No Yaiba/Sabito/1.webp",
+  "banner": "",
+  "sourceUrl": "https://vsbattles.fandom.com/wiki/Kyogai",
+  "gender": "Male",
+  "age": "13",
+  "classification": "Human; Demon Slayer",
+  "summary": "He was a former Student of Sakonji Urokodaki and was slain by the Hand Demon. He appeared in the beginning of the series as a trainer alongside Makomo to Tanjiro Kamado to help assist him in the upcoming Final Selection. He is also a very close friend of Giyu Tomioka as they were both students of Sakonji Urokodaki at the time.",
+  "stats": {
+    "tier": "9-A",
+    "attackPotency": "Small Building level",
+    "durability": "Small Building level",
+    "attackSpeed": "unknown",
+    "combatSpeed": "Supersonic+",
+    "reactionSpeed": "unknown",
+    "perceptionSpeed": "unknown",
+    "travelSpeed": "unknown",
+    "flightSpeed": "unknown",
+    "liftingStrength": "Class 5",
+    "strikingStrength": "Small Building level",
+    "stamina": "Superhuman",
+    "range": "Extended Melee Range, Several Meters",
+    "intelligence": "Above Average"
+  },
+  "abilities": [
+    "Total Concentration Breathing",
+    "Water Breathing",
+    "Acrobatics",
+    "Extrasensory Perception",
+    "Supernatural Willpower"
+  ],
+  "equipment": [
+    "Sabito/'s Sword (Sun Absorbtion, Nichirin, Non-Physical Interaction)",
+    "Warding Mask"
+  ],
+  "weaknesses": [
+    "unknown."
+  ],
+  "notes": "None."
+}
