@@ -250,12 +250,12 @@
                 <i class="fa-solid fa-xmark text-lg"></i>
             </button>
 
-            <div class="relative w-full h-48 sm:h-60 bg-slate-950 overflow-hidden flex items-center justify-center">
-                <img id="modalBannerBg" src="" alt="" class="absolute inset-0 w-full h-full object-cover object-top filter blur-md opacity-30 scale-110">
-                <img id="modalBanner" src="" alt="Banner" class="relative z-10 w-full h-full object-cover object-top filter brightness-95 transition-opacity duration-300">
-                <div class="absolute inset-0 z-20 bg-gradient-to-t from-slate-900 via-slate-900/30 to-transparent"></div>
+            <div class="relative w-full h-44 sm:h-56 bg-slate-950/90 overflow-hidden flex items-center justify-center border-b border-slate-800">
+                <img id="modalBannerBg" src="" alt="" class="absolute inset-0 w-full h-full object-cover object-center filter blur-xl opacity-25 scale-110">
+                <img id="modalBanner" src="" alt="Banner" class="relative z-10 w-full h-full object-contain filter brightness-95 transition-opacity duration-300 p-2">
+                <div class="absolute inset-0 z-20 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-80 pointer-events-none"></div>
                 
-                <div class="absolute bottom-4 left-6 sm:left-8 flex flex-wrap items-center gap-2 z-20">
+                <div class="absolute bottom-3 left-4 sm:left-6 flex flex-wrap items-center gap-2 z-20">
                     <span id="modalTierBadge" class="px-3 py-1 rounded-md text-xs font-bold font-tech uppercase tracking-wider text-white shadow-md border border-white/20">
                         TIER
                     </span>
@@ -266,16 +266,17 @@
             </div>
 
             <div class="p-6 sm:p-8 space-y-6 bg-slate-900">
-                <div class="flex flex-col sm:flex-row gap-6 items-start -mt-16 sm:-mt-20 relative z-10">
+                <div class="flex flex-col sm:flex-row gap-6 items-start sm:items-center relative z-10 pt-2">
                     <div class="relative group flex-shrink-0">
-                        <img id="modalPortrait" src="" alt="Character Portrait" class="w-32 h-32 sm:w-40 sm:h-40 rounded-2xl object-cover object-top border-4 border-slate-800 bg-slate-950 shadow-2xl">
+                        <img id="modalPortrait" src="" alt="Character Portrait" class="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl object-cover object-top border-2 border-slate-700 bg-slate-950 shadow-2xl">
                     </div>
 
-                    <div class="flex-1 space-y-1 pt-2 sm:pt-14">
+                    <div class="flex-1 space-y-1">
                         <h2 id="modalName" class="text-2xl sm:text-3xl font-extrabold font-display text-white tracking-wide">
                             Character Name
                         </h2>
                         <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-400">
+                            <p id="modalVariant" class="text-purple-300 hidden"><i class="fa-solid fa-code-fork text-purple-400 mr-1.5"></i> Variant: <span>-</span></p>
                             <p id="modalAlias" class="text-slate-300"><i class="fa-solid fa-mask text-blue-400 mr-1.5"></i> Alias: <span>-</span></p>
                             <p id="modalGender"><i class="fa-solid fa-venus-mars text-blue-400 mr-1.5"></i> Gender: <span>-</span></p>
                             <p id="modalAge"><i class="fa-solid fa-hourglass-half text-blue-400 mr-1.5"></i> Age: <span>-</span></p>
@@ -285,7 +286,7 @@
                         </p>
                     </div>
 
-                    <div class="sm:self-end">
+                    <div class="sm:self-center">
                         <a id="modalSourceUrl" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium bg-blue-600/20 text-blue-300 border border-blue-500/30 hover:bg-blue-600 hover:text-white transition">
                             <span>VS Battles Wiki</span>
                             <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
@@ -728,11 +729,12 @@
             if (searchVal) {
                 result = result.filter(c => {
                     const nameMatch = c.name && c.name.toLowerCase().includes(searchVal);
+                    const variantMatch = c.variant && c.variant.toLowerCase().includes(searchVal);
                     const aliasMatch = c.alias && c.alias.toLowerCase().includes(searchVal);
                     const seriesMatch = c.series && c.series.toLowerCase().includes(searchVal);
                     const equipMatch = Array.isArray(c.equipment) && c.equipment.some(e => String(e).toLowerCase().includes(searchVal));
                     const abMatch = Array.isArray(c.abilities) && c.abilities.some(a => String(a).toLowerCase().includes(searchVal));
-                    return nameMatch || aliasMatch || seriesMatch || equipMatch || abMatch;
+                    return nameMatch || variantMatch || aliasMatch || seriesMatch || equipMatch || abMatch;
                 });
             }
 
@@ -852,6 +854,7 @@
                         <div class="relative h-56 bg-slate-950 overflow-hidden">
                             <img src="${c.portrait}" alt="${c.name}" class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-300">
                             <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+                            ${c.variant ? `<span class="absolute top-2 left-2 px-2.5 py-1 rounded-md text-[11px] font-bold font-tech bg-slate-950/80 text-purple-400 border border-purple-500/30 backdrop-blur-sm">${c.variant}</span>` : ''}
                             <span class="absolute top-2 right-2 px-2.5 py-1 rounded-md text-[11px] font-bold font-tech bg-slate-950/80 text-blue-400 border border-blue-500/30 backdrop-blur-sm">
                                 TIER ${c.tier || 'N/A'}
                             </span>
@@ -859,7 +862,7 @@
                         <div class="p-4 flex-1 flex flex-col justify-between space-y-2">
                             <div>
                                 <h3 class="font-bold text-base text-slate-100 group-hover:text-blue-400 transition">${c.name}</h3>
-                                <p class="text-xs text-slate-400 line-clamp-1">${c.series || 'Unknown Series'}</p>
+                                <p class="text-xs text-slate-400 line-clamp-1">${c.series || 'Unknown Series'}${c.variant ? ` • ${c.variant}` : ''}</p>
                             </div>
                             <div class="text-[11px] text-slate-500 flex justify-between items-center pt-2 border-t border-slate-800">
                                 <span>${c.gender || 'N/A'}</span>
@@ -880,7 +883,7 @@
                         <div class="flex items-center gap-3">
                             <img src="${c.portrait}" alt="${c.name}" class="w-12 h-12 rounded-lg object-cover object-top bg-slate-950">
                             <div>
-                                <h3 class="font-bold text-sm text-slate-100">${c.name}</h3>
+                                <h3 class="font-bold text-sm text-slate-100">${c.name} ${c.variant ? `<span class="text-xs text-purple-400 font-normal">(${c.variant})</span>` : ''}</h3>
                                 <p class="text-xs text-slate-400">${c.series || 'Unknown'} • ${c.gender || 'N/A'}</p>
                             </div>
                         </div>
@@ -941,6 +944,15 @@
             if (!character) return;
 
             document.getElementById('modalName').textContent = character.name || 'Unknown';
+
+            const variantElem = document.getElementById('modalVariant');
+            if (character.variant) {
+                variantElem.querySelector('span').textContent = character.variant;
+                variantElem.classList.remove('hidden');
+            } else {
+                variantElem.classList.add('hidden');
+            }
+
             document.getElementById('modalAlias').querySelector('span').textContent = character.alias || 'None';
             document.getElementById('modalGender').querySelector('span').textContent = character.gender || 'N/A';
             document.getElementById('modalAge').querySelector('span').textContent = character.age || 'N/A';
