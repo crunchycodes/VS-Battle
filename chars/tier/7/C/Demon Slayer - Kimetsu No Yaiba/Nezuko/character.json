@@ -1,0 +1,63 @@
+{
+  "id": "nezuko-sun-immunity",
+  "name": "Nezuko Kamado",
+  "variant": "Sun Immunity",
+  "alias": "Sun-Proof Demon",
+  "series": "Demon Slayer: Kimetsu No Yaiba",
+  "tier": "7-C",
+  "portrait": "chars/tier/7/C/Demon Slayer - Kimetsu No Yaiba/Nezuko/4.webp",
+  "banner": "chars/tier/7/C/Demon Slayer - Kimetsu No Yaiba/Nezuko/2.webp",
+  "sourceUrl": "https://vsbattles.fandom.com/wiki/Nezuko_Kamado",
+  "gender": "Female",
+  "age": "14",
+  "classification": "Demon; Former Human",
+  "summary": "After being exposed to sunlight during the Swordsmith Village incident, Nezuko adapted to the demons' greatest natural weakness and became immune to sunlight. This unique evolution made her the first known demon capable of surviving direct sunlight and caused Muzan Kibutsuji to seek her out in order to acquire this ability for himself.",
+  "otherVariants": [
+    "nezuko-unwavering-resolve",
+    "nezuko-entertainment-district",
+    "nezuko-swordsmith-village"
+  ],
+  "stats": {
+    "tier": "7-C",
+    "attackPotency": "Likely Town level",
+    "durability": "Varies, Likely Town level, likely higher",
+    "attackSpeed": "Massively Hypersonic+",
+    "combatSpeed": "Massively Hypersonic+",
+    "reactionSpeed": "Massively Hypersonic+",
+    "perceptionSpeed": "Massively Hypersonic+",
+    "travelSpeed": "Massively Hypersonic+",
+    "flightSpeed": "Not applicable",
+    "liftingStrength": "At least Class 25",
+    "strikingStrength": "Likely Town level",
+    "stamina": "Infinite",
+    "range": "Standard Melee Range, Several Meters with Blood Burst",
+    "intelligence": "Average"
+  },
+  "abilities": [
+    "Demon Physiology",
+    "Superhuman Physical Characteristics",
+    "Enhanced Extrasensory Perception",
+    "Reactive Power Level",
+    "Regeneration",
+    "Immortality",
+    "Blood Demon Art",
+    "Fire Manipulation",
+    "Regeneration Negation",
+    "Explosion Manipulation",
+    "Greater Battle Spirit",
+    "Enhanced Battle Spirit",
+    "Adaptation",
+    "Sunlight Absorption",
+    "Sunlight Immunity",
+    "Enhanced Senses",
+    "Poison Resistance",
+    "Fear Manipulation Resistance",
+    "Paralysis Inducement Resistance",
+    "Statistics Amplification"
+  ],
+  "equipment": [],
+  "weaknesses": [
+    "Standard Demon Weaknesses other than sunlight"
+  ],
+  "notes": "Nezuko adapted to sunlight after being briefly burned by it and became immune to direct sunlight. The VS Battles profile rates this version at likely Town level with Massively Hypersonic+ speed. Her sunlight immunity removes the standard demon weakness to sunlight and is the defining trait of this key."
+}

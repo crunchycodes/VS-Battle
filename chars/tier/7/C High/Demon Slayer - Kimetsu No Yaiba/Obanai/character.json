@@ -1,0 +1,67 @@
+{
+  "id": "obanai-base",
+  "name": "Obanai Iguro",
+  "variant": "Base",
+  "alias": "Serpent Hashira",
+  "series": "Demon Slayer: Kimetsu No Yaiba",
+  "tier": "High 7-C",
+  "portrait": "chars/tier/7/C High/Demon Slayer - Kimetsu No Yaiba/Obanai/1.webp",
+  "banner": "chars/tier/7/C High/Demon Slayer - Kimetsu No Yaiba/Obanai/2.webp",
+  "sourceUrl": "https://vsbattles.fandom.com/wiki/Obanai_Iguro",
+  "gender": "Male",
+  "age": "21",
+  "classification": "Human; Demon Slayer; Hashira; Serpent Hashira",
+  "summary": "Obanai Iguro is the Serpent Hashira of the Demon Slayer Corps. He is an exceptionally skilled swordsman who fights using Serpent Breathing and a uniquely curved Nichirin sword. Obanai possesses extraordinary agility, precision, perception, and swordsmanship, and his combat ability allowed him to fight alongside the other Hashira against Muzan Kibutsuji.",
+  "otherVariants": [
+    "obanai-demon-slayer-mark"
+  ],
+  "stats": {
+    "tier": "High 7-C",
+    "attackPotency": "Large Town level",
+    "durability": "Large Town level",
+    "attackSpeed": "Sub-Relativistic",
+    "combatSpeed": "Sub-Relativistic",
+    "reactionSpeed": "Sub-Relativistic",
+    "perceptionSpeed": "Sub-Relativistic",
+    "travelSpeed": "Sub-Relativistic",
+    "flightSpeed": "Not applicable",
+    "liftingStrength": "At least Class 25",
+    "strikingStrength": "Large Town level",
+    "stamina": "Superhuman",
+    "range": "Extended Melee Range, Several Meters with Breathing Styles",
+    "intelligence": "Gifted"
+  },
+  "abilities": [
+    "Superhuman Physical Characteristics",
+    "Acrobatics",
+    "Body Control",
+    "Low Regeneration",
+    "Statistics Amplification",
+    "Transparent World",
+    "Enhanced Sight",
+    "Perception Amplification",
+    "Information Analysis",
+    "Analytical Prediction",
+    "Precognition",
+    "Extrasensory Perception",
+    "Supernatural Willpower",
+    "Awakened Power",
+    "Greater Battle Spirit",
+    "Instinctive Reaction",
+    "Master Swordsman",
+    "Sunlight Absorption",
+    "Non-Physical Interaction",
+    "Perception Manipulation",
+    "Shockwave Generation",
+    "Air Manipulation",
+    "Serpent Breathing"
+  ],
+  "equipment": [
+    "serpent-shaped-nichirin-sword",
+    "kaburamaru"
+  ],
+  "weaknesses": [
+    "None notable"
+  ],
+  "notes": "Post-Hashira Training Obanai without the Demon Slayer Mark. His swordsmanship is enhanced by Kaburamaru, who can guide his attacks and compensate for impaired vision. Obanai possesses the Transparent World, allowing him to perceive muscles, blood flow, and movements in greater detail and predict an opponent's actions."
+}

@@ -1,0 +1,68 @@
+{
+  "id": "obanai-demon-slayer-mark",
+  "name": "Obanai Iguro",
+  "variant": "Demon Slayer Mark",
+  "alias": "Serpent Hashira",
+  "series": "Demon Slayer: Kimetsu No Yaiba",
+  "tier": "Low 7-B",
+  "portrait": "chars/tier/7/C High/Demon Slayer - Kimetsu No Yaiba/Obanai/3.webp",
+  "banner": "chars/tier/7/C High/Demon Slayer - Kimetsu No Yaiba/Obanai/2.webp",
+  "sourceUrl": "https://vsbattles.fandom.com/wiki/Obanai_Iguro",
+  "gender": "Male",
+  "age": "21",
+  "classification": "Human; Demon Slayer; Hashira; Serpent Hashira",
+  "summary": "Obanai Iguro awakened the Demon Slayer Mark during the final battle against Muzan Kibutsuji. The mark dramatically increased his physical abilities, allowing him to cut through Muzan's attacks and repeatedly damage his body alongside the other Demon Slayers. Obanai's Transparent World and Kaburamaru further enhanced his ability to predict and respond to Muzan's movements.",
+  "otherVariants": [
+    "obanai-base"
+  ],
+  "stats": {
+    "tier": "Low 7-B",
+    "attackPotency": "Small City level",
+    "durability": "Small City level",
+    "attackSpeed": "Relativistic",
+    "combatSpeed": "Relativistic",
+    "reactionSpeed": "Relativistic",
+    "perceptionSpeed": "Relativistic",
+    "travelSpeed": "Relativistic",
+    "flightSpeed": "Not applicable",
+    "liftingStrength": "Class K",
+    "strikingStrength": "Small City level",
+    "stamina": "Superhuman",
+    "range": "Extended Melee Range, Several Meters with Breathing Styles",
+    "intelligence": "Gifted"
+  },
+  "abilities": [
+    "Superhuman Physical Characteristics",
+    "Acrobatics",
+    "Body Control",
+    "Low Regeneration",
+    "Statistics Amplification",
+    "Demon Slayer Mark",
+    "Transparent World",
+    "Enhanced Sight",
+    "Perception Amplification",
+    "Information Analysis",
+    "Analytical Prediction",
+    "Precognition",
+    "Extrasensory Perception",
+    "Supernatural Willpower",
+    "Awakened Power",
+    "Greater Battle Spirit",
+    "Instinctive Reaction",
+    "Master Swordsman",
+    "Sunlight Absorption",
+    "Non-Physical Interaction",
+    "Perception Manipulation",
+    "Shockwave Generation",
+    "Air Manipulation",
+    "Serpent Breathing"
+  ],
+  "equipment": [
+    "serpent-shaped-nichirin-sword",
+    "kaburamaru"
+  ],
+  "weaknesses": [
+    "None notable"
+  ],
+  "notes": "Obanai's Demon Slayer Mark greatly amplifies his physical abilities. He was able to cut Muzan's arm whips and slash his neck multiple times. He also possesses the Transparent World and can use Kaburamaru to guide his attacks when blinded. His Bright Red Nichirin Sword provides a further amp but is not treated as a separate variant here."
+}

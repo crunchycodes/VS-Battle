@@ -1,0 +1,61 @@
+{
+  "id": "nezuko-entertainment-district",
+  "name": "Nezuko Kamado",
+  "variant": "Entertainment District Arc",
+  "alias": "Evolved Demon",
+  "series": "Demon Slayer: Kimetsu No Yaiba",
+  "tier": "Low 7-C",
+  "portrait": "chars/tier/9/A/Demon Slayer - Kimetsu No Yaiba/Nezuko/5.webp",
+  "banner": "chars/tier/9/A/Demon Slayer - Kimetsu No Yaiba/Nezuko/2.webp",
+  "sourceUrl": "https://vsbattles.fandom.com/wiki/Nezuko_Kamado",
+  "gender": "Female",
+  "age": "14",
+  "classification": "Demon; Former Human",
+  "summary": "During the Entertainment District Arc, Nezuko underwent a powerful transformation after becoming enraged by Tanjiro's injuries. Her body matured and her physical abilities increased dramatically, allowing her to overpower Daki and contend with her awakened form.",
+  "otherVariants": [
+    "nezuko-unwavering-resolve",
+    "nezuko-swordsmith-village",
+    "nezuko-sun-immunity"
+  ],
+  "stats": {
+    "tier": "Low 7-C",
+    "attackPotency": "Small Town level",
+    "durability": "Varies, At most Small Town level, likely higher",
+    "attackSpeed": "Massively Hypersonic",
+    "combatSpeed": "Massively Hypersonic",
+    "reactionSpeed": "Massively Hypersonic",
+    "perceptionSpeed": "Massively Hypersonic",
+    "travelSpeed": "Massively Hypersonic",
+    "flightSpeed": "Not applicable",
+    "liftingStrength": "At least Class 25",
+    "strikingStrength": "Small Town level",
+    "stamina": "Infinite",
+    "range": "Standard Melee Range, Several Meters with Blood Burst",
+    "intelligence": "Average"
+  },
+  "abilities": [
+    "Demon Physiology",
+    "Superhuman Physical Characteristics",
+    "Enhanced Extrasensory Perception",
+    "Reactive Power Level",
+    "Regeneration",
+    "Immortality",
+    "Blood Demon Art",
+    "Fire Manipulation",
+    "Regeneration Negation",
+    "Explosion Manipulation",
+    "Greater Battle Spirit",
+    "Transformation",
+    "Statistics Amplification",
+    "Blood Manipulation",
+    "Enhanced Senses",
+    "Poison Resistance",
+    "Fear Manipulation Resistance",
+    "Paralysis Inducement Resistance"
+  ],
+  "equipment": [],
+  "weaknesses": [
+    "Standard Demon Weaknesses"
+  ],
+  "notes": "Nezuko's Evolved Demon Form dramatically increases her physical power. She was able to stop Daki's sashes with her partially severed limbs and overpower Daki. She can also solidify and manipulate her own blood to move separated body parts back toward herself."
+}

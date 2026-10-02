@@ -1,0 +1,61 @@
+{
+  "id": "shinobu-kocho",
+  "name": "Shinobu Kocho",
+  "variant": "Base",
+  "alias": "Insect Hashira",
+  "series": "Demon Slayer: Kimetsu No Yaiba",
+  "tier": "High 7-C",
+  "portrait": "chars/tier/7/C High/Demon Slayer - Kimetsu No Yaiba/Shinobu/1.webp",
+  "banner": "chars/tier/7/C High/Demon Slayer - Kimetsu No Yaiba/Shinobu/2.webp",
+  "sourceUrl": "https://vsbattles.fandom.com/wiki/Shinobu_Kocho",
+  "gender": "Female",
+  "age": "18",
+  "classification": "Human; Demon Slayer; Insect Hashira",
+  "summary": "Shinobu Kocho is the Insect Hashira of the Demon Slayer Corps and the master of the Butterfly Mansion. Due to lacking the physical strength necessary to decapitate demons, she developed Insect Breathing and specialized in thrusting attacks that inject lethal wisteria poison. Shinobu is exceptionally agile and possesses extraordinary knowledge of medicine, pharmacology, poisons, and demon biology.",
+  "otherVariants": [],
+  "stats": {
+    "tier": "High 7-C",
+    "attackPotency": "Large Town level, higher with Rage Amp",
+    "durability": "Large Town level",
+    "attackSpeed": "Sub-Relativistic",
+    "combatSpeed": "Sub-Relativistic",
+    "reactionSpeed": "Sub-Relativistic",
+    "perceptionSpeed": "Sub-Relativistic",
+    "travelSpeed": "Sub-Relativistic",
+    "flightSpeed": "Not applicable",
+    "liftingStrength": "Superhuman",
+    "strikingStrength": "Large Town level, higher with Rage Amp",
+    "stamina": "Superhuman",
+    "range": "Extended Melee Range with Nichirin Sword, Several Meters with Breathing Techniques",
+    "intelligence": "At least Genius, likely Extraordinary Genius"
+  },
+  "abilities": [
+    "Superhuman Physical Characteristics",
+    "Acrobatics",
+    "Body Control",
+    "Low Regeneration",
+    "Enhanced Senses",
+    "Extrasensory Perception",
+    "Healing",
+    "Greater Battle Spirit",
+    "Master Swordswoman",
+    "Sunlight Absorption",
+    "Non-Physical Interaction",
+    "Statistics Amplification",
+    "Perception Manipulation",
+    "Shockwave Generation",
+    "Instinctive Reaction",
+    "Poison Manipulation",
+    "Limited Durability Negation",
+    "Rage Power",
+    "Awakened Power",
+    "Insect Breathing"
+  ],
+  "equipment": [
+    "stinger-nichirin-sword"
+  ],
+  "weaknesses": [
+    "Physically lacks the strength to decapitate demons and relies on thrusting attacks and wisteria poison"
+  ],
+  "notes": "Shinobu possesses 37 kilograms worth of wisteria poison throughout her body. Each strike from her sword can inject wisteria poison into demons, allowing her to bypass conventional durability. Her Rage Amp greatly increases her speed and power when avenging Kanae, while her Death Amp reaches Small City level and Relativistic speed. These amps are not treated as separate variants here."
+}

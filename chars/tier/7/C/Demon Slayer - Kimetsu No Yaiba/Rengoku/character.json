@@ -1,0 +1,59 @@
+{
+  "id": "kyojuro-rengoku-main-series",
+  "name": "Kyojuro Rengoku",
+  "variant": "Main Series",
+  "alias": "Flame Hashira",
+  "series": "Demon Slayer: Kimetsu No Yaiba",
+  "tier": "7-C",
+  "portrait": "chars/tier/7/C/Demon Slayer - Kimetsu No Yaiba/Rengoku/1.webp",
+  "banner": "chars/tier/7/C/Demon Slayer - Kimetsu No Yaiba/Rengoku/2.webp",
+  "sourceUrl": "https://vsbattles.fandom.com/wiki/Kyojuro_Rengoku",
+  "gender": "Male",
+  "age": "20",
+  "classification": "Human; Demon Slayer; Flame Hashira",
+  "summary": "Kyojuro Rengoku was the Flame Hashira and a major character in the Mugen Train Arc. Despite his father's retirement from the Demon Slayer Corps and refusal to continue teaching him, Kyojuro trained himself using the Flame Breathing instruction books left by previous Flame Hashira. His exceptional skill allowed him to contend with the Upper Rank Three, Akaza.",
+  "otherVariants": [
+    "kyojuro-rengoku-gaiden"
+  ],
+  "stats": {
+    "tier": "7-C",
+    "attackPotency": "At least Town level, likely higher",
+    "durability": "At least Town level, likely higher",
+    "attackSpeed": "Massively Hypersonic+",
+    "combatSpeed": "Massively Hypersonic+",
+    "reactionSpeed": "Massively Hypersonic+",
+    "perceptionSpeed": "Massively Hypersonic+",
+    "travelSpeed": "Massively Hypersonic+",
+    "flightSpeed": "Not applicable",
+    "liftingStrength": "At least Class 25, at most Class 50",
+    "strikingStrength": "At least Town level, likely higher",
+    "stamina": "Superhuman",
+    "range": "Extended Melee Range with Nichirin Sword, Several Meters with Breathing Styles",
+    "intelligence": "Gifted"
+  },
+  "abilities": [
+    "Superhuman Physical Characteristics",
+    "Acrobatics",
+    "Body Control",
+    "Low Regeneration",
+    "Extrasensory Perception",
+    "Greater Battle Spirit",
+    "Supernatural Willpower",
+    "Awakened Power",
+    "Statistics Amplification",
+    "Instinctive Reaction",
+    "Master Swordsman",
+    "Sunlight Absorption",
+    "Non-Physical Interaction",
+    "Perception Manipulation",
+    "Shockwave Generation",
+    "Flame Breathing"
+  ],
+  "equipment": [
+    "nichirin-sword"
+  ],
+  "weaknesses": [
+    "None notable"
+  ],
+  "notes": "This is Kyojuro's Main Series key. He was able to fight Upper Rank Three Akaza despite suffering severe injuries. His physical performance increased further while near death, reaching Small City level with Death Amp and Relativistic speed. Those near-death values are treated as an amp rather than a separate variant here."
+}

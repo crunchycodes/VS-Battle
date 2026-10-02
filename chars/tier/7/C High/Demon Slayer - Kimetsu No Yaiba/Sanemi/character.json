@@ -1,0 +1,67 @@
+{
+  "id": "sanemi-base",
+  "name": "Sanemi Shinazugawa",
+  "variant": "Base",
+  "alias": "Wind Hashira",
+  "series": "Demon Slayer: Kimetsu No Yaiba",
+  "tier": "High 7-C",
+  "portrait": "chars/tier/7/C/Demon Slayer - Kimetsu No Yaiba/Sanemi/1.webp",
+  "banner": "chars/tier/7/C/Demon Slayer - Kimetsu No Yaiba/Sanemi/2.webp",
+  "sourceUrl": "https://vsbattles.fandom.com/wiki/Sanemi_Shinazugawa",
+  "gender": "Male",
+  "age": "21",
+  "classification": "Human; Demon Slayer; Hashira; Wind Hashira",
+  "summary": "Sanemi Shinazugawa is a Demon Slayer of the Demon Slayer Corps and the current Wind Hashira. He is the older brother of Genya Shinazugawa and one of the strongest swordsmen in the Corps. Sanemi is an exceptionally aggressive and skilled fighter who developed tremendous physical strength, speed, endurance, and swordsmanship through his experience as a Demon Slayer.",
+  "otherVariants": [
+    "sanemi-demon-slayer-mark"
+  ],
+  "stats": {
+    "tier": "High 7-C",
+    "attackPotency": "Large Town level",
+    "durability": "Large Town level",
+    "attackSpeed": "Sub-Relativistic",
+    "combatSpeed": "Sub-Relativistic",
+    "reactionSpeed": "Sub-Relativistic",
+    "perceptionSpeed": "Sub-Relativistic",
+    "travelSpeed": "Sub-Relativistic",
+    "flightSpeed": "Not applicable",
+    "liftingStrength": "At least Class 25, at most Class 50",
+    "strikingStrength": "Large Town level",
+    "stamina": "Superhuman",
+    "range": "Extended Melee Range, Several Meters with Breathing Styles",
+    "intelligence": "Gifted"
+  },
+  "abilities": [
+    "Superhuman Physical Characteristics",
+    "Acrobatics",
+    "Body Control",
+    "Low Regeneration",
+    "Fragrance Manipulation",
+    "Instinctive Reaction",
+    "Supernatural Willpower",
+    "Extrasensory Perception",
+    "Greater Battle Spirit",
+    "Statistics Amplification",
+    "Martial Arts",
+    "Master Swordsman",
+    "Sunlight Absorption",
+    "Non-Physical Interaction",
+    "Perception Manipulation",
+    "Shockwave Generation",
+    "Air Manipulation",
+    "Reactive Power Level",
+    "Awakened Power",
+    "Invisibility",
+    "Stealth Mastery",
+    "Enhanced Senses",
+    "Wind Breathing"
+  ],
+  "equipment": [
+    "nichirin-sword",
+    "demon-slayer-corps-uniform"
+  ],
+  "weaknesses": [
+    "None notable"
+  ],
+  "notes": "This represents Sanemi after completing the Hashira Training but without the Demon Slayer Mark. He was able to match Obanai, Muichiro, and Giyu during sparring and demonstrated exceptional skill against Kokushibo. His Marechi blood possesses an intoxicating effect on demons. Optional equipment includes Yushiro's talisman and oil and matches."
+}

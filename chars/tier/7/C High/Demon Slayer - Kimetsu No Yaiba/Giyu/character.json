@@ -1,0 +1,67 @@
+{
+  "id": "giyu-base",
+  "name": "Giyu Tomioka",
+  "variant": "Base",
+  "alias": "Water Hashira",
+  "series": "Demon Slayer: Kimetsu No Yaiba",
+  "tier": "High 7-C",
+  "portrait": "chars/tier/7/C High/Demon Slayer - Kimetsu No Yaiba/Giyu/1.webp",
+  "banner": "chars/tier/7/C High/Demon Slayer - Kimetsu No Yaiba/Giyu/2.webp",
+  "sourceUrl": "https://vsbattles.fandom.com/wiki/Giyu_Tomioka",
+  "gender": "Male",
+  "age": "21",
+  "classification": "Human; Demon Slayer; Hashira; Water Hashira",
+  "summary": "Giyu Tomioka is a Demon Slayer of the Demon Slayer Corps and the current Water Hashira. He is one of the most skilled swordsmen in the organization and developed the Eleventh Form of Water Breathing, Dead Calm, himself. Giyu possesses exceptional physical ability, tactical intelligence, swordsmanship, and composure in battle.",
+  "otherVariants": [
+    "giyu-demon-slayer-mark"
+  ],
+  "stats": {
+    "tier": "High 7-C",
+    "attackPotency": "Large Town level",
+    "durability": "Large Town level",
+    "attackSpeed": "Sub-Relativistic",
+    "combatSpeed": "Sub-Relativistic",
+    "reactionSpeed": "Sub-Relativistic",
+    "perceptionSpeed": "Sub-Relativistic",
+    "travelSpeed": "Sub-Relativistic",
+    "flightSpeed": "Not applicable",
+    "liftingStrength": "At least Class 25, at most Class 50",
+    "strikingStrength": "Large Town level",
+    "stamina": "Superhuman",
+    "range": "Extended Melee Range, Several Meters with Breathing Styles",
+    "intelligence": "Gifted"
+  },
+  "abilities": [
+    "Superhuman Physical Characteristics",
+    "Supernatural Willpower",
+    "Acrobatics",
+    "Martial Arts",
+    "Instinctive Reaction",
+    "Extrasensory Perception",
+    "Greater Battle Spirit",
+    "Master Swordsman",
+    "Sunlight Absorption",
+    "Non-Physical Interaction",
+    "Heat Manipulation",
+    "Regeneration Negation",
+    "Body Control",
+    "Low Regeneration",
+    "Statistics Amplification",
+    "Shockwave Generation",
+    "Perception Manipulation",
+    "Air Manipulation",
+    "Attack Nullification",
+    "Reactive Power Level",
+    "Invisibility",
+    "Stealth Mastery",
+    "Enhanced Senses",
+    "Water Breathing"
+  ],
+  "equipment": [
+    "nichirin-sword"
+  ],
+  "weaknesses": [
+    "None notable"
+  ],
+  "notes": "Giyu created the Eleventh Form of Water Breathing, Dead Calm, which nullifies attacks within his surroundings. Optional equipment includes a rope and Yushiro's talisman."
+}

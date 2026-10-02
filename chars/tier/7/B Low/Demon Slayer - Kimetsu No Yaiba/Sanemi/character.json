@@ -1,0 +1,67 @@
+{
+  "id": "sanemi-demon-slayer-mark",
+  "name": "Sanemi Shinazugawa",
+  "variant": "Demon Slayer Mark",
+  "alias": "Wind Hashira",
+  "series": "Demon Slayer: Kimetsu No Yaiba",
+  "tier": "Low 7-B",
+  "portrait": "chars/tier/7/C High/Demon Slayer - Kimetsu No Yaiba/Sanemi/1.webp",
+  "banner": "chars/tier/7/C High/Demon Slayer - Kimetsu No Yaiba/Sanemi/2.webp",
+  "sourceUrl": "https://vsbattles.fandom.com/wiki/Sanemi_Shinazugawa",
+  "gender": "Male",
+  "age": "21",
+  "classification": "Human; Demon Slayer; Hashira; Wind Hashira",
+  "summary": "Sanemi Shinazugawa is the Wind Hashira of the Demon Slayer Corps. After awakening his Demon Slayer Mark, his already exceptional physical abilities were amplified dramatically, allowing him to contend with some of the strongest demons in existence and fight alongside other marked Hashira.",
+  "otherVariants": [
+    "sanemi-base"
+  ],
+  "stats": {
+    "tier": "Low 7-B",
+    "attackPotency": "Small City level",
+    "durability": "Small City level",
+    "attackSpeed": "Relativistic",
+    "combatSpeed": "Relativistic",
+    "reactionSpeed": "Relativistic",
+    "perceptionSpeed": "Relativistic",
+    "travelSpeed": "Relativistic",
+    "flightSpeed": "Not applicable",
+    "liftingStrength": "Class K",
+    "strikingStrength": "Small City level",
+    "stamina": "Superhuman",
+    "range": "Extended Melee Range, Several Meters with Breathing Styles",
+    "intelligence": "Gifted"
+  },
+  "abilities": [
+    "Superhuman Physical Characteristics",
+    "Acrobatics",
+    "Body Control",
+    "Low Regeneration",
+    "Fragrance Manipulation",
+    "Instinctive Reaction",
+    "Supernatural Willpower",
+    "Extrasensory Perception",
+    "Greater Battle Spirit",
+    "Statistics Amplification",
+    "Demon Slayer Mark",
+    "Martial Arts",
+    "Master Swordsman",
+    "Sunlight Absorption",
+    "Non-Physical Interaction",
+    "Perception Manipulation",
+    "Shockwave Generation",
+    "Air Manipulation",
+    "Reactive Power Level",
+    "Awakened Power",
+    "Invisibility",
+    "Stealth Mastery",
+    "Enhanced Senses",
+    "Wind Breathing"
+  ],
+  "equipment": [
+    "nichirin-sword"
+  ],
+  "weaknesses": [
+    "None notable"
+  ],
+  "notes": "The Demon Slayer Mark increases Sanemi's strength and speed by an order of magnitude. He was able to split Muzan in half and withstand attacks from Kokushibo. His performance could increase further through Near-Death Amp and a Bright Red Nichirin Sword, but those are not treated as separate variants here."
+}

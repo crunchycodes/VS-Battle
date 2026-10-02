@@ -1,0 +1,68 @@
+{
+  "id": "giyu-demon-slayer-mark",
+  "name": "Giyu Tomioka",
+  "variant": "Demon Slayer Mark",
+  "alias": "Water Hashira",
+  "series": "Demon Slayer: Kimetsu No Yaiba",
+  "tier": "Low 7-B",
+  "portrait": "chars/tier/7/C High/Demon Slayer - Kimetsu No Yaiba/Giyu/3.webp",
+  "banner": "chars/tier/7/C High/Demon Slayer - Kimetsu No Yaiba/Giyu/2.webp",
+  "sourceUrl": "https://vsbattles.fandom.com/wiki/Giyu_Tomioka",
+  "gender": "Male",
+  "age": "21",
+  "classification": "Human; Demon Slayer; Hashira; Water Hashira",
+  "summary": "Giyu Tomioka awakened the Demon Slayer Mark while fighting Akaza, dramatically increasing his physical abilities. His marked state allowed him to contend with a serious Akaza, later fight Muzan, and clash with Sanemi strongly enough for their Nichirin swords to become bright red.",
+  "otherVariants": [
+    "giyu-base"
+  ],
+  "stats": {
+    "tier": "Low 7-B",
+    "attackPotency": "Small City level",
+    "durability": "Small City level",
+    "attackSpeed": "Relativistic",
+    "combatSpeed": "Relativistic",
+    "reactionSpeed": "Relativistic",
+    "perceptionSpeed": "Relativistic",
+    "travelSpeed": "Relativistic",
+    "flightSpeed": "Not applicable",
+    "liftingStrength": "Class K",
+    "strikingStrength": "Small City level",
+    "stamina": "Superhuman",
+    "range": "Extended Melee Range, Several Meters with Breathing Styles",
+    "intelligence": "Gifted"
+  },
+  "abilities": [
+    "Superhuman Physical Characteristics",
+    "Supernatural Willpower",
+    "Acrobatics",
+    "Martial Arts",
+    "Instinctive Reaction",
+    "Extrasensory Perception",
+    "Greater Battle Spirit",
+    "Master Swordsman",
+    "Sunlight Absorption",
+    "Non-Physical Interaction",
+    "Heat Manipulation",
+    "Regeneration Negation",
+    "Body Control",
+    "Low Regeneration",
+    "Statistics Amplification",
+    "Shockwave Generation",
+    "Perception Manipulation",
+    "Air Manipulation",
+    "Attack Nullification",
+    "Reactive Power Level",
+    "Invisibility",
+    "Stealth Mastery",
+    "Enhanced Senses",
+    "Demon Slayer Mark",
+    "Water Breathing"
+  ],
+  "equipment": [
+    "nichirin-sword"
+  ],
+  "weaknesses": [
+    "None notable"
+  ],
+  "notes": "The Demon Slayer Mark increases Giyu's strength and speed by an order of magnitude. His marked state allowed him to keep up with serious Akaza and survive his Blue Silver Chaotic Afterglow. His Constant Flux and Bright Red Nichirin Sword can increase his effectiveness further."
+}
