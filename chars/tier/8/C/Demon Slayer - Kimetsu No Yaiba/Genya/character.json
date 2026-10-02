@@ -1,0 +1,64 @@
+{
+  "id": "genya-base",
+  "name": "Genya Shinazugawa",
+  "variant": "Base",
+  "alias": "Demon Slayer",
+  "series": "Demon Slayer: Kimetsu No Yaiba",
+  "tier": "8-C",
+  "portrait": "chars/tier/8/C/Demon Slayer - Kimetsu No Yaiba/Genya/1.webp",
+  "banner": "chars/tier/8/C/Demon Slayer - Kimetsu No Yaiba/Genya/2.webp",
+  "sourceUrl": "https://vsbattles.fandom.com/wiki/Genya_Shinazugawa",
+  "gender": "Male",
+  "age": "16",
+  "classification": "Human; Demon Slayer; Hinoto",
+  "summary": "Genya Shinazugawa is a member of the Demon Slayer Corps and the younger brother of Sanemi Shinazugawa. After his mother was transformed into a demon and killed their siblings, Genya joined the Demon Slayer Corps in an attempt to reconcile with his brother. Unlike most Demon Slayers, Genya cannot use Breathing Styles and instead relies on his physical strength, a Nichirin sword, and a Nichirin shotgun.",
+  "otherVariants": [
+    "genya-demon-transformation",
+    "genya-zohakuten-consumption",
+    "genya-kokushibo-consumption"
+  ],
+  "stats": {
+    "tier": "8-C",
+    "attackPotency": "8-C",
+    "durability": "8-C",
+    "attackSpeed": "Massively Hypersonic",
+    "combatSpeed": "Massively Hypersonic",
+    "reactionSpeed": "Massively Hypersonic",
+    "perceptionSpeed": "Massively Hypersonic",
+    "travelSpeed": "Massively Hypersonic",
+    "flightSpeed": "Not applicable",
+    "liftingStrength": "Class 25",
+    "strikingStrength": "8-C",
+    "stamina": "Superhuman",
+    "range": "Standard Melee Range, Hundreds of Meters with his gun",
+    "intelligence": "Average"
+  },
+  "abilities": [
+    "Superhuman Physical Characteristics",
+    "Immortality",
+    "Regeneration",
+    "Enhanced Senses",
+    "Limited Information Analysis",
+    "Battle Spirit",
+    "Limited Fear Manipulation",
+    "Paralysis Inducement",
+    "Extrasensory Perception",
+    "Stealth Mastery",
+    "Weapon Mastery",
+    "Acrobatics",
+    "Sunlight Absorption",
+    "Transformation",
+    "Power Mimicry",
+    "Statistics Amplification",
+    "Rage Power",
+    "Awakened Power"
+  ],
+  "equipment": [
+    "nichirin-sword",
+    "nichirin-shotgun"
+  ],
+  "weaknesses": [
+    "None notable"
+  ],
+  "notes": "Base Genya. He can consume demon flesh and gain some of the demon's abilities. His shotgun provides greater attack power than his normal physical attacks."
+}

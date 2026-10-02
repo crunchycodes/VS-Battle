@@ -1,0 +1,64 @@
+{
+  "id": "genya-zohakuten-consumption",
+  "name": "Genya Shinazugawa",
+  "variant": "After Consuming Zohakuten",
+  "alias": "Demon Slayer",
+  "series": "Demon Slayer: Kimetsu No Yaiba",
+  "tier": "High 8-C",
+  "portrait": "chars/tier/8/C/Demon Slayer - Kimetsu No Yaiba/Genya/2.webp",
+  "banner": "chars/tier/8/C/Demon Slayer - Kimetsu No Yaiba/Genya/3.webp",
+  "sourceUrl": "https://vsbattles.fandom.com/wiki/Genya_Shinazugawa",
+  "gender": "Male",
+  "age": "16",
+  "classification": "Human; Demon Slayer; Partial Demon",
+  "summary": "After consuming more of Zohakuten's cells, Genya became stronger than his previous transformed state. His increased physical strength allowed him to surprise Tanjiro and Nezuko by uprooting and throwing several trees. He continued to use his partial demon transformation and enhanced regeneration while fighting Hantengu's manifestations.",
+  "otherVariants": [
+    "genya-base",
+    "genya-demon-transformation",
+    "genya-kokushibo-consumption"
+  ],
+  "stats": {
+    "tier": "High 8-C",
+    "attackPotency": "High 8-C",
+    "durability": "High 8-C",
+    "attackSpeed": "Massively Hypersonic",
+    "combatSpeed": "Massively Hypersonic",
+    "reactionSpeed": "Massively Hypersonic",
+    "perceptionSpeed": "Massively Hypersonic",
+    "travelSpeed": "Massively Hypersonic",
+    "flightSpeed": "Not applicable",
+    "liftingStrength": "At least Class 25",
+    "strikingStrength": "High 8-C",
+    "stamina": "Superhuman",
+    "range": "Standard Melee Range, Hundreds of Meters with his gun",
+    "intelligence": "Average"
+  },
+  "abilities": [
+    "Superhuman Physical Characteristics",
+    "Immortality",
+    "Low-Mid Regeneration",
+    "Enhanced Senses",
+    "Limited Information Analysis",
+    "Battle Spirit",
+    "Limited Fear Manipulation",
+    "Paralysis Inducement",
+    "Extrasensory Perception",
+    "Stealth Mastery",
+    "Weapon Mastery",
+    "Acrobatics",
+    "Sunlight Absorption",
+    "Transformation",
+    "Power Mimicry",
+    "Statistics Amplification",
+    "Rage Power",
+    "Awakened Power"
+  ],
+  "equipment": [
+    "nichirin-sword",
+    "nichirin-shotgun"
+  ],
+  "weaknesses": [
+    "Standard weaknesses of demons: Sunlight and wisteria flowers"
+  ],
+  "notes": "After consuming additional Zohakuten cells, Genya becomes stronger than his previous transformed state. He demonstrated enough physical strength to uproot and throw several trees."
+}

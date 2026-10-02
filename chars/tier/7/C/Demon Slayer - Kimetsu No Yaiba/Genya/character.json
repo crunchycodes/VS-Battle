@@ -1,0 +1,69 @@
+{
+  "id": "genya-kokushibo-consumption",
+  "name": "Genya Shinazugawa",
+  "variant": "After Consuming Kokushibo + Demon Slayer Mark",
+  "alias": "Demon Slayer",
+  "series": "Demon Slayer: Kimetsu No Yaiba",
+  "tier": "7-C",
+  "portrait": "chars/tier/8/C/Demon Slayer - Kimetsu No Yaiba/Genya/3.webp",
+  "banner": "chars/tier/8/C/Demon Slayer - Kimetsu No Yaiba/Genya/2.webp",
+  "sourceUrl": "https://vsbattles.fandom.com/wiki/Genya_Shinazugawa",
+  "gender": "Male",
+  "age": "16",
+  "classification": "Human; Demon Slayer; Partial Demon; Demon Slayer Mark",
+  "summary": "After consuming Kokushibo's flesh and awakening the Demon Slayer Mark, Genya underwent an enormous increase in power. He developed a Blood Demon Art that allowed him to create wooden structures from his flesh bullets and manipulate their trajectory. His Blood Demon Art was powerful enough to restrain Kokushibo, giving the other Demon Slayers an opportunity to attack the Upper Rank One.",
+  "otherVariants": [
+    "genya-base",
+    "genya-demon-transformation",
+    "genya-zohakuten-consumption"
+  ],
+  "stats": {
+    "tier": "7-C",
+    "attackPotency": "7-C",
+    "durability": "7-C",
+    "attackSpeed": "Massively Hypersonic+",
+    "combatSpeed": "Massively Hypersonic+",
+    "reactionSpeed": "Massively Hypersonic+",
+    "perceptionSpeed": "Massively Hypersonic+",
+    "travelSpeed": "Massively Hypersonic+",
+    "flightSpeed": "Not applicable",
+    "liftingStrength": "Class K",
+    "strikingStrength": "7-C",
+    "stamina": "Superhuman",
+    "range": "Standard Melee Range, Hundreds of Meters with his gun; Extended Range with Blood Demon Art",
+    "intelligence": "Average"
+  },
+  "abilities": [
+    "Superhuman Physical Characteristics",
+    "Immortality",
+    "Low-Mid Regeneration",
+    "Enhanced Senses",
+    "Limited Information Analysis",
+    "Battle Spirit",
+    "Limited Fear Manipulation",
+    "Paralysis Inducement",
+    "Extrasensory Perception",
+    "Stealth Mastery",
+    "Weapon Mastery",
+    "Acrobatics",
+    "Sunlight Absorption",
+    "Transformation",
+    "Power Mimicry",
+    "Statistics Amplification",
+    "Rage Power",
+    "Awakened Power",
+    "Wood Manipulation",
+    "Homing Attack",
+    "Blood Manipulation",
+    "Demon Slayer Mark"
+  ],
+  "equipment": [
+    "nichirin-sword",
+    "nichirin-shotgun",
+    "demon-slayer-corps-uniform"
+  ],
+  "weaknesses": [
+    "Standard weaknesses of demons: Sunlight and wisteria flowers"
+  ],
+  "notes": "After consuming Kokushibo's cells and awakening the Demon Slayer Mark, Genya's power increased exponentially. His Blood Demon Art creates wooden roots and structures from embedded flesh bullets, allowing him to manipulate their trajectory and restrain opponents. His Blood Roots technique can absorb a demon's blood and interfere with its ability to activate its Blood Demon Art."
+}

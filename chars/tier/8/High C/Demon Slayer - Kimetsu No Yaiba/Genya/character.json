@@ -1,0 +1,64 @@
+{
+  "id": "genya-demon-transformation",
+  "name": "Genya Shinazugawa",
+  "variant": "Demon Transformation",
+  "alias": "Demon Slayer",
+  "series": "Demon Slayer: Kimetsu No Yaiba",
+  "tier": "High 8-C",
+  "portrait": "chars/tier/8/C/Demon Slayer - Kimetsu No Yaiba/Genya/1.webp",
+  "banner": "chars/tier/8/C/Demon Slayer - Kimetsu No Yaiba/Genya/2.webp",
+  "sourceUrl": "https://vsbattles.fandom.com/wiki/Genya_Shinazugawa",
+  "gender": "Male",
+  "age": "16",
+  "classification": "Human; Demon Slayer; Partial Demon",
+  "summary": "After consuming demon flesh, Genya can temporarily transform into a partial demon and gain abilities from the demon whose cells he consumed. After consuming Zohakuten's cells, his physical abilities and regeneration increased substantially, allowing him to survive and recover from severe injuries.",
+  "otherVariants": [
+    "genya-base",
+    "genya-zohakuten-consumption",
+    "genya-kokushibo-consumption"
+  ],
+  "stats": {
+    "tier": "High 8-C",
+    "attackPotency": "High 8-C",
+    "durability": "High 8-C",
+    "attackSpeed": "Massively Hypersonic",
+    "combatSpeed": "Massively Hypersonic",
+    "reactionSpeed": "Massively Hypersonic",
+    "perceptionSpeed": "Massively Hypersonic",
+    "travelSpeed": "Massively Hypersonic",
+    "flightSpeed": "Not applicable",
+    "liftingStrength": "Class 25",
+    "strikingStrength": "High 8-C",
+    "stamina": "Superhuman",
+    "range": "Standard Melee Range, Hundreds of Meters with his gun",
+    "intelligence": "Average"
+  },
+  "abilities": [
+    "Superhuman Physical Characteristics",
+    "Immortality",
+    "Low-Mid Regeneration",
+    "Enhanced Senses",
+    "Limited Information Analysis",
+    "Battle Spirit",
+    "Limited Fear Manipulation",
+    "Paralysis Inducement",
+    "Extrasensory Perception",
+    "Stealth Mastery",
+    "Weapon Mastery",
+    "Acrobatics",
+    "Sunlight Absorption",
+    "Transformation",
+    "Power Mimicry",
+    "Statistics Amplification",
+    "Rage Power",
+    "Awakened Power"
+  ],
+  "equipment": [
+    "nichirin-sword",
+    "nichirin-shotgun"
+  ],
+  "weaknesses": [
+    "Standard weaknesses of demons: Sunlight and wisteria flowers"
+  ],
+  "notes": "After consuming Zohakuten's cells, Genya gains improved regeneration and greater physical abilities. His regeneration is listed as Low-Mid, allowing him to regenerate several holes in his body."
+}
