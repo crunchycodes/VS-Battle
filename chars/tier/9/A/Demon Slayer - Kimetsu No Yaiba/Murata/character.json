@@ -1,0 +1,62 @@
+{
+  "id": "murata-mount-natagumo",
+  "name": "Murata",
+  "variant": "Mount Natagumo Arc",
+  "alias": "Demon Slayer Corps Swordsman",
+  "series": "Demon Slayer: Kimetsu No Yaiba",
+  "tier": "9-A",
+  "portrait": "chars/tier/9/A/Demon Slayer - Kimetsu No Yaiba/Murata/1.webp",
+  "banner": "",
+  "sourceUrl": "https://vsbattles.fandom.com/wiki/Murata",
+  "gender": "Male",
+  "age": "21",
+  "classification": "Human; Demon Slayer; Kanaoe",
+  "summary": "Murata is an active Demon Slayer Corps swordsman who became friends with Tanjiro Kamado after fighting alongside him on Mount Natagumo. He is an experienced Demon Slayer capable of using Water Breathing and was the only survivor of the squad sent to Mount Natagumo. Despite being overshadowed by stronger Demon Slayers, Murata is a capable swordsman who successfully defended himself against numerous controlled Demon Slayers.",
+  "otherVariants": [
+    "murata-post-hashira-training"
+  ],
+  "stats": {
+    "tier": "9-A",
+    "attackPotency": "Small Building level, higher with Constant Flux",
+    "durability": "Small Building level",
+    "attackSpeed": "Supersonic+",
+    "combatSpeed": "Supersonic+",
+    "reactionSpeed": "Supersonic+",
+    "perceptionSpeed": "Supersonic+",
+    "travelSpeed": "Supersonic+",
+    "flightSpeed": "Not applicable",
+    "liftingStrength": "Class 5",
+    "strikingStrength": "Small Building level, higher with Constant Flux",
+    "stamina": "Superhuman",
+    "range": "Extended Melee Range, Several Meters with Breathing Styles",
+    "intelligence": "Above Average"
+  },
+  "abilities": [
+    "Superhuman Physical Characteristics",
+    "Acrobatics",
+    "Supernatural Willpower",
+    "Enhanced Senses",
+    "Extrasensory Perception",
+    "Expert Swordsman",
+    "Sunlight Absorption",
+    "Non-Physical Interaction",
+    "Shockwave Generation",
+    "Statistics Amplification",
+    "Body Control",
+    "Low Regeneration",
+    "Battle Spirit",
+    "Poison Resistance",
+    "Biological Manipulation Resistance",
+    "Fear Manipulation Resistance",
+    "Paralysis Inducement Resistance",
+    "Air Manipulation Resistance",
+    "Water Breathing"
+  ],
+  "equipment": [
+    "nichirin-sword"
+  ],
+  "weaknesses": [
+    "Murata's Water Breathing is so faint that it isn't visible to anyone"
+  ],
+  "notes": "Murata's Water Breathing includes the first ten forms, including Constant Flux, which progressively increases the strength of his strikes with each rotation due to momentum. His Total Concentration Breathing grants resistance to poison and allows him to slow the circulation of poison through his body. He fought at Mount Natagumo throughout the night and was the only survivor of his squad."
+}
